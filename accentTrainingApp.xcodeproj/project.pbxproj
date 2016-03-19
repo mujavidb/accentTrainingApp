@@ -19,6 +19,7 @@
 		64B33F491C9D4BDF006C3510 /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B33F481C9D4BDF006C3510 /* QuestionViewController.swift */; };
 		64B33F4B1C9D4BFC006C3510 /* QuizChoice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B33F4A1C9D4BFC006C3510 /* QuizChoice.swift */; };
 		64B33F4D1C9D4C19006C3510 /* QuizOptionsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B33F4C1C9D4C19006C3510 /* QuizOptionsController.swift */; };
+		64B33F4F1C9D4E38006C3510 /* QuestionSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B33F4E1C9D4E38006C3510 /* QuestionSet.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,7 @@
 		64B33F481C9D4BDF006C3510 /* QuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
 		64B33F4A1C9D4BFC006C3510 /* QuizChoice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizChoice.swift; sourceTree = "<group>"; };
 		64B33F4C1C9D4C19006C3510 /* QuizOptionsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizOptionsController.swift; sourceTree = "<group>"; };
+		64B33F4E1C9D4E38006C3510 /* QuestionSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionSet.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +94,7 @@
 				64B33F221C9D4A6D006C3510 /* AppDelegate.swift */,
 				64B33F241C9D4A6D006C3510 /* ViewController.swift */,
 				64B33F461C9D4BB8006C3510 /* QuestionGenerator.swift */,
+				64B33F4E1C9D4E38006C3510 /* QuestionSet.swift */,
 				64B33F481C9D4BDF006C3510 /* QuestionViewController.swift */,
 				64B33F4A1C9D4BFC006C3510 /* QuizChoice.swift */,
 				64B33F4C1C9D4C19006C3510 /* QuizOptionsController.swift */,
@@ -225,6 +228,7 @@
 				64B33F431C9D4ABB006C3510 /* CustomButton.swift in Sources */,
 				64B33F451C9D4AEB006C3510 /* CustomViewController.swift in Sources */,
 				64B33F4D1C9D4C19006C3510 /* QuizOptionsController.swift in Sources */,
+				64B33F4F1C9D4E38006C3510 /* QuestionSet.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
