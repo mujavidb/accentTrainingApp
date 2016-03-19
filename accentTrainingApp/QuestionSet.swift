@@ -14,7 +14,13 @@ class QuestionSet{
         ["ban","barn","ben","bun"],
         ["hate","heat","height","hit"],
         ["lake","leak","lick","like"],
-        ["wait","wheat","white","wit"]
+        ["wait","wheat","white","wit"],
+        ["slate","sleet","sligth","slit"],
+        ["wars","was","woes"],
+        ["ham","harm","hem","hum"],
+        ["marsh","mash","mesh","mush"],
+        ["caught","coat","cot"],
+        ["curl","cowl","cool"]
     ]
     
     func getQuestionSet(index: Int) -> [String]{

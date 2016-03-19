@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		64B33F231C9D4A6D006C3510 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B33F221C9D4A6D006C3510 /* AppDelegate.swift */; };
-		64B33F251C9D4A6D006C3510 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B33F241C9D4A6D006C3510 /* ViewController.swift */; };
+		64B33F251C9D4A6D006C3510 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B33F241C9D4A6D006C3510 /* MainViewController.swift */; };
 		64B33F281C9D4A6D006C3510 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64B33F261C9D4A6D006C3510 /* Main.storyboard */; };
 		64B33F2A1C9D4A6D006C3510 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64B33F291C9D4A6D006C3510 /* Assets.xcassets */; };
 		64B33F2D1C9D4A6D006C3510 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64B33F2B1C9D4A6D006C3510 /* LaunchScreen.storyboard */; };
@@ -35,7 +35,7 @@
 /* Begin PBXFileReference section */
 		64B33F1F1C9D4A6D006C3510 /* accentTrainingApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = accentTrainingApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		64B33F221C9D4A6D006C3510 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		64B33F241C9D4A6D006C3510 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		64B33F241C9D4A6D006C3510 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		64B33F271C9D4A6D006C3510 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		64B33F291C9D4A6D006C3510 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		64B33F2C1C9D4A6D006C3510 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -92,7 +92,7 @@
 			isa = PBXGroup;
 			children = (
 				64B33F221C9D4A6D006C3510 /* AppDelegate.swift */,
-				64B33F241C9D4A6D006C3510 /* ViewController.swift */,
+				64B33F241C9D4A6D006C3510 /* MainViewController.swift */,
 				64B33F461C9D4BB8006C3510 /* QuestionGenerator.swift */,
 				64B33F4E1C9D4E38006C3510 /* QuestionSet.swift */,
 				64B33F481C9D4BDF006C3510 /* QuestionViewController.swift */,
@@ -221,7 +221,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				64B33F4B1C9D4BFC006C3510 /* QuizChoice.swift in Sources */,
-				64B33F251C9D4A6D006C3510 /* ViewController.swift in Sources */,
+				64B33F251C9D4A6D006C3510 /* MainViewController.swift in Sources */,
 				64B33F471C9D4BB8006C3510 /* QuestionGenerator.swift in Sources */,
 				64B33F491C9D4BDF006C3510 /* QuestionViewController.swift in Sources */,
 				64B33F231C9D4A6D006C3510 /* AppDelegate.swift in Sources */,
