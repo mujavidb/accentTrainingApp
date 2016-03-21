@@ -24,29 +24,35 @@ class QuizOptionsController: CustomViewController{
         "Glasgow":["01","02","03","04"]
         // "Sheffield":["02","03","04","05"]
     ]
-    
+	var testModeColor = UIColor(red: 90/255, green: 158/255, blue: 1, alpha: 1)
+	
     override func viewDidLoad() {
         super.viewDidLoad()
         getLengthOptions()
-        
+		self.view.backgroundColor = UIColor(red: 90/255, green: 158/255, blue: 1, alpha: 1)
     }
+	
+	//added to allow dismissal of VC
+	@IBAction func backButton(sender: AnyObject) {
+		self.dismissViewControllerAnimated(true, completion: nil)
+	}
     
     func getLengthOptions(){
-        displayLabel("Choose Length")
-        displayButtons(lengthOptions,nextFunction: "getAccentOptions:")
+        displayLabel("Choose quiz length")
+		displayButtons(lengthOptions, nextFunction: "getAccentOptions:")
     }
     
     func getAccentOptions(sender: CustomButton){
         self.quizOptions.setLength(sender.currentTitle!)
         removeViews(1)
-        displayLabel("Choose Accent")
+        displayLabel("Choose an accent")
         displayButtons(accentOptions, nextFunction:"getSpeakerOptions:",buttonX: 20,buttonY:160,buttonW:140,buttonH: 75)
     }
     
     func getSpeakerOptions(sender: CustomButton){
         self.quizOptions.setAccent(sender.currentTitle!)
         removeViews(1)
-        displayLabel("Choose Speaker")
+        displayLabel("Choose a speaker")
         displayButtons(speakerOptions[quizOptions.getQuizAccent()]!, nextFunction: "moveToQuestionView:")
     }
     
@@ -57,8 +63,10 @@ class QuizOptionsController: CustomViewController{
             presentViewController(resultController, animated: true, completion: nil)
         }
     }
-    
-    
-    
-    
+	
+	//hides status bar
+	override func prefersStatusBarHidden() -> Bool {
+		return true;
+	}
+	
 }

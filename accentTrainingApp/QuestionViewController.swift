@@ -19,9 +19,10 @@ class QuestionViewController: CustomViewController{
     
     override func viewDidLoad(){
         super.viewDidLoad()
-        audioPlayer = AVAudioPlayer()
+		audioPlayer = AVAudioPlayer()
         questionGenerator = QuestionGenerator(completQuizChoice: questionChoice!)
         generateQuestion()
+		
     }
     
     func generateQuestion(){

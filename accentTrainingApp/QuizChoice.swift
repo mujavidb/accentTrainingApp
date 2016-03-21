@@ -15,9 +15,6 @@ class QuizChoice {
     var quizAccent: String?
     var quizSpeaker: String?
     
-    init() {
-    }
-    
     //setter
     
     func setType(type: String){

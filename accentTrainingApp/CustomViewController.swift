@@ -15,7 +15,6 @@ class CustomViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        self.view.backgroundColor = UIColor(red: 90/255, green: 158/255, blue: 1, alpha: 1)
     }
     
     override func didReceiveMemoryWarning() {
@@ -25,37 +24,52 @@ class CustomViewController: UIViewController{
     
     
     func displayButtons(buttonLabelSet: [String], nextFunction: Selector){
-        displayButtons(buttonLabelSet, nextFunction: nextFunction,buttonX:20,buttonY:210,buttonW:140,buttonH:75)
+        displayButtons(
+			buttonLabelSet,
+			nextFunction: nextFunction,
+			buttonX:0,
+			buttonY:0,
+			buttonW:0,
+			buttonH:0
+		)
     }
     
-    func removeViews(tag: Int){
-        for view in self.view.subviews{
-            if view.tag == tag{
-                view.removeFromSuperview()
-            }
-        }
-    }
-    
-    func displayButtons(buttonLabelSet: [String], nextFunction: Selector,buttonX:Int, buttonY:Int,buttonW:Int, buttonH:Int){
-        var counter = 0
-        var posX: Int
-        var posY: Int
-        for label in buttonLabelSet{
+    func displayButtons(buttonLabelSet: [String], nextFunction: Selector, buttonX: Int, buttonY: Int,buttonW: Int, buttonH:Int){
+		var posX: Int
+		var posY: Int
+		var counter = 0
+		
+		//select (x, y, width, height) based on actual view dimensions
+		let viewHeight = Float(self.view.frame.height);
+		let viewWidth = Float(self.view.frame.width);
+		let gutterWidth: Float = 20;
+		let buttonWidth: Float = (viewWidth - (3 * gutterWidth))/2
+		
+		//get 70% of height, remove gutter space and divide remaining area by 3
+		let buttonHeight = (((viewHeight) * 0.75) - (4 * gutterWidth)) / 3
+		print("viewHeight: \(viewHeight) viewWidth: \(viewWidth) gutterWidth: \(gutterWidth) buttonWidth: \(buttonWidth) buttonHeight: \(buttonHeight)")
+		
+        for label in buttonLabelSet {
             
-            posX = buttonX+150*(counter%2)
-            posY = buttonY+100*(counter/2)
-            let customButton = CustomButton(frame: CGRect(x: posX, y: posY, width: buttonW, height:buttonH))
-            customButton.setTitleColor(UIColor(red: 90/255, green: 158/255, blue: 1, alpha: 1), forState: .Normal)
+            posX = Int(gutterWidth + (gutterWidth + buttonWidth) * Float(counter % 2))
+            posY = Int((gutterWidth + buttonHeight) * Float( 1 + counter / 2))
+			
+            let customButton = CustomButton(
+				frame: CGRect(x: posX, y: posY, width: Int(buttonWidth), height: Int(buttonHeight))
+			)
+			print("Buttons displayed \(counter): (\(posX), \(posY))")
+            customButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
             customButton.setTitle(label, forState: UIControlState.Normal)
-            customButton.titleLabel!.font = UIFont(name: "Arial",size:23)
+            customButton.titleLabel!.font = UIFont(name: "Arial", size: 23)
             customButton.addTarget(self, action: nextFunction, forControlEvents: .TouchUpInside)
+			customButton.backgroundColor = UIColor.redColor()
             self.view.addSubview(customButton)
             customButton.tag = 1
             counter = counter + 1
         }
     }
     
-    func displayLabel(title:String,posX:Int,posY:Int){
+    func displayLabel(title:String, posX:Int, posY:Int){
         let myLabel = UILabel(frame: CGRect(x:posX,y:posY,width:240,height:60))
         myLabel.text = title
         myLabel.font = UIFont.boldSystemFontOfSize(15)
@@ -66,6 +80,10 @@ class CustomViewController: UIViewController{
     }
     
     func displayLabel(title:String){
-        displayLabel(title,posX:50,posY:70)
+        displayLabel(title, posX:50, posY:70)
     }
+	
+	func removeViews(tag: Int){
+		self.view.subviews.forEach({ if $0.tag == tag { $0.removeFromSuperview(); }})
+	}
 }
