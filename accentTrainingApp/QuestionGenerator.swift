@@ -30,10 +30,13 @@ class QuestionGenerator{
         return false
     }
     func generateQuestion(){
-        repeat{questionSetIndex = Int(arc4random_uniform(UInt32(5)))}
+        repeat{questionSetIndex = Int(arc4random_uniform(UInt32(qs.questionSet.count)))}
             while(checkAnswered(questionSetIndex!))
+        
         askedQuestions.append(questionSetIndex!)
+        
         answerIndex = Int(arc4random_uniform(UInt32(qs.getQuestionSet(questionSetIndex!).count)))
+        
         answer = qs.getAnswer(questionSetIndex!,answerIndex:  answerIndex!)
     }
     func getQuestionFileName()->String{ // returns the name of the file in the format: london_anna_back
