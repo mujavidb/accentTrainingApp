@@ -32,28 +32,23 @@ class QuizOptionsController: CustomViewController{
 		self.view.backgroundColor = UIColor(red: 90/255, green: 158/255, blue: 1, alpha: 1)
     }
 	
-	//added to allow dismissal of VC
-	@IBAction func backButton(sender: AnyObject) {
-		self.dismissViewControllerAnimated(true, completion: nil)
-	}
-    
     func getLengthOptions(){
-        displayLabel("Choose quiz length")
-		displayButtons(lengthOptions, nextFunction: "getAccentOptions:")
+        displayLabel("Choose quiz length", textColor: UIColor(red: 90/255, green: 158/255, blue: 1, alpha: 1))
+		displayButtons(lengthOptions, textColor: appColors["practice"]!, nextFunction: "getAccentOptions:")
     }
-    
+	
     func getAccentOptions(sender: CustomButton){
         self.quizOptions.setLength(sender.currentTitle!)
         removeViews(1)
-        displayLabel("Choose an accent")
-        displayButtons(accentOptions, nextFunction:"getSpeakerOptions:",buttonX: 20,buttonY:160,buttonW:140,buttonH: 75)
+        displayLabel("Choose an accent", textColor: UIColor(red: 90/255, green: 158/255, blue: 1, alpha: 1))
+        displayButtons(accentOptions, textColor: appColors["practice"]!, nextFunction:"getSpeakerOptions:")
     }
     
     func getSpeakerOptions(sender: CustomButton){
         self.quizOptions.setAccent(sender.currentTitle!)
         removeViews(1)
-        displayLabel("Choose a speaker")
-        displayButtons(speakerOptions[quizOptions.getQuizAccent()]!, nextFunction: "moveToQuestionView:")
+        displayLabel("Choose a speaker", textColor: UIColor(red: 90/255, green: 158/255, blue: 1, alpha: 1))
+        displayButtons(speakerOptions[quizOptions.getQuizAccent()]!, textColor: appColors["practice"]!, nextFunction: "moveToQuestionView:")
     }
     
     func moveToQuestionView(sender:CustomButton){
@@ -64,9 +59,38 @@ class QuizOptionsController: CustomViewController{
         }
     }
 	
-	//hides status bar
-	override func prefersStatusBarHidden() -> Bool {
-		return true;
+	func displayButtons(buttonLabelSet: [String], textColor: UIColor, nextFunction: Selector){
+		
+		var posX: Int
+		var posY: Int
+		var counter = 0
+		
+		//select (x, y, width, height) based on actual view dimensions
+		let viewHeight = Float(self.view.frame.height);
+		let viewWidth = Float(self.view.frame.width);
+		let gutterWidth: Float = 20;
+		let buttonWidth: Float = (viewWidth - (3 * gutterWidth))/2
+		
+		//get 75% of height, remove gutter space and divide remaining area by 3
+		let buttonHeight = (((viewHeight) * 0.75) - (4 * gutterWidth)) / 3
+		
+		for label in buttonLabelSet {
+			
+			posX = Int(gutterWidth + (gutterWidth + buttonWidth) * Float(counter % 2))
+			posY = Int((gutterWidth + buttonHeight) * Float( 1 + counter / 2))
+			
+			let customButton = CustomButton(
+				frame: CGRect(x: posX, y: posY, width: Int(buttonWidth), height: Int(buttonHeight))
+			)
+			customButton.setTitleColor(textColor, forState: .Normal)
+			customButton.setTitle(label, forState: UIControlState.Normal)
+			customButton.titleLabel!.font = UIFont(name: "Arial", size: 23)
+			customButton.addTarget(self, action: nextFunction, forControlEvents: .TouchUpInside)
+			customButton.backgroundColor = appColors["white"]
+			self.view.addSubview(customButton)
+			customButton.tag = 1
+			counter = counter + 1
+		}
 	}
 	
 }
