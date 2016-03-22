@@ -16,11 +16,6 @@ class CustomButton: UIButton{
         setUp()
     }
 	
-	init(){
-        super.init(frame: CGRectZero)
-        setUp()
-    }
-	
     override init(frame: CGRect) {
         super.init(frame: frame)
         setUp()
@@ -28,7 +23,5 @@ class CustomButton: UIButton{
 	
     func setUp(){
         self.layer.cornerRadius = 10
-        self.backgroundColor = UIColor(red: 90/255, green: 158/255, blue: 1, alpha: 1)
-        self.tintColor = UIColor.whiteColor()
     }
 }

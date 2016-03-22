@@ -418,6 +418,7 @@
 				64B33F3E1C9D4A6D006C3510 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		64B33F3F1C9D4A6D006C3510 /* Build configuration list for PBXNativeTarget "accentTrainingAppTests" */ = {
 			isa = XCConfigurationList;
@@ -426,6 +427,7 @@
 				64B33F411C9D4A6D006C3510 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

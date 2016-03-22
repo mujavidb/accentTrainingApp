@@ -8,18 +8,14 @@
 
 import UIKit
 
-class MainViewController: CustomViewController {
-    
+class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
 		self.view.backgroundColor = UIColor.whiteColor()
     }
     
-    @IBAction func unwindToMVC(segue: UIStoryboardSegue){
-        
-    }
-    
-    
+	//allows moving back to MainVC
+	@IBAction func unwindToMVC(segue: UIStoryboardSegue){}
 }
 
