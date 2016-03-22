@@ -59,8 +59,4 @@ class QuestionViewController: CustomViewController{
         generateQuestion()
     }
     
-    
-    
-    
-    
 }
