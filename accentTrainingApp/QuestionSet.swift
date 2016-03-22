@@ -16,7 +16,7 @@ class QuestionSet{
         ["hate","heat","height","hit"],
         ["lake","leak","lick","like"],
         ["wait","wheat","white","wit"],
-        ["slate","sleet","sligth","slit"],
+        ["slate","sleet","slight","slit"],
         ["wars","was","woes"],
         ["ham","harm","hem","hum"],
         ["marsh","mash","mesh","mush"],
