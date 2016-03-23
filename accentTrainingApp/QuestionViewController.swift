@@ -65,24 +65,40 @@ class QuestionViewController: CustomViewController {
     
     
     func questionButtonPressed(sender: CustomButton){
+        var time: Double
         if sender.currentTitle! == questionGenerator?.getAnswer(){ // if correct answer selected
             playSound("feedback-correct")
             sender.backgroundColor = UIColor.greenColor()
+            time = 1.3
+            
         }
         else{ // if wrong answer selected
-            playSound("feedback-wrong")
+            self.playSound("feedback-wrong")
             sender.backgroundColor = UIColor.redColor()
-            delay(0.5){
+            delay(1){
+        
+                let accent = self.questionChoice!.getQuizAccent()
+                let speakerName = self.questionChoice!.getQuizSpeaker()
+                let answer: String = sender.currentTitle!
+                let tempFileName =  "\(accent)_\(speakerName)_\(answer)"
+                self.playSound(tempFileName)
+                print(tempFileName)
+            }
+            delay(3){
                 for view in self.view.subviews as [UIView] {
                     if let button = view as? CustomButton {
                         if button.currentTitle! == self.questionGenerator?.getAnswer(){
                             button.backgroundColor = UIColor.greenColor()
+                            let tempFileName = self.questionGenerator?.getQuestionFileName()
+                            print(tempFileName)
+                            self.playSound(tempFileName!)
                         }
                     }
                 }
             }
+            time = 5
         }
-        delay(1) {
+        delay(time) {
             self.generateQuestion()
         }
     }
