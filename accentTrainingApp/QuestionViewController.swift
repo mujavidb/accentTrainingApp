@@ -45,7 +45,7 @@ class QuestionViewController: CustomViewController {
         questionGenerator?.generateQuestion()
 		displayButtons(questionGenerator!.getQuestionSet(), nextFunction: "questionButtonPressed:")
         let fileName = questionGenerator?.getQuestionFileName()
-        displayLabel(fileName!, textColor: UIColor.whiteColor())
+        displayLabel(fileName!, textColor: UIColor.blackColor())
         playSound(fileName!)
         
     }
@@ -63,14 +63,37 @@ class QuestionViewController: CustomViewController {
         }
     }
     
+    
     func questionButtonPressed(sender: CustomButton){
         if sender.currentTitle! == questionGenerator?.getAnswer(){
             playSound("feedback-correct")
-        } else {
-            playSound("feedback-wrong")
+            sender.backgroundColor = UIColor.greenColor()
         }
-        sleep(1)
-        generateQuestion()
+        else{
+            playSound("feedback-wrong")
+            sender.backgroundColor = UIColor.redColor()
+            delay(0.5){
+                for view in self.view.subviews as [UIView] {
+                    if let btn = view as? CustomButton {
+                        if btn.currentTitle! == self.questionGenerator?.getAnswer(){
+                            btn.backgroundColor = UIColor.greenColor()
+                        }
+                    }
+                }
+            }
+        }
+        delay(1) {
+            self.generateQuestion()
+        }
+    }
+    
+    func delay(delay:Double, closure:()->()) { // delays for double second and executes the code inside the closure
+        dispatch_after(
+            dispatch_time(
+                DISPATCH_TIME_NOW,
+                Int64(delay * Double(NSEC_PER_SEC))
+            ),
+            dispatch_get_main_queue(), closure)
     }
 	
 	func displayButtons(buttonLabelSet: [String], nextFunction: Selector){
@@ -106,5 +129,6 @@ class QuestionViewController: CustomViewController {
 			counter = counter + 1
 		}
 	}
+   
 
 }
