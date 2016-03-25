@@ -14,7 +14,7 @@ class QuizOptionsController: CustomViewController{
     
     let quizOptions = QuizChoice()
     let lengthOptions = ["15","25","35"]
-    let accentOptions = ["London","US","Manchester","NewZealand","Australia","Glasgow","Australia"]
+    let accentOptions = ["London","US","Manchester","NewZealand","Australia","Glasgow"]
     let speakerOptions = [
         "London" : ["Anna","Chloe","John","Matthew"],
         "US" : ["01","04","05","06"],

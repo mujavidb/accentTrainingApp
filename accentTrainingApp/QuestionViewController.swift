@@ -45,7 +45,7 @@ class QuestionViewController: CustomViewController {
         questionGenerator?.generateQuestion()
 		displayButtons(questionGenerator!.getQuestionSet(), nextFunction: "questionButtonPressed:")
         let fileName = questionGenerator?.getQuestionFileName()
-        displayLabel(fileName!, textColor: UIColor.whiteColor())
+        displayLabel(fileName!, textColor: UIColor.blackColor())
         playSound(fileName!)
         
     }
@@ -63,14 +63,48 @@ class QuestionViewController: CustomViewController {
         }
     }
     
+    
     func questionButtonPressed(sender: CustomButton){
-        if sender.currentTitle! == questionGenerator?.getAnswer(){
+        var time: Double
+        if sender.currentTitle! == questionGenerator?.getAnswer(){ // if correct answer selected
             playSound("feedback-correct")
-        } else {
-            playSound("feedback-wrong")
+            sender.backgroundColor = UIColor.greenColor()
+            time = 1.3
+            
         }
-        sleep(1)
-        generateQuestion()
+        else{ // if wrong answer selected
+            self.playSound("feedback-wrong")
+            sender.backgroundColor = UIColor.redColor()
+            delay(1){
+        
+                let accent = self.questionChoice!.getQuizAccent()
+                let speakerName = self.questionChoice!.getQuizSpeaker()
+                let answer: String = sender.currentTitle!
+                let tempFileName =  "\(accent)_\(speakerName)_\(answer)"
+                self.playSound(tempFileName)
+                print(tempFileName)
+            }
+            delay(3){
+                for view in self.view.subviews as [UIView] {
+                    if let button = view as? CustomButton {
+                        if button.currentTitle! == self.questionGenerator?.getAnswer(){
+                            button.backgroundColor = UIColor.greenColor()
+                            let tempFileName = self.questionGenerator?.getQuestionFileName()
+                            print(tempFileName)
+                            self.playSound(tempFileName!)
+                        }
+                    }
+                }
+            }
+            time = 5
+        }
+        delay(time) {
+            self.generateQuestion()
+        }
+    }
+    
+    func delay(time:Double, closure:()->Void) { // delays for double second and executes the code inside the closure
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW,Int64(time * Double(NSEC_PER_SEC))),dispatch_get_main_queue(), closure)
     }
 	
 	func displayButtons(buttonLabelSet: [String], nextFunction: Selector){
@@ -106,5 +140,6 @@ class QuestionViewController: CustomViewController {
 			counter = counter + 1
 		}
 	}
+   
 
 }
