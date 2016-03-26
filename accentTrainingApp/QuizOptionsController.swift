@@ -28,27 +28,31 @@ class QuizOptionsController: CustomViewController{
 	
     override func viewDidLoad() {
         super.viewDidLoad()
-        getLengthOptions()
-		self.view.backgroundColor = UIColor(red: 90/255, green: 158/255, blue: 1, alpha: 1)
+		getLengthOptions()
+		self.view.backgroundColor = appColors["practice"]
     }
 	
     func getLengthOptions(){
-        displayLabel("Choose quiz length", textColor: UIColor(red: 90/255, green: 158/255, blue: 1, alpha: 1))
-		displaySingleColumnButtons(lengthOptions, textColor: appColors["practice"]!, nextFunction: "getAccentOptions:")
+        displayLabel("Choose quiz length", textColor: appColors["practice"]!)
+		displaySingleColumnButtons(lengthOptions, textColor: appColors["practice"]!, nextFunction: #selector(QuizOptionsController.getAccentOptions(_:)))
     }
 	
     func getAccentOptions(sender: CustomButton){
         self.quizOptions.setLength(sender.currentTitle!)
         removeViews(1)
-        displayLabel("Choose an accent", textColor: UIColor(red: 90/255, green: 158/255, blue: 1, alpha: 1))
-        displayTwoColumnButtons(accentOptions, textColor: appColors["practice"]!, nextFunction:"getSpeakerOptions:")
+		delay(0.3){
+			self.displayLabel("Choose an accent", textColor: self.appColors["practice"]!)
+			self.displayTwoColumnButtons(self.accentOptions, textColor: self.appColors["practice"]!, nextFunction:#selector(QuizOptionsController.getSpeakerOptions(_:)))
+		}
     }
     
     func getSpeakerOptions(sender: CustomButton){
         self.quizOptions.setAccent(sender.currentTitle!)
         removeViews(1)
-        displayLabel("Choose a speaker", textColor: UIColor(red: 90/255, green: 158/255, blue: 1, alpha: 1))
-        displayTwoColumnButtons(speakerOptions[quizOptions.getQuizAccent()]!, textColor: appColors["practice"]!, nextFunction: "moveToQuestionView:")
+		delay(0.3){
+			self.displayLabel("Choose a speaker", textColor: self.appColors["practice"]!)
+			self.displayTwoColumnButtons(self.speakerOptions[self.quizOptions.getQuizAccent()]!, textColor: self.appColors["practice"]!, nextFunction: #selector(QuizOptionsController.moveToQuestionView(_:)))
+		}
     }
     
     func moveToQuestionView(sender:CustomButton){
