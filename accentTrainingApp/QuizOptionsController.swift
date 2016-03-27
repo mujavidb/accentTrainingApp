@@ -13,7 +13,7 @@ import UIKit
 class QuizOptionsController: CustomViewController{
     
     let quizOptions = QuizChoice()
-    let lengthOptions = ["15","25","35"]
+    let lengthOptions = ["Short (15)","Medium (25)","Long (40)"]
     let accentOptions = ["London","US","Manchester","NewZealand","Australia","Glasgow"]
     let speakerOptions = [
         "London" : ["Anna","Chloe","John","Matthew"],

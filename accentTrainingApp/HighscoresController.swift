@@ -23,6 +23,7 @@ class HighscoresController: CustomViewController {
 		"Muhammad"
 	]
 	var current = "practice" {
+		//observer design pattern
 		didSet {
 			if current == "practice" {
 				practiceOption.backgroundColor = appColors["white"]

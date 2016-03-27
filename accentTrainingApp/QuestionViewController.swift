@@ -22,8 +22,8 @@ class QuestionViewController: CustomViewController {
         super.viewDidLoad()
 		audioPlayer = AVAudioPlayer()
         questionGenerator = QuestionGenerator(completQuizChoice: questionChoice!)
-        generateQuestion()
 		setUpReplayButton()
+		generateQuestion()
     }
 	
 	func setUpReplayButton(){
