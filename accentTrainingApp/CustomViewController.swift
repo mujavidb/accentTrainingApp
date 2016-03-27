@@ -16,11 +16,17 @@ class CustomViewController: UIViewController{
 		"practice" : UIColor(red: 90/255, green: 160/255, blue: 1, alpha: 1),
 		"timetrial" : UIColor(red: 180/255, green: 110/255, blue: 210/255, alpha: 1),
 		"highscores": UIColor(red: 240/255, green: 190/255, blue: 10/255, alpha: 1),
+		
 		"white": UIColor.whiteColor(),
 		"darkGrey": UIColor(red: 75/255, green: 75/255, blue: 75/255, alpha: 1),
+		"lightGrey": UIColor(red: 225/255, green: 225/255, blue: 225/255, alpha: 1),
 		"incorrectRed": UIColor(red: 225/255, green: 75/255, blue: 95/255, alpha: 1),
 		"correctGreen": UIColor(red: 100/255, green: 225/255, blue: 140/255, alpha: 1),
-		"lightGrey": UIColor(red: 225/255, green: 225/255, blue: 225/255, alpha: 1)
+		
+		"gold": UIColor(red: 255/255, green: 210/255, blue: 0/255, alpha: 1),
+		"silver": UIColor(red: 210/255, green: 210/255, blue: 200/255, alpha: 1),
+		"bronze": UIColor(red: 210/255, green: 110/255, blue: 15/255, alpha: 1),
+		"transparent": UIColor(red: 1, green: 1, blue: 1, alpha: 0)
 		]
     
     override func viewDidLoad() {
