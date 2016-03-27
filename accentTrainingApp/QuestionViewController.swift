@@ -36,7 +36,7 @@ class QuestionViewController: CustomViewController {
 		)
 		replayButton.setImage(image, forState: .Normal)
 		replayButton.titleLabel?.hidden = true
-		replayButton.imageView?.contentMode = UIViewContentMode.Center
+		replayButton.imageView?.contentMode = .Center
 		replayButton.addTarget(self, action: #selector(QuestionViewController.replaySound(_:)), forControlEvents: .TouchUpInside)
 		self.view.addSubview(replayButton)
 	}
@@ -134,7 +134,7 @@ class QuestionViewController: CustomViewController {
 				frame: CGRect(x: posX, y: posY, width: Int(buttonWidth), height: Int(buttonHeight))
 			)
 			customButton.setTitleColor(appColors["darkGrey"], forState: .Normal)
-			customButton.setTitle(label, forState: UIControlState.Normal)
+			customButton.setTitle(label, forState: .Normal)
 			customButton.titleLabel?.font = UIFont(name: "Arial", size: 24)
 			customButton.addTarget(self, action: nextFunction, forControlEvents: .TouchUpInside)
 			customButton.backgroundColor = appColors["lightGrey"]

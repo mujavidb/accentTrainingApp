@@ -28,9 +28,14 @@ class CustomViewController: UIViewController{
 		"bronze": UIColor(red: 210/255, green: 110/255, blue: 15/255, alpha: 1),
 		"transparent": UIColor(red: 1, green: 1, blue: 1, alpha: 0)
 		]
+	
+	var viewWidth: Double = 500
+	var viewHeight: Double = 500
     
     override func viewDidLoad() {
         super.viewDidLoad()
+		viewWidth = Double(self.view.frame.width)
+		viewHeight = Double(self.view.frame.height)
     }
     
     override func didReceiveMemoryWarning() {

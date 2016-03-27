@@ -2,7 +2,7 @@
 //  QuizOptionsController.swift
 //  neaterDifferent
 //
-//  Created by HochinKazuma on 18/03/2016.
+//  Created by Mujavid Bukhari on 09/03/2016.
 //  Copyright © 2016 k. All rights reserved.
 //
 
@@ -84,7 +84,7 @@ class QuizOptionsController: CustomViewController{
 				frame: CGRect(x: posX, y: posY, width: buttonWidth, height: buttonHeight)
 			)
 			customButton.setTitleColor(textColor, forState: .Normal)
-			customButton.setTitle(label, forState: UIControlState.Normal)
+			customButton.setTitle(label, forState: .Normal)
 			customButton.titleLabel!.font = UIFont(name: "Arial", size: CGFloat(viewWidth / 14.4))
 			customButton.addTarget(self, action: nextFunction, forControlEvents: .TouchUpInside)
 			customButton.backgroundColor = appColors["white"]
@@ -118,7 +118,7 @@ class QuizOptionsController: CustomViewController{
 				frame: CGRect(x: posX, y: posY, width: Int(buttonWidth), height: Int(buttonHeight))
 			)
 			customButton.setTitleColor(textColor, forState: .Normal)
-			customButton.setTitle(label, forState: UIControlState.Normal)
+			customButton.setTitle(label, forState: .Normal)
 			customButton.titleLabel!.font = UIFont(name: "Arial", size: CGFloat(viewWidth / 14.4))
 			customButton.addTarget(self, action: nextFunction, forControlEvents: .TouchUpInside)
 			customButton.backgroundColor = appColors["white"]
