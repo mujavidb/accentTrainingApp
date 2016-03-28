@@ -22,30 +22,38 @@ class QuestionViewController: CustomViewController {
         super.viewDidLoad()
 		audioPlayer = AVAudioPlayer()
         questionGenerator = QuestionGenerator(completQuizChoice: questionChoice!)
-        generateQuestion()
 		setUpReplayButton()
+		generateQuestion()
     }
 	
 	func setUpReplayButton(){
-		replayButton.frame = CGRect(
-			x: Int(self.view.frame.width * 0.15),
-			y: 75,
-			width: Int(self.view.frame.width * 0.7),
-			height: Int(self.view.frame.width * 0.7)
+		let image = UIImage(named: "speaker")
+		replayButton.frame = CGRectMake(
+			CGFloat(self.view.frame.width * 0.2),
+			CGFloat(self.view.frame.height * 0.15),
+			CGFloat(self.view.frame.width * 0.6),
+			(image?.size.height)!
 		)
+		replayButton.setImage(image, forState: .Normal)
 		replayButton.titleLabel?.hidden = true
-		replayButton.imageView?.image = UIImage(contentsOfFile: "speaker")
-		replayButton.imageView?.contentMode = UIViewContentMode.Center
+		replayButton.imageView?.contentMode = .Center
+		replayButton.addTarget(self, action: #selector(QuestionViewController.replaySound(_:)), forControlEvents: .TouchUpInside)
 		self.view.addSubview(replayButton)
+//		UIView.animateWithDuration(2, animations: {
+//			self.replayButton.alpha = 1
+//		})
+	}
+	
+	func replaySound(sender: CustomButton){
+		playSound((questionGenerator?.getQuestionFileName())!)
 	}
     
     func generateQuestion(){
         
         removeViews(1)
         questionGenerator?.generateQuestion()
-		displayButtons(questionGenerator!.getQuestionSet(), nextFunction: "questionButtonPressed:")
+		displayButtons(questionGenerator!.getQuestionSet(), nextFunction: #selector(QuestionViewController.questionButtonPressed(_:)))
         let fileName = questionGenerator?.getQuestionFileName()
-        displayLabel(fileName!, textColor: UIColor.blackColor())
         playSound(fileName!)
         
     }
@@ -66,17 +74,18 @@ class QuestionViewController: CustomViewController {
     
     func questionButtonPressed(sender: CustomButton){
         var time: Double
-        if sender.currentTitle! == questionGenerator?.getAnswer(){ // if correct answer selected
+		sender.setTitleColor(appColors["white"], forState: .Normal)
+		if sender.currentTitle! == questionGenerator?.getAnswer(){
+			// if correct answer selected
             playSound("feedback-correct")
-            sender.backgroundColor = UIColor.greenColor()
-            time = 1.3
-            
+            sender.backgroundColor = appColors["correctGreen"]
+			time = 1.3
         }
-        else{ // if wrong answer selected
+        else{
+			// if wrong answer selected
             self.playSound("feedback-wrong")
-            sender.backgroundColor = UIColor.redColor()
-            delay(1){
-        
+            sender.backgroundColor = appColors["incorrectRed"]
+			delay(1){
                 let accent = self.questionChoice!.getQuizAccent()
                 let speakerName = self.questionChoice!.getQuizSpeaker()
                 let answer: String = sender.currentTitle!
@@ -84,11 +93,12 @@ class QuestionViewController: CustomViewController {
                 self.playSound(tempFileName)
                 print(tempFileName)
             }
-            delay(3){
+            delay(2){
                 for view in self.view.subviews as [UIView] {
                     if let button = view as? CustomButton {
                         if button.currentTitle! == self.questionGenerator?.getAnswer(){
-                            button.backgroundColor = UIColor.greenColor()
+							button.backgroundColor = self.appColors["correctGreen"]
+							button.titleLabel?.textColor = self.appColors["white"]
                             let tempFileName = self.questionGenerator?.getQuestionFileName()
                             print(tempFileName)
                             self.playSound(tempFileName!)
@@ -101,10 +111,6 @@ class QuestionViewController: CustomViewController {
         delay(time) {
             self.generateQuestion()
         }
-    }
-    
-    func delay(time:Double, closure:()->Void) { // delays for double second and executes the code inside the closure
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW,Int64(time * Double(NSEC_PER_SEC))),dispatch_get_main_queue(), closure)
     }
 	
 	func displayButtons(buttonLabelSet: [String], nextFunction: Selector){
@@ -131,7 +137,7 @@ class QuestionViewController: CustomViewController {
 				frame: CGRect(x: posX, y: posY, width: Int(buttonWidth), height: Int(buttonHeight))
 			)
 			customButton.setTitleColor(appColors["darkGrey"], forState: .Normal)
-			customButton.setTitle(label, forState: UIControlState.Normal)
+			customButton.setTitle(label, forState: .Normal)
 			customButton.titleLabel?.font = UIFont(name: "Arial", size: 24)
 			customButton.addTarget(self, action: nextFunction, forControlEvents: .TouchUpInside)
 			customButton.backgroundColor = appColors["lightGrey"]

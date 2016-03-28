@@ -2,7 +2,7 @@
 //  QuizOptionsController.swift
 //  neaterDifferent
 //
-//  Created by HochinKazuma on 18/03/2016.
+//  Created by Mujavid Bukhari on 09/03/2016.
 //  Copyright © 2016 k. All rights reserved.
 //
 
@@ -13,7 +13,7 @@ import UIKit
 class QuizOptionsController: CustomViewController{
     
     let quizOptions = QuizChoice()
-    let lengthOptions = ["15","25","35"]
+    let lengthOptions = ["Short (15)","Medium (25)","Long (40)"]
     let accentOptions = ["London","US","Manchester","NewZealand","Australia","Glasgow"]
     let speakerOptions = [
         "London" : ["Anna","Chloe","John","Matthew"],
@@ -28,27 +28,31 @@ class QuizOptionsController: CustomViewController{
 	
     override func viewDidLoad() {
         super.viewDidLoad()
-        getLengthOptions()
-		self.view.backgroundColor = UIColor(red: 90/255, green: 158/255, blue: 1, alpha: 1)
+		getLengthOptions()
+		self.view.backgroundColor = appColors["practice"]
     }
 	
     func getLengthOptions(){
-        displayLabel("Choose quiz length", textColor: UIColor(red: 90/255, green: 158/255, blue: 1, alpha: 1))
-		displaySingleColumnButtons(lengthOptions, textColor: appColors["practice"]!, nextFunction: "getAccentOptions:")
+        displayLabel("Choose quiz length", textColor: appColors["practice"]!)
+		displaySingleColumnButtons(lengthOptions, textColor: appColors["practice"]!, nextFunction: #selector(QuizOptionsController.getAccentOptions(_:)))
     }
 	
     func getAccentOptions(sender: CustomButton){
         self.quizOptions.setLength(sender.currentTitle!)
         removeViews(1)
-        displayLabel("Choose an accent", textColor: UIColor(red: 90/255, green: 158/255, blue: 1, alpha: 1))
-        displayTwoColumnButtons(accentOptions, textColor: appColors["practice"]!, nextFunction:"getSpeakerOptions:")
+		delay(0.3){
+			self.displayLabel("Choose an accent", textColor: self.appColors["practice"]!)
+			self.displayTwoColumnButtons(self.accentOptions, textColor: self.appColors["practice"]!, nextFunction:#selector(QuizOptionsController.getSpeakerOptions(_:)))
+		}
     }
     
     func getSpeakerOptions(sender: CustomButton){
         self.quizOptions.setAccent(sender.currentTitle!)
         removeViews(1)
-        displayLabel("Choose a speaker", textColor: UIColor(red: 90/255, green: 158/255, blue: 1, alpha: 1))
-        displayTwoColumnButtons(speakerOptions[quizOptions.getQuizAccent()]!, textColor: appColors["practice"]!, nextFunction: "moveToQuestionView:")
+		delay(0.3){
+			self.displayLabel("Choose a speaker", textColor: self.appColors["practice"]!)
+			self.displayTwoColumnButtons(self.speakerOptions[self.quizOptions.getQuizAccent()]!, textColor: self.appColors["practice"]!, nextFunction: #selector(QuizOptionsController.moveToQuestionView(_:)))
+		}
     }
     
     func moveToQuestionView(sender:CustomButton){
@@ -80,7 +84,7 @@ class QuizOptionsController: CustomViewController{
 				frame: CGRect(x: posX, y: posY, width: buttonWidth, height: buttonHeight)
 			)
 			customButton.setTitleColor(textColor, forState: .Normal)
-			customButton.setTitle(label, forState: UIControlState.Normal)
+			customButton.setTitle(label, forState: .Normal)
 			customButton.titleLabel!.font = UIFont(name: "Arial", size: CGFloat(viewWidth / 14.4))
 			customButton.addTarget(self, action: nextFunction, forControlEvents: .TouchUpInside)
 			customButton.backgroundColor = appColors["white"]
@@ -114,7 +118,7 @@ class QuizOptionsController: CustomViewController{
 				frame: CGRect(x: posX, y: posY, width: Int(buttonWidth), height: Int(buttonHeight))
 			)
 			customButton.setTitleColor(textColor, forState: .Normal)
-			customButton.setTitle(label, forState: UIControlState.Normal)
+			customButton.setTitle(label, forState: .Normal)
 			customButton.titleLabel!.font = UIFont(name: "Arial", size: CGFloat(viewWidth / 14.4))
 			customButton.addTarget(self, action: nextFunction, forControlEvents: .TouchUpInside)
 			customButton.backgroundColor = appColors["white"]
