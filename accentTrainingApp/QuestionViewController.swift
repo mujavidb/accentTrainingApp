@@ -17,11 +17,26 @@ class QuestionViewController: CustomViewController {
     var audioPlayer: AVAudioPlayer?
     var questionGenerator: QuestionGenerator?
 	var replayButton = UIButton()
+	var questionNumber = 0
+	var testModeColor = UIColor.clearColor()
+	
+	@IBOutlet weak var quitQuizButton: UIButton!
+	@IBOutlet weak var restartQuizButton: UIButton!
+	
 	
     override func viewDidLoad(){
         super.viewDidLoad()
 		audioPlayer = AVAudioPlayer()
         questionGenerator = QuestionGenerator(completQuizChoice: questionChoice!)
+		
+		if questionGenerator?.quizChoice?.getQuizType() == "practice" {
+			testModeColor = appColors["practice"]!
+		} else {
+			testModeColor = appColors["timetrial"]!
+		}
+		quitQuizButton.setTitleColor(testModeColor, forState: .Normal)
+		restartQuizButton.setTitleColor(testModeColor, forState: .Normal)
+		
 		setUpReplayButton()
 		generateQuestion()
     }
@@ -73,12 +88,13 @@ class QuestionViewController: CustomViewController {
         var time: Double
 		sender.setTitleColor(appColors["white"], forState: .Normal)
 		if sender.currentTitle! == questionGenerator?.getAnswer(){
+			
 			// if correct answer selected
             playSound("feedback-correct")
             sender.backgroundColor = appColors["correctGreen"]
 			time = 1.3
-        }
-        else{
+        } else {
+			
 			// if wrong answer selected
             self.playSound("feedback-wrong")
             sender.backgroundColor = appColors["incorrectRed"]
@@ -108,6 +124,7 @@ class QuestionViewController: CustomViewController {
             }
             time = 5
         }
+		questionNumber += 1
         delay(time) {
             self.generateQuestion()
         }
@@ -145,6 +162,31 @@ class QuestionViewController: CustomViewController {
 			customButton.tag = 1
 			counter = counter + 1
 		}
+		
+		let quizTotalLabel = UILabel(frame: CGRect(
+			x: Int(gutterWidth),
+			y: Int(viewHeight - viewHeight * 0.075),
+			width: Int(viewWidth - 2 * gutterWidth),
+			height: Int(viewHeight * 0.075)
+			))
+		let quizTotalLabelBackground = UIView(frame: CGRect(
+			x: Int(gutterWidth),
+//			y: Int(viewHeight - viewHeight * 0.1),
+			y: Int((gutterWidth + buttonHeight) * 2 + (viewHeight * 0.45)),
+			width: Int(viewWidth - 2 * gutterWidth),
+			height: Int(viewHeight * 0.2)
+			))
+		quizTotalLabel.textColor = appColors["white"]
+		quizTotalLabel.text = "\(questionNumber) of \(questionGenerator!.qs.questionSet.count)"
+		quizTotalLabel.font = UIFont(name: "Arial", size: 20)
+		quizTotalLabel.textAlignment = .Center
+		
+		quizTotalLabelBackground.layer.cornerRadius = 10
+		quizTotalLabelBackground.backgroundColor = testModeColor
+		
+		self.view.addSubview(quizTotalLabelBackground)
+		self.view.addSubview(quizTotalLabel)
+		
 	}
    
 

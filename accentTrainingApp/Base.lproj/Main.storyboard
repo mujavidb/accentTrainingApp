@@ -209,7 +209,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="gO4-Lp-u8f">
-                                <rect key="frame" x="20" y="20" width="50" height="45"/>
+                                <rect key="frame" x="20" y="18" width="50" height="45"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <state key="normal" title="Quit"/>
@@ -233,6 +233,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="quitQuizButton" destination="gO4-Lp-u8f" id="qPW-Nv-AUi"/>
+                        <outlet property="restartQuizButton" destination="cEy-Gz-hS2" id="nzN-RV-c8X"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BKF-ea-Gp0" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="vLf-IV-cfQ" userLabel="Exit" sceneMemberID="exit"/>
