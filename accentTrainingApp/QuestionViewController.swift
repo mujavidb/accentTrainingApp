@@ -39,9 +39,6 @@ class QuestionViewController: CustomViewController {
 		replayButton.imageView?.contentMode = .Center
 		replayButton.addTarget(self, action: #selector(QuestionViewController.replaySound(_:)), forControlEvents: .TouchUpInside)
 		self.view.addSubview(replayButton)
-//		UIView.animateWithDuration(2, animations: {
-//			self.replayButton.alpha = 1
-//		})
 	}
 	
 	func replaySound(sender: CustomButton){
@@ -102,6 +99,9 @@ class QuestionViewController: CustomViewController {
                             let tempFileName = self.questionGenerator?.getQuestionFileName()
                             print(tempFileName)
                             self.playSound(tempFileName!)
+							self.delay(1.2){
+								self.playSound(tempFileName!)
+							}
                         }
                     }
                 }

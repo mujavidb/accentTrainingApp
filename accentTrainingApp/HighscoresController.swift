@@ -60,7 +60,7 @@ class HighscoresController: CustomViewController {
 		practiceOption.setTitleColor(appColors["highscores"], forState: .Normal)
 		
 		timetrialOption.frame = CGRect(x: viewWidth * 0.525 , y: viewHeight * 0.15, width: viewWidth * 0.35, height: 40)
-		timetrialOption.setTitle("Timetrial", forState: .Normal)
+		timetrialOption.setTitle("Time Trial", forState: .Normal)
 		timetrialOption.backgroundColor = appColors["highscores"]
 		timetrialOption.setTitleColor(appColors["white"], forState: .Normal)
 		
@@ -77,7 +77,7 @@ class HighscoresController: CustomViewController {
 	
 	func changeCurrentHighScores(){
 		if current == "practice" {
-			current = "timetrial"
+			current = "Time Trial"
 		} else {
 			current = "practice"
 		}
