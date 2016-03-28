@@ -14,14 +14,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="EgB-ca-OD3" customClass="CustomButton" customModule="accentTrainingApp" customModuleProvider="target">
-                                <rect key="frame" x="44" y="346" width="232" height="69"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <rect key="frame" x="44" y="326" width="232" height="69"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                 <color key="backgroundColor" red="0.70588235294117641" green="0.43137254901960786" blue="0.82352941176470584" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                 <color key="tintColor" red="0.63921568627450975" green="0.32549019607843138" blue="0.78431372549019607" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Time Trial">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="timetrialButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="BiK-3N-Q6j"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UCL Vowel Trainer" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="AbQ-X9-n6e">
                                 <rect key="frame" x="44" y="100" width="232" height="68"/>
@@ -31,10 +34,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="dg9-Gk-XF0" customClass="CustomButton" customModule="accentTrainingApp" customModuleProvider="target">
-                                <rect key="frame" x="44" y="423" width="232" height="69"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <rect key="frame" x="44" y="403" width="232" height="69"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                 <color key="backgroundColor" red="0.94117647058823528" green="0.74509803921568629" blue="0.039215686274509803" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                 <state key="normal" title="Highscores">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
@@ -43,16 +46,25 @@
                                 </connections>
                             </button>
                             <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="aIW-oT-0ew" customClass="CustomButton" customModule="accentTrainingApp" customModuleProvider="target">
-                                <rect key="frame" x="44" y="269" width="232" height="69"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <rect key="frame" x="44" y="249" width="232" height="69"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                 <color key="backgroundColor" red="0.35294117650000001" green="0.66666666669999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                 <color key="tintColor" red="0.29019607843137257" green="0.59215686274509804" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Practice">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="sBl-yS-yZy" kind="modal" id="M7t-zq-pDz"/>
+                                    <action selector="practiceButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="PHb-lE-sj4"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="bQo-vm-oic">
+                                <rect key="frame" x="129" y="528" width="62" height="30"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="About"/>
+                                <connections>
+                                    <segue destination="9C4-0O-E36" kind="modal" id="3OZ-nH-qv5"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -64,6 +76,56 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-186" y="-80"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="qkZ-2Q-zBG">
+            <objects>
+                <viewController id="9C4-0O-E36" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="rAM-A1-nq6">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="SYY-28-rCb">
+                                <rect key="frame" x="20" y="20" width="50" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="Back"/>
+                                <connections>
+                                    <segue destination="cyk-Bs-vgf" kind="unwind" unwindAction="unwindToMVC:" id="Qhb-ht-Vvp"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" semanticContentAttribute="forceLeftToRight" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="22" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="5dd-nj-TFX">
+                                <rect key="frame" x="20" y="85" width="280" height="135"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <string key="text">This app is designed to help English language students learn to understand vowels. You can choose between multiple accents and speakers of those accents as well as the length of the training session.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="highlightedColor" red="0.29803921568627451" green="0.29803921568627451" blue="0.29803921568627451" alpha="1" colorSpace="calibratedRGB"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" semanticContentAttribute="forceLeftToRight" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="22" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="AAB-44-byh">
+                                <rect key="frame" x="20" y="218" width="280" height="154"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <string key="text">This app is based on research by Paul Iverson and colleagues at University College London. We have found that language students who complete 5-10 long sessions over several days can significantly improve their vowel recognition.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="highlightedColor" red="0.29803921568627451" green="0.29803921568627451" blue="0.29803921568627451" alpha="1" colorSpace="calibratedRGB"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" semanticContentAttribute="forceLeftToRight" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="22" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Wwg-lQ-mcg">
+                                <rect key="frame" x="20" y="370" width="280" height="112"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <string key="text">This app was built by the collaboration of Paul Iverson with UCL Computer Science students Mujavid Bukhari, Kazuma Hochin and Ben Hadfield.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="highlightedColor" red="0.29803921568627451" green="0.29803921568627451" blue="0.29803921568627451" alpha="1" colorSpace="calibratedRGB"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fVH-K9-621" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="cyk-Bs-vgf" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="-209" y="660"/>
         </scene>
         <!--Highscores Controller-->
         <scene sceneID="eTX-Ta-cz7">
@@ -108,13 +170,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Practice" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="TdM-nD-Mt6">
-                                <rect key="frame" x="110" y="20" width="100" height="45"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="24"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Avo-qE-l4d">
                                 <rect key="frame" x="20" y="20" width="50" height="45"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -125,10 +180,20 @@
                                     <segue destination="Z6w-Ty-had" kind="unwind" unwindAction="unwindToMVC:" id="yWL-iJ-Dto"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Practice" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="TdM-nD-Mt6">
+                                <rect key="frame" x="72" y="20" width="177" height="45"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="24"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="kmt-Fv-cbn"/>
+                    <connections>
+                        <outlet property="testModeTitle" destination="TdM-nD-Mt6" id="DQg-UD-nEU"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1fF-38-PcM" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="Z6w-Ty-had" userLabel="Exit" sceneMemberID="exit"/>
@@ -144,22 +209,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="gO4-Lp-u8f">
-                                <rect key="frame" x="20" y="20" width="50" height="45"/>
+                                <rect key="frame" x="20" y="18" width="50" height="45"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <state key="normal" title="Quit"/>
                                 <connections>
-                                    <segue destination="sBl-yS-yZy" kind="modal" id="qNp-QS-5BJ"/>
+                                    <segue destination="vLf-IV-cfQ" kind="unwind" unwindAction="unwindToMVC:" id="rVq-AK-EyC"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="cEy-Gz-hS2">
-                                <rect key="frame" x="250" y="20" width="50" height="45"/>
+                                <rect key="frame" x="244" y="20" width="56" height="45"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <state key="normal" title="Home"/>
-                                <connections>
-                                    <segue destination="vLf-IV-cfQ" kind="unwind" unwindAction="unwindToMVC:" id="eiu-Sl-B0r"/>
-                                </connections>
+                                <state key="normal" title="Restart"/>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Practice" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="bxE-7f-ZCa">
                                 <rect key="frame" x="110" y="20" width="100" height="45"/>
@@ -171,6 +233,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="quitQuizButton" destination="gO4-Lp-u8f" id="qPW-Nv-AUi"/>
+                        <outlet property="restartQuizButton" destination="cEy-Gz-hS2" id="nzN-RV-c8X"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BKF-ea-Gp0" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="vLf-IV-cfQ" userLabel="Exit" sceneMemberID="exit"/>
@@ -181,7 +247,4 @@
     <resources>
         <image name="back_arrow" width="29" height="24"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="M7t-zq-pDz"/>
-    </inferredMetricsTieBreakers>
 </document>

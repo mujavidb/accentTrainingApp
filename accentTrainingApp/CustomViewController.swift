@@ -31,7 +31,7 @@ class CustomViewController: UIViewController{
 	
 	var viewWidth: Double = 500
 	var viewHeight: Double = 500
-    
+	
     override func viewDidLoad() {
         super.viewDidLoad()
 		viewWidth = Double(self.view.frame.width)

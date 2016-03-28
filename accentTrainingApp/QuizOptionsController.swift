@@ -24,25 +24,34 @@ class QuizOptionsController: CustomViewController{
         "Glasgow":["01","02","03","04"]
         // "Sheffield":["02","03","04","05"]
     ]
-	var testModeColor = UIColor(red: 90/255, green: 158/255, blue: 1, alpha: 1)
 	
-    override func viewDidLoad() {
+	var testModeColor = UIColor.clearColor()
+	
+	@IBOutlet weak var testModeTitle: UILabel!
+	
+	override func viewDidLoad() {
         super.viewDidLoad()
+		if quizOptions.getQuizType() == "practice" {
+			testModeColor = appColors["practice"]!
+		} else {
+			testModeColor = appColors["timetrial"]!
+			testModeTitle.text = "Time Trial"
+		}
+		self.view.backgroundColor = testModeColor
 		getLengthOptions()
-		self.view.backgroundColor = appColors["practice"]
     }
 	
     func getLengthOptions(){
-        displayLabel("Choose quiz length", textColor: appColors["practice"]!)
-		displaySingleColumnButtons(lengthOptions, textColor: appColors["practice"]!, nextFunction: #selector(QuizOptionsController.getAccentOptions(_:)))
+        displayLabel("Choose quiz length", textColor: testModeColor)
+		displaySingleColumnButtons(lengthOptions, textColor: testModeColor, nextFunction: #selector(QuizOptionsController.getAccentOptions(_:)))
     }
 	
     func getAccentOptions(sender: CustomButton){
         self.quizOptions.setLength(sender.currentTitle!)
         removeViews(1)
 		delay(0.3){
-			self.displayLabel("Choose an accent", textColor: self.appColors["practice"]!)
-			self.displayTwoColumnButtons(self.accentOptions, textColor: self.appColors["practice"]!, nextFunction:#selector(QuizOptionsController.getSpeakerOptions(_:)))
+			self.displayLabel("Choose an accent", textColor: self.testModeColor)
+			self.displayTwoColumnButtons(self.accentOptions, textColor: self.testModeColor, nextFunction:#selector(QuizOptionsController.getSpeakerOptions(_:)))
 		}
     }
     
@@ -50,8 +59,8 @@ class QuizOptionsController: CustomViewController{
         self.quizOptions.setAccent(sender.currentTitle!)
         removeViews(1)
 		delay(0.3){
-			self.displayLabel("Choose a speaker", textColor: self.appColors["practice"]!)
-			self.displayTwoColumnButtons(self.speakerOptions[self.quizOptions.getQuizAccent()]!, textColor: self.appColors["practice"]!, nextFunction: #selector(QuizOptionsController.moveToQuestionView(_:)))
+			self.displayLabel("Choose a speaker", textColor: self.testModeColor)
+			self.displayTwoColumnButtons(self.speakerOptions[self.quizOptions.getQuizAccent()]!, textColor: self.testModeColor, nextFunction: #selector(QuizOptionsController.moveToQuestionView(_:)))
 		}
     }
     
@@ -68,8 +77,8 @@ class QuizOptionsController: CustomViewController{
 		var posY: Int
 		var counter = 1
 		
-		let viewHeight = Float(self.view.frame.height)
-		let viewWidth = Float(self.view.frame.width)
+		let viewHeight = Float(self.viewHeight)
+		let viewWidth = Float(self.viewWidth)
 		let gutterSize = Int(viewWidth / 18.75)
 		let buttonWidth = Int(viewWidth) - (2 * gutterSize)
 		posX = gutterSize;
@@ -101,9 +110,9 @@ class QuizOptionsController: CustomViewController{
 		var counter = 0
 		
 		//select (x, y, width, height) based on actual view dimensions
-		let viewHeight = Float(self.view.frame.height);
-		let viewWidth = Float(self.view.frame.width);
-		let gutterWidth = viewWidth / 18.75;
+		let viewHeight = Float(self.viewHeight)
+		let viewWidth = Float(self.viewWidth)
+		let gutterWidth = viewWidth / 18.75
 		let buttonWidth = (viewWidth - (3 * gutterWidth))/2
 		
 		//get 75% of height, remove gutter space and divide remaining area by 3
