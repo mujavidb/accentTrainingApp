@@ -17,7 +17,7 @@ class QuestionViewController: CustomViewController {
     var audioPlayer: AVAudioPlayer?
     var questionGenerator: QuestionGenerator?
 	var replayButton = UIButton()
-	var questionNumber = 0
+	var questionNumber = 1
 	var testModeColor = UIColor.clearColor()
 	
 	@IBOutlet weak var quitQuizButton: UIButton!
