@@ -125,26 +125,29 @@ class QuestionViewController: CustomViewController {
             
             self.playSound("feedback-wrong")
             sender.backgroundColor = appColors["incorrectRed"]
-            delay(1){
-                let accent = self.questionChoice!.getQuizAccent()
-                let speakerName = self.questionChoice!.getQuizSpeaker()
-                let answer: String = sender.currentTitle!
-                let wrongFileName =  "\(accent)_\(speakerName)_\(answer)"
-                let wrongButton = sender
-                let correctFileName = self.questionGenerator?.getQuestionFileName()
-                for view in self.view.subviews as [UIView] {
-                    if let button = view as? CustomButton {
-                        if button.currentTitle! == self.questionGenerator?.getAnswer(){
-                            
-                            let correctB = button
-                            self.feedbackForWrong(wrongButton, correctButton: correctB, wrongFile: wrongFileName, correctFile: correctFileName!)
-                            self.delay(3.5){self.feedbackForWrong(wrongButton, correctButton: correctB, wrongFile: wrongFileName, correctFile: correctFileName!)}
+            
+            if(self.questionChoice?.getQuizType() == "practice"){
+                delay(1){
+                    let accent = self.questionChoice!.getQuizAccent()
+                    let speakerName = self.questionChoice!.getQuizSpeaker()
+                    let answer: String = sender.currentTitle!
+                    let wrongFileName =  "\(accent)_\(speakerName)_\(answer)"
+                    let wrongButton = sender
+                    let correctFileName = self.questionGenerator?.getQuestionFileName()
+                    for view in self.view.subviews as [UIView] {
+                        if let button = view as? CustomButton {
+                            if button.currentTitle! == self.questionGenerator?.getAnswer(){
+                                
+                                let correctB = button
+                                self.feedbackForWrong(wrongButton, correctButton: correctB, wrongFile: wrongFileName, correctFile: correctFileName!)
+                                self.delay(3.5){self.feedbackForWrong(wrongButton, correctButton: correctB, wrongFile: wrongFileName, correctFile: correctFileName!)}
+                            }
                         }
                     }
                 }
+                time = 9
             }
-            
-            time = 9
+            else{time = 1.3}
         }
 		questionNumber += 1
         delay(time) {
