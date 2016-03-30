@@ -52,7 +52,7 @@ class QuestionViewController: CustomViewController {
 		replayButton.setImage(image, forState: .Normal)
 		replayButton.titleLabel?.hidden = true
 		replayButton.imageView?.contentMode = .Center
-		replayButton.addTarget(self, action: #selector(QuestionViewController.replaySound(_:)), forControlEvents: .TouchUpInside)
+        replayButton.addTarget(self, action: #selector(QuestionViewController.replaySound(_:)), forControlEvents: .TouchUpInside)
 		self.view.addSubview(replayButton)
 	}
 	
