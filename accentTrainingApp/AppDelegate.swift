@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  accentTrainingApp
 //
-//  Created by HochinKazuma on 19/03/2016.
+//  Created by Mujavid Bukhari on 09/03/2016.
 //  Copyright © 2016 k. All rights reserved.
 //
 
