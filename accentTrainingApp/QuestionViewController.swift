@@ -38,7 +38,9 @@ class QuestionViewController: CustomViewController {
 		restartQuizButton.setTitleColor(testModeColor, forState: .Normal)
 		
 		setUpReplayButton()
-		generateQuestion()
+        delay(1.15){ // delay after speaker selected and before audio plays to prepare user
+            self.generateQuestion()
+        }
     }
 	
 	func setUpReplayButton(){
@@ -64,9 +66,12 @@ class QuestionViewController: CustomViewController {
         
         removeViews(1)
         questionGenerator?.generateQuestion()
-		displayButtons(questionGenerator!.getQuestionSet(), nextFunction: #selector(QuestionViewController.questionButtonPressed(_:)))
         let fileName = questionGenerator?.getQuestionFileName()
         playSound(fileName!)
+        
+        delay(1.3){ // delay display button so that the user can focus on the audio first 
+            self.displayButtons(self.questionGenerator!.getQuestionSet(), nextFunction: #selector(QuestionViewController.questionButtonPressed(_:)))
+        }
         
     }
     
