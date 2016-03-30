@@ -88,7 +88,7 @@ class QuestionViewController: CustomViewController {
         }
     }
     
-    func putButtonBack(button: CustomButton){
+    func putButtonBack(button: CustomButton){ //to put the button back to its original state
         button.backgroundColor = appColors["lightGrey"]
         button.setTitleColor(appColors["darkGrey"], forState: .Normal)
     }
@@ -126,7 +126,7 @@ class QuestionViewController: CustomViewController {
             self.playSound("feedback-wrong")
             sender.backgroundColor = appColors["incorrectRed"]
             
-            if(self.questionChoice?.getQuizType() == "practice"){
+            if(self.questionChoice?.getQuizType() == "practice"){ // feedback only for practice mode
                 delay(1){
                     let accent = self.questionChoice!.getQuizAccent()
                     let speakerName = self.questionChoice!.getQuizSpeaker()
@@ -139,6 +139,7 @@ class QuestionViewController: CustomViewController {
                             if button.currentTitle! == self.questionGenerator?.getAnswer(){
                                 
                                 let correctB = button
+                                //duplicating code here, but the for loop didn't work for some reason?
                                 self.feedbackForWrong(wrongButton, correctButton: correctB, wrongFile: wrongFileName, correctFile: correctFileName!)
                                 self.delay(3.5){self.feedbackForWrong(wrongButton, correctButton: correctB, wrongFile: wrongFileName, correctFile: correctFileName!)}
                             }
