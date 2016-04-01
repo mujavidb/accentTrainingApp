@@ -72,6 +72,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		57764F9B1CAD711C0026411C /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				64B33F241C9D4A6D006C3510 /* MainViewController.swift */,
+				64B33F481C9D4BDF006C3510 /* QuestionViewController.swift */,
+				64B33F4C1C9D4C19006C3510 /* QuizOptionsController.swift */,
+				64B33F441C9D4AEB006C3510 /* CustomViewController.swift */,
+				573465C21CA70E2300B2A3CB /* HighscoresController.swift */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		57764F9C1CAD713B0026411C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				64B33F421C9D4ABB006C3510 /* CustomButton.swift */,
+				64B33F461C9D4BB8006C3510 /* QuestionGenerator.swift */,
+				64B33F4E1C9D4E38006C3510 /* QuestionSet.swift */,
+				64B33F4A1C9D4BFC006C3510 /* QuizChoice.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
 		64B33F161C9D4A6C006C3510 = {
 			isa = PBXGroup;
 			children = (
@@ -93,20 +116,13 @@
 		64B33F211C9D4A6D006C3510 /* accentTrainingApp */ = {
 			isa = PBXGroup;
 			children = (
-				64B33F221C9D4A6D006C3510 /* AppDelegate.swift */,
-				64B33F241C9D4A6D006C3510 /* MainViewController.swift */,
-				64B33F461C9D4BB8006C3510 /* QuestionGenerator.swift */,
-				64B33F4E1C9D4E38006C3510 /* QuestionSet.swift */,
-				64B33F481C9D4BDF006C3510 /* QuestionViewController.swift */,
-				64B33F4A1C9D4BFC006C3510 /* QuizChoice.swift */,
-				64B33F4C1C9D4C19006C3510 /* QuizOptionsController.swift */,
-				64B33F261C9D4A6D006C3510 /* Main.storyboard */,
+				57764F9C1CAD713B0026411C /* Models */,
+				57764F9B1CAD711C0026411C /* ViewControllers */,
 				64B33F291C9D4A6D006C3510 /* Assets.xcassets */,
+				64B33F221C9D4A6D006C3510 /* AppDelegate.swift */,
+				64B33F261C9D4A6D006C3510 /* Main.storyboard */,
 				64B33F2B1C9D4A6D006C3510 /* LaunchScreen.storyboard */,
 				64B33F2E1C9D4A6D006C3510 /* Info.plist */,
-				64B33F421C9D4ABB006C3510 /* CustomButton.swift */,
-				64B33F441C9D4AEB006C3510 /* CustomViewController.swift */,
-				573465C21CA70E2300B2A3CB /* HighscoresController.swift */,
 			);
 			path = accentTrainingApp;
 			sourceTree = "<group>";
