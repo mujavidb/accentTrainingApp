@@ -36,19 +36,11 @@ class QuestionViewController: CustomViewController {
 		}
 		quitQuizButton.setTitleColor(testModeColor, forState: .Normal)
 		restartQuizButton.setTitleColor(testModeColor, forState: .Normal)
-<<<<<<< HEAD
-		
+
 		setUpReplayButton()
         delay(1.15){ // delay after speaker selected and before audio plays to prepare user
             self.generateQuestion()
         }
-=======
-		delay(0.35){
-			self.setUpReplayButton()
-			self.generateQuestion()
-			
-		}
->>>>>>> master
     }
 	
 	func setUpReplayButton(){
