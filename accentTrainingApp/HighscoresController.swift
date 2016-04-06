@@ -28,10 +28,10 @@ class HighscoresController: CustomViewController {
 			if current == "practice" {
 				practiceOption.backgroundColor = appColors["white"]
 				practiceOption.setTitleColor(appColors["highscores"], forState: .Normal)
-				timetrialOption.backgroundColor = appColors["highscores"]
+				timetrialOption.backgroundColor = appColors["transparent_white"]
 				timetrialOption.setTitleColor(appColors["white"], forState: .Normal)
 			} else {
-				practiceOption.backgroundColor = appColors["highscores"]
+				practiceOption.backgroundColor = appColors["transparent_white"]
 				practiceOption.setTitleColor(appColors["white"], forState: .Normal)
 				timetrialOption.backgroundColor = appColors["white"]
 				timetrialOption.setTitleColor(appColors["highscores"], forState: .Normal)
@@ -54,14 +54,25 @@ class HighscoresController: CustomViewController {
     }
 	
 	func displayScoreListSelector(){
-		practiceOption.frame = CGRect(x: viewWidth * 0.125 , y: viewHeight * 0.15, width: viewWidth * 0.35, height: 40)
+		let buttonWidth = (viewWidth * 0.5) - 20
+		practiceOption.frame = CGRect(
+			x: 20,
+			y: viewHeight * 0.15,
+			width: buttonWidth,
+			height: 40
+		)
 		practiceOption.setTitle("Practice", forState: .Normal)
 		practiceOption.backgroundColor = appColors["white"]
 		practiceOption.setTitleColor(appColors["highscores"], forState: .Normal)
 		
-		timetrialOption.frame = CGRect(x: viewWidth * 0.525 , y: viewHeight * 0.15, width: viewWidth * 0.35, height: 40)
+		timetrialOption.frame = CGRect(
+			x: viewWidth - 20 - buttonWidth,
+			y: viewHeight * 0.15,
+			width: buttonWidth,
+			height: 40
+		)
 		timetrialOption.setTitle("Time Trial", forState: .Normal)
-		timetrialOption.backgroundColor = appColors["highscores"]
+		timetrialOption.backgroundColor = appColors["transparent_white"]
 		timetrialOption.setTitleColor(appColors["white"], forState: .Normal)
 		
 		for b in [practiceOption, timetrialOption] {
@@ -89,15 +100,12 @@ class HighscoresController: CustomViewController {
 		
 		for name in scores {
 			
-			switch counter {
-				case 0: labelBackground(counter)
-				case 1: labelBackground(counter)
-				case 2: labelBackground(counter)
-				default: break
+			if counter < 3 {
+				labelBackground(counter)
 			}
 			
 			let label = UILabel(frame: CGRect(
-				x: Int(viewWidth * 0.15) ,
+				x: 40,
 				y: Int(viewHeight * 0.25) + (counter * 50),
 				width: Int(viewWidth * 0.5),
 				height: 40
@@ -106,10 +114,10 @@ class HighscoresController: CustomViewController {
 			label.font = UIFont.systemFontOfSize(CGFloat(viewWidth / 16))
 			label.textColor = UIColor.whiteColor()
 			label.tag = 1
-			self.view.addSubview(label)
+			fadeInToSubview(label, delay: 0.3 + (0.05 * Double(counter)), completionAction: nil)
 			
 			let number = UILabel(frame: CGRect(
-				x: Int(viewWidth * 0.65),
+				x: Int(viewWidth - 40 - (viewWidth * 0.2)),
 				y: Int(viewHeight * 0.25) + (counter * 50),
 				width: Int(viewWidth * 0.2),
 				height: 40
@@ -119,7 +127,7 @@ class HighscoresController: CustomViewController {
 			number.textColor = UIColor.whiteColor()
 			number.textAlignment = .Right
 			number.tag = 1
-			self.view.addSubview(number)
+			fadeInToSubview(number, delay: 0.3 + (0.05 * Double(counter)), completionAction: nil)
 			counter += 1
 		}
 	}
@@ -135,17 +143,17 @@ class HighscoresController: CustomViewController {
 		default: break
 		}
 		
-		
 		let background = UIView(frame: CGRect(
-			x: Int(self.view.frame.width * 0.125) ,
-			y: Int(self.view.frame.height * 0.25) + (counter * 50),
-			width: Int(self.view.frame.width * 0.75),
+			x: 20,
+			y: Int(viewHeight * 0.25) + (counter * 50),
+			width: Int(viewWidth - 40),
 			height: 40
 			))
 		
 		background.backgroundColor = trophyColor
 		background.layer.cornerRadius = 10
-		self.view.addSubview(background)
-		
+		background.tag = 1
+
+		fadeInToSubview(background, delay: 0.3 + (0.05 * Double(counter)), completionAction: nil)
 	}
 }

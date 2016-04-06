@@ -113,7 +113,7 @@ class QuizOptionsController: CustomViewController{
 		let viewHeight = Float(self.viewHeight)
 		let viewWidth = Float(self.viewWidth)
 		let gutterWidth = viewWidth / 18.75
-		let buttonWidth = (viewWidth - (3 * gutterWidth))/2
+		let buttonWidth = (viewWidth - (3 * gutterWidth)) / 2
 		
 		//get 75% of height, remove gutter space and divide remaining area by 3
 		let buttonHeight = (((viewHeight) * 0.75) - (4 * gutterWidth)) / 3
@@ -131,8 +131,10 @@ class QuizOptionsController: CustomViewController{
 			customButton.titleLabel!.font = UIFont(name: "Arial", size: CGFloat(viewWidth / 14.4))
 			customButton.addTarget(self, action: nextFunction, forControlEvents: .TouchUpInside)
 			customButton.backgroundColor = appColors["white"]
-			self.view.addSubview(customButton)
 			customButton.tag = 1
+			
+//			fadeInToSubview(customButton, delay: 0.3 + (0.1 * Double(counter % 2)), completionAction: nil)
+			fadeInToSubview(customButton, delay: 0.3 + (0.05 * Double(( counter == 0 || counter == 1 ? 0 : counter == 2 || counter == 3 ? 1 : 2))), completionAction: nil)
 			counter = counter + 1
 		}
 	}

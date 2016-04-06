@@ -17,7 +17,7 @@ class QuestionViewController: CustomViewController {
     var audioPlayer: AVAudioPlayer?
     var questionGenerator: QuestionGenerator?
 	var replayButton = UIButton()
-	var questionNumber = 0
+	var questionNumber = 1
 	var testModeColor = UIColor.clearColor()
     var counter = 0
 	@IBOutlet weak var quitQuizButton: UIButton!
@@ -36,11 +36,19 @@ class QuestionViewController: CustomViewController {
 		}
 		quitQuizButton.setTitleColor(testModeColor, forState: .Normal)
 		restartQuizButton.setTitleColor(testModeColor, forState: .Normal)
+<<<<<<< HEAD
 		
 		setUpReplayButton()
         delay(1.15){ // delay after speaker selected and before audio plays to prepare user
             self.generateQuestion()
         }
+=======
+		delay(0.35){
+			self.setUpReplayButton()
+			self.generateQuestion()
+			
+		}
+>>>>>>> master
     }
 	
 	func setUpReplayButton(){
@@ -157,9 +165,7 @@ class QuestionViewController: CustomViewController {
     }
 	
 	func displayButtons(buttonLabelSet: [String], nextFunction: Selector){
-		
-		var posX: Int
-		var posY: Int
+
 		var counter = 0
 		
 		//select (x, y, width, height) based on actual view dimensions
@@ -173,11 +179,12 @@ class QuestionViewController: CustomViewController {
 		
 		for label in buttonLabelSet {
 			
-			posX = Int(gutterWidth + (gutterWidth + buttonWidth) * Float(counter % 2))
-			posY = Int((gutterWidth + buttonHeight) * Float( counter / 2) + (viewHeight * 0.45))
-			
 			let customButton = CustomButton(
-				frame: CGRect(x: posX, y: posY, width: Int(buttonWidth), height: Int(buttonHeight))
+				frame: CGRect(
+					x: Int(gutterWidth + (gutterWidth + buttonWidth) * Float(counter % 2)),
+					y: Int((gutterWidth + buttonHeight) * Float( counter / 2) + (viewHeight * 0.45)),
+					width: Int(buttonWidth),
+					height: Int(buttonHeight))
 			)
 			customButton.setTitleColor(appColors["darkGrey"], forState: .Normal)
 			customButton.setTitle(label, forState: .Normal)
@@ -197,7 +204,6 @@ class QuestionViewController: CustomViewController {
 			))
 		let quizTotalLabelBackground = UIView(frame: CGRect(
 			x: Int(gutterWidth),
-//			y: Int(viewHeight - viewHeight * 0.1),
 			y: Int((gutterWidth + buttonHeight) * 2 + (viewHeight * 0.45)),
 			width: Int(viewWidth - 2 * gutterWidth),
 			height: Int(viewHeight * 0.2)
