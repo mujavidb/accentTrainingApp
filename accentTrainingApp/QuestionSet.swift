@@ -57,7 +57,7 @@ class QuestionSet{
         return questionSet[index]
     }
     
-    func getAnswer(setIndex: Int, answerIndex:Int)->String{
+    func getAnswer(setIndex: Int, answerIndex:Int) -> String{
         return questionSet[setIndex][answerIndex]
     }
     
