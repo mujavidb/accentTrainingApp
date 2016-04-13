@@ -49,11 +49,11 @@ class QuestionViewController: CustomViewController {
 	
 	func setUpReplayButton(){
 		let image = UIImage(named: "speaker")
-		replayButton.frame = CGRectMake(
-			CGFloat(self.view.frame.width * 0.2),
-			CGFloat(self.view.frame.height * 0.15),
-			CGFloat(self.view.frame.width * 0.6),
-			(image?.size.height)!
+		replayButton.frame = CGRect(
+			x: self.view.frame.width * 0.2,
+			y: self.view.frame.height * 0.15,
+			width: self.view.frame.width * 0.6,
+			height: (image?.size.height)!
 		)
 		replayButton.setImage(image, forState: .Normal)
 		replayButton.titleLabel?.hidden = true
@@ -247,6 +247,8 @@ class QuestionViewController: CustomViewController {
 		
 		self.view.addSubview(quizTotalLabelBackground)
 		self.view.addSubview(quizTotalLabel)
+		
+//		self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-(20)-[headerView]-(5)-[title(200)][]|", options: .None, metrics: <#T##[String : AnyObject]?#>, views: <#T##[String : AnyObject]#>))
 		
 	}
    
