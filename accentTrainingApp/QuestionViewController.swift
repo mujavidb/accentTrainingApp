@@ -91,19 +91,13 @@ class QuestionViewController: CustomViewController {
             }
         }
     }
-    
-<<<<<<< HEAD
+
     @IBAction func quitPressed(sender: UIButton) {
         self.stopCount = 1
         self.audioPlayer!.stop()
     }
     
-    
     func putButtonBack(button: CustomButton){ //to put the button back to its original state
-=======
-    func putButtonBack(button: CustomButton){
-		//to put the button back to its original state
->>>>>>> master
         button.backgroundColor = appColors["lightGrey"]
         button.setTitleColor(appColors["darkGrey"], forState: .Normal)
     }
@@ -154,23 +148,11 @@ class QuestionViewController: CustomViewController {
                     let wrongFileName =  "\(accent)_\(speakerName)_\(answer)"
                     let correctFileName = self.questionGenerator?.getQuestionFileName()
                     for view in self.view.subviews as [UIView] {
-<<<<<<< HEAD
-                        if let button = view as? CustomButton {
-                            if button.currentTitle! == self.questionGenerator?.getAnswer(){
-                                
-                                let correctB = button
-                                //duplicating code here, but the for loop didn't work for some reason?
-                                self.feedbackForWrong(wrongButton, correctButton: correctB, wrongFile: wrongFileName, correctFile: correctFileName!)
-                                self.delay(3.5){
-                                    if(self.stopCount == 1){return}
-                                    self.feedbackForWrong(wrongButton, correctButton: correctB, wrongFile: wrongFileName, correctFile: correctFileName!)}
-=======
                         if let correctB = view as? CustomButton {
                             if correctB.currentTitle! == self.questionGenerator?.getAnswer(){
 								
 								//duplicating code here, but the for loop didn't work for some reason?
                                 self.feedbackForWrong(sender, correctButton: correctB, wrongFile: wrongFileName, correctFile: correctFileName!)
->>>>>>> master
                             }
                         }
                     }
@@ -220,7 +202,7 @@ class QuestionViewController: CustomViewController {
 			customButton.titleLabel?.font = UIFont(name: "Arial", size: 24)
 			customButton.addTarget(self, action: nextFunction, forControlEvents: .TouchUpInside)
 			customButton.backgroundColor = appColors["lightGrey"]
-			self.view.addSubview(customButton)
+            fadeInToSubview(customButton, delay: 0.25, completionAction: nil)
 			customButton.tag = 1
 			counter = counter + 1
 		}
