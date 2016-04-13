@@ -133,8 +133,8 @@ class QuizOptionsController: CustomViewController{
 			customButton.backgroundColor = appColors["white"]
 			customButton.tag = 1
 			
-//			fadeInToSubview(customButton, delay: 0.25 + (0.1 * Double(counter % 2)), completionAction: nil)
-			fadeInToSubview(customButton, delay: 0.25 + (0.05 * Double(( counter == 0 || counter == 1 ? 0 : counter == 2 || counter == 3 ? 1 : 2))), completionAction: nil)
+//			fadeUpInToSubview(customButton, delay: 0.25 + (0.1 * Double(counter % 2)), completionAction: nil)
+			fadeUpInToSubview(customButton, delay: 0.25 + (0.05 * Double(( counter == 0 || counter == 1 ? 0 : counter == 2 || counter == 3 ? 1 : 2))), completionAction: nil)
 			counter = counter + 1
 		}
 	}

@@ -70,20 +70,20 @@ class CustomViewController: UIViewController{
 		var viewsToFade = [UIView]()
 		self.view.subviews.forEach({ if $0.tag == tag { viewsToFade.append($0) }})
 		UIView.animateWithDuration(
-			0.3,
+			0.25,
 			animations: {
 				viewsToFade.forEach({ $0.alpha = 0 })
 			},
 			completion: {
 				(finished: Bool) -> Void in
 				
-				self.delay(0.3){
+				self.delay(0.25){
 					viewsToFade.forEach({ $0.removeFromSuperview() })
 				}
 		})
 	}
 	
-	func fadeInToSubview(target: UIView, delay: Double, completionAction: ((Bool) -> Void)?){
+	func fadeUpInToSubview(target: UIView, delay: Double, completionAction: ((Bool) -> Void)?){
 		target.alpha = 0
 		target.frame.origin.y += CGFloat(viewHeight * 0.1)
 		self.view.addSubview(target)
@@ -92,6 +92,26 @@ class CustomViewController: UIViewController{
 			animations: {
 				target.alpha = 1
 				target.frame.origin.y -= CGFloat(self.viewHeight * 0.1)
+			},
+			completion: completionAction
+		)
+	}
+	
+	func fadeCentreInToSubview(target: UIView, delay: Double, completionAction: ((Bool) -> Void)?){
+		let currentFrame = target.frame
+		target.alpha = 0
+		target.frame = CGRect(
+			x: currentFrame.origin.x + (currentFrame.origin.x * 0.25),
+			y: currentFrame.origin.y + (currentFrame.origin.y * 0.25),
+			width: currentFrame.width * 0.5,
+			height: currentFrame.height * 0.5
+		)
+		self.view.addSubview(target)
+		UIView.animateWithDuration(
+			delay,
+			animations: {
+				target.alpha = 1
+				target.frame = currentFrame
 			},
 			completion: completionAction
 		)
