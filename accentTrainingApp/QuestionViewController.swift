@@ -91,8 +91,6 @@ class QuestionViewController: CustomViewController {
             }
         }
     }
-    
-<<<<<<< HEAD
     @IBAction func quitPressed(sender: UIButton) {
         self.stopCount = 1
         self.audioPlayer!.stop()
@@ -100,10 +98,6 @@ class QuestionViewController: CustomViewController {
     
     
     func putButtonBack(button: CustomButton){ //to put the button back to its original state
-=======
-    func putButtonBack(button: CustomButton){
-		//to put the button back to its original state
->>>>>>> master
         button.backgroundColor = appColors["lightGrey"]
         button.setTitleColor(appColors["darkGrey"], forState: .Normal)
     }
@@ -154,7 +148,6 @@ class QuestionViewController: CustomViewController {
                     let wrongFileName =  "\(accent)_\(speakerName)_\(answer)"
                     let correctFileName = self.questionGenerator?.getQuestionFileName()
                     for view in self.view.subviews as [UIView] {
-<<<<<<< HEAD
                         if let button = view as? CustomButton {
                             if button.currentTitle! == self.questionGenerator?.getAnswer(){
                                 
@@ -164,19 +157,17 @@ class QuestionViewController: CustomViewController {
                                 self.delay(3.5){
                                     if(self.stopCount == 1){return}
                                     self.feedbackForWrong(wrongButton, correctButton: correctB, wrongFile: wrongFileName, correctFile: correctFileName!)}
-=======
                         if let correctB = view as? CustomButton {
                             if correctB.currentTitle! == self.questionGenerator?.getAnswer(){
 								
 								//duplicating code here, but the for loop didn't work for some reason?
                                 self.feedbackForWrong(sender, correctButton: correctB, wrongFile: wrongFileName, correctFile: correctFileName!)
->>>>>>> master
                             }
                         }
                     }
                 }
                 time = 6
-            } else {
+            }else {
 				time = 1.3
 			}
         }
