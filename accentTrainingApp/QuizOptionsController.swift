@@ -49,7 +49,7 @@ class QuizOptionsController: CustomViewController{
     func getAccentOptions(sender: CustomButton){
         self.quizOptions.setLength(sender.currentTitle!)
         removeViews(1)
-		delay(0.3){
+		delay(0.25){
 			self.displayLabel("Choose an accent", textColor: self.testModeColor)
 			self.displayTwoColumnButtons(self.accentOptions, textColor: self.testModeColor, nextFunction:#selector(QuizOptionsController.getSpeakerOptions(_:)))
 		}
@@ -58,7 +58,7 @@ class QuizOptionsController: CustomViewController{
     func getSpeakerOptions(sender: CustomButton){
         self.quizOptions.setAccent(sender.currentTitle!)
         removeViews(1)
-		delay(0.3){
+		delay(0.25){
 			self.displayLabel("Choose a speaker", textColor: self.testModeColor)
 			self.displayTwoColumnButtons(self.speakerOptions[self.quizOptions.getQuizAccent()]!, textColor: self.testModeColor, nextFunction: #selector(QuizOptionsController.moveToQuestionView(_:)))
 		}
@@ -133,8 +133,8 @@ class QuizOptionsController: CustomViewController{
 			customButton.backgroundColor = appColors["white"]
 			customButton.tag = 1
 			
-//			fadeInToSubview(customButton, delay: 0.3 + (0.1 * Double(counter % 2)), completionAction: nil)
-			fadeInToSubview(customButton, delay: 0.3 + (0.05 * Double(( counter == 0 || counter == 1 ? 0 : counter == 2 || counter == 3 ? 1 : 2))), completionAction: nil)
+//			fadeInToSubview(customButton, delay: 0.25 + (0.1 * Double(counter % 2)), completionAction: nil)
+			fadeInToSubview(customButton, delay: 0.25 + (0.05 * Double(( counter == 0 || counter == 1 ? 0 : counter == 2 || counter == 3 ? 1 : 2))), completionAction: nil)
 			counter = counter + 1
 		}
 	}

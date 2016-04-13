@@ -13,6 +13,12 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 		self.view.backgroundColor = UIColor.whiteColor()
+		
+		delay(0.25){
+			if let resultController = self.storyboard!.instantiateViewControllerWithIdentifier("ResultsViewController") as? ResultsViewController {
+				self.presentViewController(resultController, animated: true, completion: nil)
+			}
+		}
     }
 	
 	@IBAction func practiceButton(sender: CustomButton) {
@@ -31,5 +37,12 @@ class MainViewController: UIViewController {
 	
 	//allows moving back to MainVC
 	@IBAction func unwindToMVC(segue: UIStoryboardSegue){}
+	
+	//remove this
+	func delay(time:Double, closure:() -> Void) {
+		
+		// delays for double second and executes the code inside the closure
+		dispatch_after(dispatch_time(DISPATCH_TIME_NOW,Int64(time * Double(NSEC_PER_SEC))),dispatch_get_main_queue(), closure)
+	}
 }
 
