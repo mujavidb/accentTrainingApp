@@ -114,7 +114,7 @@ class HighscoresController: CustomViewController {
 			label.font = UIFont.systemFontOfSize(CGFloat(viewWidth / 16))
 			label.textColor = UIColor.whiteColor()
 			label.tag = 1
-			fadeInToSubview(label, delay: 0.25 + (0.05 * Double(counter)), completionAction: nil)
+			fadeUpInToSubview(label, delay: 0.25 + (0.05 * Double(counter)), completionAction: nil)
 			
 			let number = UILabel(frame: CGRect(
 				x: Int(viewWidth - 40 - (viewWidth * 0.2)),
@@ -127,7 +127,7 @@ class HighscoresController: CustomViewController {
 			number.textColor = UIColor.whiteColor()
 			number.textAlignment = .Right
 			number.tag = 1
-			fadeInToSubview(number, delay: 0.25 + (0.05 * Double(counter)), completionAction: nil)
+			fadeUpInToSubview(number, delay: 0.25 + (0.05 * Double(counter)), completionAction: nil)
 			counter += 1
 		}
 	}
@@ -154,6 +154,6 @@ class HighscoresController: CustomViewController {
 		background.layer.cornerRadius = 10
 		background.tag = 1
 
-		fadeInToSubview(background, delay: 0.25 + (0.05 * Double(counter)), completionAction: nil)
+		fadeUpInToSubview(background, delay: 0.25 + (0.05 * Double(counter)), completionAction: nil)
 	}
 }

@@ -13,12 +13,6 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 		self.view.backgroundColor = UIColor.whiteColor()
-		
-		delay(0.25){
-			if let resultController = self.storyboard!.instantiateViewControllerWithIdentifier("ResultsViewController") as? ResultsViewController {
-				self.presentViewController(resultController, animated: true, completion: nil)
-			}
-		}
     }
 	
 	@IBAction func practiceButton(sender: CustomButton) {

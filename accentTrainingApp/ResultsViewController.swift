@@ -10,7 +10,7 @@ import UIKit
 
 class ResultsViewController: CustomViewController {
 	
-	var result = 400
+	var result: Int = 0
 	let scores = [
 		"Mujavid",
 		"Freddie Merc.",
@@ -23,15 +23,14 @@ class ResultsViewController: CustomViewController {
 	]
 	var trophyImage = UIImage()
 	var trophyImageView = UIImageView()
+	var quizType = "practice"
+	var maxScore = 150
 	
 	//to make button-label the correct color
 	@IBOutlet weak var homeButton: CustomButton!
 	
 	@IBAction func replayButton(sender: AnyObject) {
 		
-		//TODO: get current test type and store in quiztype
-		
-		let quizType = "practice"
 		if let resultController = storyboard!.instantiateViewControllerWithIdentifier("QuizOptionsController") as? QuizOptionsController {
 			resultController.quizOptions.setType(quizType)
 			presentViewController(resultController, animated: true, completion: nil)
@@ -67,11 +66,29 @@ class ResultsViewController: CustomViewController {
 		}
     }
 	
-	func setupInitialView() -> Void {
-		self.view.backgroundColor = appColors["practice"]
-		homeButton.setTitleColor(appColors["practice"], forState: .Normal)
+	func setupInitialView(){
 		
-		trophyImage = UIImage(named: "gold_trophy")!
+		if quizType == "practice" {
+			self.view.backgroundColor = appColors["practice"]
+			homeButton.setTitleColor(appColors["practice"], forState: .Normal)
+		} else {
+			self.view.backgroundColor = appColors["timetrial"]
+			homeButton.setTitleColor(appColors["timetrial"], forState: .Normal)
+		}
+		
+		trophyImage = UIImage(named: "bronze_trophy")!
+		
+		let correctRate = Float(result / maxScore)
+		
+		if  correctRate > 0.85 {
+			trophyImage = UIImage(named: "gold_trophy")!
+		} else if correctRate > 60 {
+			trophyImage = UIImage(named: "silver_trophy")!
+		}
+				
+		print("result: \(result), maxScore \(maxScore)")
+		print("\(correctRate)")
+		
 		trophyImageView = UIImageView(image: trophyImage)
 		trophyImageView.frame = CGRectMake(
 			(CGFloat(viewWidth) - trophyImage.size.width) / 2,
@@ -79,7 +96,7 @@ class ResultsViewController: CustomViewController {
 			trophyImage.size.width,
 			trophyImage.size.height
 		)
-		fadeInToSubview(trophyImageView, delay: 0.25, completionAction: nil)
+		fadeUpInToSubview(trophyImageView, delay: 0.25, completionAction: nil)
 		
 		let scoresLabel = UILabel(frame: CGRect(
 			x: self.view.frame.width * 0.1,
@@ -93,7 +110,7 @@ class ResultsViewController: CustomViewController {
 		scoresLabel.textColor = appColors["white"]
 		scoresLabel.font = UIFont(name: "Arial", size: CGFloat(viewWidth / 4.5))
 		scoresLabel.tag = 1
-		fadeInToSubview(scoresLabel, delay: 0.25, completionAction: nil)
+		fadeUpInToSubview(scoresLabel, delay: 0.25, completionAction: nil)
 		
 		let scoresInfoLabel = UILabel(frame: CGRect(
 			x: self.view.frame.width * 0.1,
@@ -108,7 +125,7 @@ class ResultsViewController: CustomViewController {
 		scoresInfoLabel.textColor = appColors["white"]
 		scoresInfoLabel.font = UIFont(name: "Arial", size: CGFloat(viewWidth / 10))
 		scoresInfoLabel.tag = 1
-		fadeInToSubview(scoresInfoLabel, delay: 0.25, completionAction: nil)
+		fadeUpInToSubview(scoresInfoLabel, delay: 0.25, completionAction: nil)
 		
 	}
 	
@@ -141,7 +158,7 @@ class ResultsViewController: CustomViewController {
 		highscoresLabel.textAlignment = .Center
 		highscoresLabel.textColor = appColors["white"]
 		highscoresLabel.font = UIFont(name: "Arial", size: CGFloat(viewWidth / 10))
-		fadeInToSubview(highscoresLabel, delay: 0.25, completionAction: nil)
+		fadeUpInToSubview(highscoresLabel, delay: 0.25, completionAction: nil)
 		
 		var counter = 0
 		
@@ -157,7 +174,7 @@ class ResultsViewController: CustomViewController {
 			label.font = UIFont.systemFontOfSize(CGFloat(viewWidth / 16))
 			label.textColor = UIColor.whiteColor()
 			label.tag = 1
-			fadeInToSubview(label, delay: 0.25 + (0.05 * Double(counter)), completionAction: nil)
+			fadeUpInToSubview(label, delay: 0.25 + (0.05 * Double(counter)), completionAction: nil)
 			
 			let number = UILabel(frame: CGRect(
 				x: Int(viewWidth - 40 - (viewWidth * 0.2)),
@@ -170,7 +187,7 @@ class ResultsViewController: CustomViewController {
 			number.textColor = UIColor.whiteColor()
 			number.textAlignment = .Right
 			number.tag = 1
-			fadeInToSubview(number, delay: 0.25 + (0.05 * Double(counter)), completionAction: nil)
+			fadeUpInToSubview(number, delay: 0.25 + (0.05 * Double(counter)), completionAction: nil)
 			counter += 1
 		}
 		

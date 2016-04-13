@@ -65,11 +65,19 @@ class QuizOptionsController: CustomViewController{
     }
     
     func moveToQuestionView(sender:CustomButton){
-        self.quizOptions.setSpeaker(sender.currentTitle!)
-        if let resultController = storyboard!.instantiateViewControllerWithIdentifier("QuestionViewController") as? QuestionViewController {
-            resultController.questionChoice = self.quizOptions
-            presentViewController(resultController, animated: true, completion: nil)
-        }
+        quizOptions.setSpeaker(sender.currentTitle!)
+		
+		if quizOptions.getQuizType() == "practice" {
+			if let resultController = storyboard!.instantiateViewControllerWithIdentifier("PracticeQuizModeController") as? PracticeQuizModeController {
+				resultController.questionChoice = self.quizOptions
+				presentViewController(resultController, animated: true, completion: nil)
+			}
+		} else {
+			if let resultController = storyboard!.instantiateViewControllerWithIdentifier("TimetrialQuizModeController") as? TimetrialQuizModeController {
+				resultController.questionChoice = self.quizOptions
+				presentViewController(resultController, animated: true, completion: nil)
+			}
+		}
     }
 	
 	func displaySingleColumnButtons(buttonLabelSet: [String], textColor: UIColor, nextFunction: Selector){
@@ -133,8 +141,8 @@ class QuizOptionsController: CustomViewController{
 			customButton.backgroundColor = appColors["white"]
 			customButton.tag = 1
 			
-//			fadeInToSubview(customButton, delay: 0.25 + (0.1 * Double(counter % 2)), completionAction: nil)
-			fadeInToSubview(customButton, delay: 0.25 + (0.05 * Double(( counter == 0 || counter == 1 ? 0 : counter == 2 || counter == 3 ? 1 : 2))), completionAction: nil)
+//			fadeUpInToSubview(customButton, delay: 0.25 + (0.1 * Double(counter % 2)), completionAction: nil)
+			fadeUpInToSubview(customButton, delay: 0.25 + (0.05 * Double(( counter == 0 || counter == 1 ? 0 : counter == 2 || counter == 3 ? 1 : 2))), completionAction: nil)
 			counter = counter + 1
 		}
 	}
