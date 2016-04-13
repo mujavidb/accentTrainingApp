@@ -20,6 +20,8 @@ class QuestionViewController: CustomViewController {
 	var questionNumber = 1
 	var testModeColor = UIColor.clearColor()
     var counter = 0
+    var stopCount = 0
+    var userScore = 0
 	@IBOutlet weak var quitQuizButton: UIButton!
 	@IBOutlet weak var restartQuizButton: UIButton!
 	
@@ -69,6 +71,8 @@ class QuestionViewController: CustomViewController {
         removeViews(1)
         questionGenerator?.generateQuestion()
         let fileName = questionGenerator?.getQuestionFileName()
+        let percentage = (Double(userScore) / Double(questionChoice!.getQuizLengthInt()))*100
+        print("\(percentage)%")
         playSound(fileName!)
 		
 		self.displayButtons(self.questionGenerator!.getQuestionSet(), nextFunction: #selector(QuestionViewController.questionButtonPressed(_:)))
@@ -88,19 +92,31 @@ class QuestionViewController: CustomViewController {
         }
     }
     
+<<<<<<< HEAD
+    @IBAction func quitPressed(sender: UIButton) {
+        self.stopCount = 1
+        self.audioPlayer!.stop()
+    }
+    
+    
+    func putButtonBack(button: CustomButton){ //to put the button back to its original state
+=======
     func putButtonBack(button: CustomButton){
 		//to put the button back to its original state
+>>>>>>> master
         button.backgroundColor = appColors["lightGrey"]
         button.setTitleColor(appColors["darkGrey"], forState: .Normal)
     }
     
     func feedbackForWrong(wrongButton: CustomButton, correctButton: CustomButton, wrongFile: String, correctFile: String){
+        if(stopCount == 1){return}
         wrongButton.setTitleColor(self.appColors["white"], forState: .Normal)
         wrongButton.backgroundColor = appColors["incorrectRed"]
         playSound(wrongFile)
         delay(1){
             self.putButtonBack(wrongButton)
             self.delay(0.8){
+                if(self.stopCount == 1){return}
                 correctButton.setTitleColor(self.appColors["white"], forState: .Normal)
                 correctButton.backgroundColor = self.appColors["correctGreen"]
                 self.playSound(correctFile)
@@ -120,6 +136,7 @@ class QuestionViewController: CustomViewController {
             
             playSound("feedback-correct")
             sender.backgroundColor = appColors["correctGreen"]
+            userScore = userScore + 1
 			time = 1.3
         } else {
 			// if wrong answer selected
@@ -137,11 +154,23 @@ class QuestionViewController: CustomViewController {
                     let wrongFileName =  "\(accent)_\(speakerName)_\(answer)"
                     let correctFileName = self.questionGenerator?.getQuestionFileName()
                     for view in self.view.subviews as [UIView] {
+<<<<<<< HEAD
+                        if let button = view as? CustomButton {
+                            if button.currentTitle! == self.questionGenerator?.getAnswer(){
+                                
+                                let correctB = button
+                                //duplicating code here, but the for loop didn't work for some reason?
+                                self.feedbackForWrong(wrongButton, correctButton: correctB, wrongFile: wrongFileName, correctFile: correctFileName!)
+                                self.delay(3.5){
+                                    if(self.stopCount == 1){return}
+                                    self.feedbackForWrong(wrongButton, correctButton: correctB, wrongFile: wrongFileName, correctFile: correctFileName!)}
+=======
                         if let correctB = view as? CustomButton {
                             if correctB.currentTitle! == self.questionGenerator?.getAnswer(){
 								
 								//duplicating code here, but the for loop didn't work for some reason?
                                 self.feedbackForWrong(sender, correctButton: correctB, wrongFile: wrongFileName, correctFile: correctFileName!)
+>>>>>>> master
                             }
                         }
                     }
@@ -153,7 +182,14 @@ class QuestionViewController: CustomViewController {
         }
 		questionNumber += 1
         delay(time) {
-            self.generateQuestion()
+            if(self.stopCount == 1){return}
+            else if(self.questionNumber == ((self.questionChoice?.getQuizLengthInt())!+1)){ // session completed 
+                self.audioPlayer!.stop()
+                if let resultController = self.storyboard!.instantiateViewControllerWithIdentifier("HighscoresController") as? HighscoresController{
+                    self.presentViewController(resultController, animated: true, completion: nil)
+                }
+            }
+            else{self.generateQuestion()}
         }
     }
 	
@@ -202,7 +238,7 @@ class QuestionViewController: CustomViewController {
 			height: Int(viewHeight * 0.2)
 			))
 		quizTotalLabel.textColor = appColors["white"]
-		quizTotalLabel.text = "\(questionNumber) of \(questionGenerator!.qs.questionSet.count)"
+		quizTotalLabel.text = "\(questionNumber) of \(questionChoice!.getQuizLengthInt())"
 		quizTotalLabel.font = UIFont(name: "Arial", size: 20)
 		quizTotalLabel.textAlignment = .Center
 		
