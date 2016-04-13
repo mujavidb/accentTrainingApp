@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		5725BC8A1CBE7C6B007988BC /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5725BC891CBE7C6B007988BC /* ResultsViewController.swift */; };
+		5725BC8C1CBEDF3B007988BC /* PracticeQuizModeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5725BC8B1CBEDF3B007988BC /* PracticeQuizModeController.swift */; };
+		5725BC8E1CBEDF5E007988BC /* TimetrialQuizModeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5725BC8D1CBEDF5E007988BC /* TimetrialQuizModeController.swift */; };
 		573465C31CA70E2300B2A3CB /* HighscoresController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573465C21CA70E2300B2A3CB /* HighscoresController.swift */; };
 		576CD6EA1CB63CAB00860AC9 /* QuizChoiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576CD6E91CB63CAB00860AC9 /* QuizChoiceTest.swift */; };
 		576CD6ED1CB6429400860AC9 /* CustomButtonTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576CD6EC1CB6429400860AC9 /* CustomButtonTest.swift */; };
@@ -40,6 +42,8 @@
 
 /* Begin PBXFileReference section */
 		5725BC891CBE7C6B007988BC /* ResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
+		5725BC8B1CBEDF3B007988BC /* PracticeQuizModeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PracticeQuizModeController.swift; sourceTree = "<group>"; };
+		5725BC8D1CBEDF5E007988BC /* TimetrialQuizModeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimetrialQuizModeController.swift; sourceTree = "<group>"; };
 		573465C21CA70E2300B2A3CB /* HighscoresController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighscoresController.swift; sourceTree = "<group>"; };
 		576CD6E91CB63CAB00860AC9 /* QuizChoiceTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizChoiceTest.swift; sourceTree = "<group>"; };
 		576CD6EC1CB6429400860AC9 /* CustomButtonTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButtonTest.swift; sourceTree = "<group>"; };
@@ -106,10 +110,12 @@
 			children = (
 				64B33F241C9D4A6D006C3510 /* MainViewController.swift */,
 				64B33F481C9D4BDF006C3510 /* QuestionViewController.swift */,
+				5725BC8B1CBEDF3B007988BC /* PracticeQuizModeController.swift */,
 				64B33F4C1C9D4C19006C3510 /* QuizOptionsController.swift */,
 				64B33F441C9D4AEB006C3510 /* CustomViewController.swift */,
 				5725BC891CBE7C6B007988BC /* ResultsViewController.swift */,
 				573465C21CA70E2300B2A3CB /* HighscoresController.swift */,
+				5725BC8D1CBEDF5E007988BC /* TimetrialQuizModeController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -272,12 +278,14 @@
 			files = (
 				5725BC8A1CBE7C6B007988BC /* ResultsViewController.swift in Sources */,
 				64B33F4B1C9D4BFC006C3510 /* QuizChoice.swift in Sources */,
+				5725BC8E1CBEDF5E007988BC /* TimetrialQuizModeController.swift in Sources */,
 				64B33F251C9D4A6D006C3510 /* MainViewController.swift in Sources */,
 				64B33F471C9D4BB8006C3510 /* QuestionGenerator.swift in Sources */,
 				64B33F491C9D4BDF006C3510 /* QuestionViewController.swift in Sources */,
 				573465C31CA70E2300B2A3CB /* HighscoresController.swift in Sources */,
 				64B33F231C9D4A6D006C3510 /* AppDelegate.swift in Sources */,
 				64B33F431C9D4ABB006C3510 /* CustomButton.swift in Sources */,
+				5725BC8C1CBEDF3B007988BC /* PracticeQuizModeController.swift in Sources */,
 				64B33F451C9D4AEB006C3510 /* CustomViewController.swift in Sources */,
 				64B33F4D1C9D4C19006C3510 /* QuizOptionsController.swift in Sources */,
 				64B33F4F1C9D4E38006C3510 /* QuestionSet.swift in Sources */,

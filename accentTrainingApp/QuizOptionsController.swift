@@ -65,11 +65,19 @@ class QuizOptionsController: CustomViewController{
     }
     
     func moveToQuestionView(sender:CustomButton){
-        self.quizOptions.setSpeaker(sender.currentTitle!)
-        if let resultController = storyboard!.instantiateViewControllerWithIdentifier("QuestionViewController") as? QuestionViewController {
-            resultController.questionChoice = self.quizOptions
-            presentViewController(resultController, animated: true, completion: nil)
-        }
+        quizOptions.setSpeaker(sender.currentTitle!)
+		
+		if quizOptions.getQuizType() == "practice" {
+			if let resultController = storyboard!.instantiateViewControllerWithIdentifier("PracticeQuizModeController") as? PracticeQuizModeController {
+				resultController.questionChoice = self.quizOptions
+				presentViewController(resultController, animated: true, completion: nil)
+			}
+		} else {
+			if let resultController = storyboard!.instantiateViewControllerWithIdentifier("TimetrialQuizModeController") as? TimetrialQuizModeController {
+				resultController.questionChoice = self.quizOptions
+				presentViewController(resultController, animated: true, completion: nil)
+			}
+		}
     }
 	
 	func displaySingleColumnButtons(buttonLabelSet: [String], textColor: UIColor, nextFunction: Selector){

@@ -32,14 +32,6 @@ class QuestionViewController: CustomViewController {
         questionGenerator = QuestionGenerator(completQuizChoice: questionChoice!)
 		quizLength = questionChoice!.getQuizLengthInt()
 		
-		if questionGenerator?.quizChoice?.getQuizType() == "practice" {
-			testModeColor = appColors["practice"]!
-		} else {
-			testModeColor = appColors["timetrial"]!
-		}
-		quitQuizButton.setTitleColor(testModeColor, forState: .Normal)
-		restartQuizButton.setTitleColor(testModeColor, forState: .Normal)
-
 		setUpReplayButton()
 		
 		// delay after speaker selected and before audio plays to prepare user
