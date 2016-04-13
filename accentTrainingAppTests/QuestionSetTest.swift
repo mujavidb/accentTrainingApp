@@ -15,21 +15,13 @@ class QuestionSetTest: XCTestCase {
 	
 	func testGetSet(){
 		let index = 5
-		XCTAssertTrue(qs.getQuestionSet(index) == qs.questionSet[index])
+		XCTAssertEqual(qs.getQuestionSet(index), qs.questionSet[index])
 	}
 	
 	func testGetAnswer(){
 		let qIndex = 5
 		let aIndex = 2
-		XCTAssertTrue(qs.getAnswer(5,answerIndex: 2) == qs.questionSet[qIndex][aIndex])
+		XCTAssertEqual(qs.getAnswer(5,answerIndex: 2), qs.questionSet[qIndex][aIndex])
 	}
-    
-    override func setUp() {
-        super.setUp()
-    }
-    
-    override func tearDown() {
-        super.tearDown()
-    }
     
 }

@@ -30,13 +30,13 @@ class CustomViewController: UIViewController{
 		"transparent_white": UIColor(red: 1, green: 1, blue: 1, alpha: 0.1)
 		]
 	
-	var viewWidth: Double = 500
-	var viewHeight: Double = 500
+	var viewWidth: Double?
+	var viewHeight: Double?
 	
     override func viewDidLoad() {
         super.viewDidLoad()
-		viewWidth = Double(self.view.frame.width)
-		viewHeight = Double(self.view.frame.height)
+		viewWidth! = Double(self.view.frame.width)
+		viewHeight! = Double(self.view.frame.height)
     }
     
     override func didReceiveMemoryWarning() {
@@ -85,13 +85,13 @@ class CustomViewController: UIViewController{
 	
 	func fadeInToSubview(target: UIView, delay: Double, completionAction: ((Bool) -> Void)?){
 		target.alpha = 0
-		target.frame.origin.y += CGFloat(viewHeight * 0.1)
+		target.frame.origin.y += CGFloat(viewHeight! * 0.1)
 		self.view.addSubview(target)
 		UIView.animateWithDuration(
 			delay,
 			animations: {
 				target.alpha = 1
-				target.frame.origin.y -= CGFloat(self.viewHeight * 0.1)
+				target.frame.origin.y -= CGFloat(self.viewHeight! * 0.1)
 			},
 			completion: completionAction
 		)

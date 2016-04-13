@@ -13,39 +13,34 @@ class QuizChoiceTest: XCTestCase {
 	
 	let quiz = QuizChoice()
 	
-	var testVar = ""
+	var testVar: String?
 	
 	func testType() {
-		testVar = "Practice"
-		quiz.setType(testVar)
-		XCTAssertTrue(quiz.getQuizType() == testVar)
+		testVar = "practice"
+		quiz.setType(testVar!)
+		XCTAssertEqual(quiz.getQuizType(), testVar)
 	}
 	
 	func testSpeaker() {
 		testVar = "Lily"
-		quiz.setSpeaker(testVar)
-		XCTAssertTrue(quiz.getQuizSpeaker() == testVar)
+		quiz.setSpeaker(testVar!)
+		XCTAssertEqual(quiz.getQuizSpeaker(), testVar)
 	}
 	
 	func testAccent() {
 		testVar = "London"
-		quiz.setAccent(testVar)
-		XCTAssertTrue(quiz.getQuizAccent() == testVar)
+		quiz.setAccent(testVar!)
+		XCTAssertEqual(quiz.getQuizAccent(), testVar)
 	}
 	
 	func testLength() {
 		testVar = "Long"
-		quiz.setLength(testVar)
-		XCTAssertTrue(quiz.getQuizLength() == testVar)
+		quiz.setLength(testVar!)
+		XCTAssertEqual(quiz.getQuizLength(), testVar)
 	}
-    
-    override func setUp() {
-        super.setUp()
-    }
-    
-    override func tearDown() {
-        super.tearDown()
+	
+	override func setUp() {
+		super.setUp()
 		testVar = ""
-    }
-    
+	}
 }

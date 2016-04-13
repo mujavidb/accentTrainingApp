@@ -38,7 +38,9 @@ class QuestionViewController: CustomViewController {
 		restartQuizButton.setTitleColor(testModeColor, forState: .Normal)
 
 		setUpReplayButton()
-        delay(1.15){ // delay after speaker selected and before audio plays to prepare user
+		
+		// delay after speaker selected and before audio plays to prepare user
+        delay(1.15){
             self.generateQuestion()
         }
     }
@@ -68,11 +70,9 @@ class QuestionViewController: CustomViewController {
         questionGenerator?.generateQuestion()
         let fileName = questionGenerator?.getQuestionFileName()
         playSound(fileName!)
-        
-        delay(1.3){ // delay display button so that the user can focus on the audio first
-            self.displayButtons(self.questionGenerator!.getQuestionSet(), nextFunction: #selector(QuestionViewController.questionButtonPressed(_:)))
-        }
-        
+		
+		self.displayButtons(self.questionGenerator!.getQuestionSet(), nextFunction: #selector(QuestionViewController.questionButtonPressed(_:)))
+		
     }
     
     //gets the audio file in the assets and plays
@@ -88,7 +88,8 @@ class QuestionViewController: CustomViewController {
         }
     }
     
-    func putButtonBack(button: CustomButton){ //to put the button back to its original state
+    func putButtonBack(button: CustomButton){
+		//to put the button back to its original state
         button.backgroundColor = appColors["lightGrey"]
         button.setTitleColor(appColors["darkGrey"], forState: .Normal)
     }
@@ -103,8 +104,8 @@ class QuestionViewController: CustomViewController {
                 correctButton.setTitleColor(self.appColors["white"], forState: .Normal)
                 correctButton.backgroundColor = self.appColors["correctGreen"]
                 self.playSound(correctFile)
-                self.delay(1){
-                    self.putButtonBack(correctButton)
+                self.delay(1.4){
+                    self.playSound(correctFile)
                 }
             }
         }
@@ -126,29 +127,29 @@ class QuestionViewController: CustomViewController {
             self.playSound("feedback-wrong")
             sender.backgroundColor = appColors["incorrectRed"]
             
-            if(self.questionChoice?.getQuizType() == "practice"){ // feedback only for practice mode
+            if self.questionChoice?.getQuizType() == "practice" {
+				
+				// feedback only for practice mode
                 delay(1){
                     let accent = self.questionChoice!.getQuizAccent()
                     let speakerName = self.questionChoice!.getQuizSpeaker()
                     let answer: String = sender.currentTitle!
                     let wrongFileName =  "\(accent)_\(speakerName)_\(answer)"
-                    let wrongButton = sender
                     let correctFileName = self.questionGenerator?.getQuestionFileName()
                     for view in self.view.subviews as [UIView] {
-                        if let button = view as? CustomButton {
-                            if button.currentTitle! == self.questionGenerator?.getAnswer(){
-                                
-                                let correctB = button
-                                //duplicating code here, but the for loop didn't work for some reason?
-                                self.feedbackForWrong(wrongButton, correctButton: correctB, wrongFile: wrongFileName, correctFile: correctFileName!)
-                                self.delay(3.5){self.feedbackForWrong(wrongButton, correctButton: correctB, wrongFile: wrongFileName, correctFile: correctFileName!)}
+                        if let correctB = view as? CustomButton {
+                            if correctB.currentTitle! == self.questionGenerator?.getAnswer(){
+								
+								//duplicating code here, but the for loop didn't work for some reason?
+                                self.feedbackForWrong(sender, correctButton: correctB, wrongFile: wrongFileName, correctFile: correctFileName!)
                             }
                         }
                     }
                 }
-                time = 9
-            }
-            else{time = 1.3}
+                time = 6
+            } else {
+				time = 1.3
+			}
         }
 		questionNumber += 1
         delay(time) {

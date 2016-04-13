@@ -13,15 +13,7 @@ class CustomButtonTest: XCTestCase {
 	
 	let button = CustomButton()
     
-    override func setUp() {
-        super.setUp()
-    }
-    
-    override func tearDown() {
-        super.tearDown()
-    }
-    
     func testRoundness() {
-		XCTAssertTrue(button.layer.cornerRadius == 10)
+		XCTAssertEqual(button.layer.cornerRadius, 10)
 	}
 }
