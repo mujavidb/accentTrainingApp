@@ -9,7 +9,8 @@
 import Foundation
 
 
-class QuestionGenerator{
+class QuestionGenerator {
+	
     let quizChoice: QuizChoice?
     let qs = QuestionSet()
     var askedQuestions = [Int]() // (rhyme index, question set index)
@@ -21,27 +22,37 @@ class QuestionGenerator{
         self.quizChoice = completQuizChoice
     }
     
-    func checkAnswered(index: Int)->Bool{
-        for askedIndex in askedQuestions{
-            if index == askedIndex{
+    func checkAnswered(index: Int) -> Bool{
+        for askedIndex in askedQuestions {
+            if index == askedIndex {
                 return true
             }
         }
         return false
     }
+	
     func generateQuestion(){
+<<<<<<< HEAD
         
         repeat{questionSetIndex = Int(arc4random_uniform(UInt32(qs.questionSet.count)))}
             while(checkAnswered(questionSetIndex!))
+=======
+        repeat {
+			questionSetIndex = Int(arc4random_uniform(UInt32(qs.questionSet.count)))
+		} while(checkAnswered(questionSetIndex!))
+>>>>>>> master
         
         askedQuestions.append(questionSetIndex!)
-        
         answerIndex = Int(arc4random_uniform(UInt32(qs.getQuestionSet(questionSetIndex!).count)))
-        
         answer = qs.getAnswer(questionSetIndex!,answerIndex:  answerIndex!)
     }
+<<<<<<< HEAD
     
     func getQuestionFileName()->String{ // returns the name of the file in the format: london_anna_back
+=======
+	
+    func getQuestionFileName() -> String{ // returns the name of the file in the format: london_anna_back
+>>>>>>> master
         let accent = quizChoice!.getQuizAccent()
         let speakerName = quizChoice!.getQuizSpeaker()
         return "\(accent)_\(speakerName)_\(answer!)"
@@ -51,7 +62,7 @@ class QuestionGenerator{
         return qs.getQuestionSet(questionSetIndex!)
     }
     
-    func getAnswer()-> String {
+    func getAnswer() -> String {
         return answer!
     }
     
