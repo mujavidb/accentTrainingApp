@@ -168,12 +168,13 @@ class QuestionViewController: CustomViewController {
 		questionNumber += 1
         delay(time) {
             if(self.stopCount == 1){return}
-            if(self.questionNumber == ((self.questionChoice?.getQuizLengthInt())!+1)){
+            else if(self.questionNumber == ((self.questionChoice?.getQuizLengthInt())!+1)){ // session completed 
+                self.audioPlayer!.stop()
                 if let resultController = self.storyboard!.instantiateViewControllerWithIdentifier("HighscoresController") as? HighscoresController{
                     self.presentViewController(resultController, animated: true, completion: nil)
                 }
             }
-            self.generateQuestion()
+            else{self.generateQuestion()}
         }
     }
 	

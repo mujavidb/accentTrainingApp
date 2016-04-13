@@ -11,8 +11,6 @@ import Foundation
 class QuestionSet{
 	
     let questionSet = [
-        
-        [
             ["bed","bard","bad","bud"],
             ["beck","bark","back","buck"],
             ["ben","barn","ban","bun"],
@@ -22,10 +20,8 @@ class QuestionSet{
             ["messed","mast","massed","must"],
             ["met","mart","mat","mutt"],
             ["peck","park","pack","puck"],
-            ["pet","part","pat","putt"]
-        ],
-        
-        [
+            ["pet","part","pat","putt"],
+            
             ["feel","phil","file","fail"],
             ["field","filled","filed","failed"],
             ["feet","fit","fight","fate"],
@@ -35,10 +31,8 @@ class QuestionSet{
             ["meat","mitt","might","mate"],
             ["peel","pill","pile","pale"],
             ["sleet","slit","slight","slate"],
-            ["wheat","wit","white","wait"]
-        ],
+            ["wheat","wit","white","wait"],
         
-        [
             ["shoot","shout","shirt"],
             ["blues","blouse","blurs"],
             ["fool","foul","furl"],
@@ -48,10 +42,8 @@ class QuestionSet{
             ["cool","cowl","curl"],
             ["pooch","pouch","perch"],
             ["scoot","scout","skirt"],
-            ["booed","bowed","bird"]
-        ],
-        
-       [
+            ["booed","bowed","bird"],
+
             ["fox","folks","forks"],
             ["cod","code","chord"],
             ["con","cone","corn"],
@@ -62,15 +54,15 @@ class QuestionSet{
             ["rod","road","roared"],
             ["stock","stoke","stalk"],
             ["was","woes","wars"]
-        ]
+        
     ]
     
-    func getQuestionSet(rhyme: Int, index: Int) -> [String]{
-        return questionSet[rhyme][index]
+    func getQuestionSet(index: Int) -> [String]{
+        return questionSet[index]
     }
     
-    func getAnswer(rhyme: Int, setIndex: Int, answerIndex:Int)->String{
-        return questionSet[rhyme][setIndex][answerIndex]
+    func getAnswer(setIndex: Int, answerIndex:Int)->String{
+        return questionSet[setIndex][answerIndex]
     }
     
 }
