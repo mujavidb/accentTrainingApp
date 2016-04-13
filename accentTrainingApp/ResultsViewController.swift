@@ -11,7 +11,6 @@ import UIKit
 class ResultsViewController: CustomViewController {
 	
 	var result = 400
-	let highscores: Int? = nil
 	let scores = [
 		"Mujavid",
 		"Freddie Merc.",
@@ -24,13 +23,20 @@ class ResultsViewController: CustomViewController {
 	]
 	var trophyImage = UIImage()
 	var trophyImageView = UIImageView()
-
+	
+	//to make button-label the correct color
 	@IBOutlet weak var homeButton: CustomButton!
 	
 	@IBAction func replayButton(sender: AnyObject) {
-		//go back to test selection in current mode (practice/time trial)
+		
+		//TODO: get current test type and store in quiztype
+		
+		let quizType = "practice"
+		if let resultController = storyboard!.instantiateViewControllerWithIdentifier("QuizOptionsController") as? QuizOptionsController {
+			resultController.quizOptions.setType(quizType)
+			presentViewController(resultController, animated: true, completion: nil)
+		}
 	}
-	
 	
 	
     override func viewDidLoad() {
@@ -39,7 +45,25 @@ class ResultsViewController: CustomViewController {
 		setupInitialView()
 		
 		delay(3){
-			self.setupHighscoresView()
+			
+			//TODO: check if highscore is a new highscore
+			
+			let getHighscoreName = UIAlertController(title: "Congratulations, you've made it into the highscores!", message: "Enter your name", preferredStyle: .Alert)
+			getHighscoreName.addTextFieldWithConfigurationHandler(nil)
+			getHighscoreName.textFields![0].placeholder = "Your name"
+			getHighscoreName.addAction(UIAlertAction(title: "Add", style: .Default, handler: { (UIAlertAction) in
+				var highscoreName = getHighscoreName.textFields![0].text!
+				if highscoreName == "" {
+					highscoreName = "Anonymous"
+				}
+				
+				//TODO: persist name and score
+				
+				self.setupHighscoresView()
+				
+			}))
+			
+			self.presentViewController(getHighscoreName, animated: true, completion: nil)
 		}
     }
 	
