@@ -201,7 +201,7 @@ class QuestionViewController: CustomViewController {
 			height: Int(viewHeight * 0.2)
 			))
 		quizTotalLabel.textColor = appColors["white"]
-		quizTotalLabel.text = "\(questionNumber) of \(questionGenerator!.qs.questionSet.count)"
+		quizTotalLabel.text = "\(questionNumber) of \(questionChoice!.getQuizLengthInt())"
 		quizTotalLabel.font = UIFont(name: "Arial", size: 20)
 		quizTotalLabel.textAlignment = .Center
 		

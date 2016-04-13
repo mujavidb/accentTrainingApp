@@ -47,6 +47,13 @@ class QuizChoice {
     func getQuizAccent()-> String{
         return self.quizAccent!
     }
-    
+    func getQuizLengthInt()->Int{
+        switch(self.quizLength!){
+            case "Short (15)": return 15
+            case "Medium (25)": return 25
+            case "Long (40)" : return 40
+        default: return 0
+        }
+    }
     
 }
