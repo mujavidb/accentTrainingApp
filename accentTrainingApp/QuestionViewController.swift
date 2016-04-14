@@ -127,6 +127,8 @@ class QuestionViewController: CustomViewController {
 		if sender.currentTitle! == questionGenerator?.getAnswer(){
 			// if correct answer selected
             
+            questionGenerator?.changeRhymeProb((questionGenerator?.rhymeSetIndex!)!, value: 0.5) //reduce the probability of asking correct rhyme
+            
             playSound("feedback-correct")
             sender.backgroundColor = appColors["correctGreen"]
             userScore = userScore + 1
@@ -136,6 +138,8 @@ class QuestionViewController: CustomViewController {
             
             self.playSound("feedback-wrong")
             sender.backgroundColor = appColors["incorrectRed"]
+            
+            questionGenerator?.changeRhymeProb((questionGenerator?.rhymeSetIndex!)!, value: 1.5) // increase the probability of wrong rhyme
             
             if self.questionChoice?.getQuizType() == "practice" {
 				
