@@ -31,5 +31,12 @@ class MainViewController: UIViewController {
 	
 	//allows moving back to MainVC
 	@IBAction func unwindToMVC(segue: UIStoryboardSegue){}
+	
+	//remove this
+	func delay(time:Double, closure:() -> Void) {
+		
+		// delays for double second and executes the code inside the closure
+		dispatch_after(dispatch_time(DISPATCH_TIME_NOW,Int64(time * Double(NSEC_PER_SEC))),dispatch_get_main_queue(), closure)
+	}
 }
 
