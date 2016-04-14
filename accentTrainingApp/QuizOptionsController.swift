@@ -17,11 +17,11 @@ class QuizOptionsController: CustomViewController{
     let accentOptions = ["London","US","Manchester","NewZealand","Australia","Glasgow"]
     let speakerOptions = [
         "London" : ["Anna","Chloe","John","Matthew"],
-        "US" : ["01","04","05","06"],
-        "Manchester":["01","02","03"],
-        "NewZealand": ["03","04","05"],
-        "Australia": ["03","04"],
-        "Glasgow":["01","02","03","04"]
+        "US" : ["Katie","Vinny","Sharon","Clare"],
+        "Manchester":["Alex","Olivia","Sam"],
+        "NewZealand": ["Richard","Ruby","Jack"],
+        "Australia": ["Shane","Marlee"],
+        "Glasgow":["Steward","Laura","Robert","Anna"]
         // "Sheffield":["02","03","04","05"]
     ]
 	
