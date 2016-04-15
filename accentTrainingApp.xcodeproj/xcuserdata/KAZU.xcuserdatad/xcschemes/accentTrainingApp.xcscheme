@@ -37,6 +37,11 @@
                BlueprintName = "accentTrainingAppTests"
                ReferencedContainer = "container:accentTrainingApp.xcodeproj">
             </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "QuestionViewContollerTest/testAudioExists()">
+               </Test>
+            </SkippedTests>
          </TestableReference>
       </Testables>
       <MacroExpansion>

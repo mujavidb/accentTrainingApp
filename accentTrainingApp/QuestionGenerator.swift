@@ -45,7 +45,6 @@ class QuestionGenerator {
         askedQuestions.append((rhymeSetIndex!,questionSetIndex!))
         answerIndex = Int(arc4random_uniform(UInt32(qs.getQuestionSet(questionSetIndex!,rhymeSet: rhymeSetIndex!).count)))
         answer = qs.getAnswer(questionSetIndex!, answerIndex: answerIndex!, rhymeSet: rhymeSetIndex!)
-      
     }
 
     func getQuestionFileName() -> String{
