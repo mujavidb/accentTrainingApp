@@ -37,9 +37,9 @@ class QuestionGenerator {
 	
     func generateQuestion(){
         
-        rhymeSetIndex = randomNumber(probabilities: rhymeProb)
-        
-        repeat{questionSetIndex = Int(arc4random_uniform(UInt32(qs.getRhymeLength(rhymeSetIndex!))))} //repeat until unasked question set is found
+        repeat{
+            rhymeSetIndex = randomNumber(probabilities: rhymeProb)
+            questionSetIndex = Int(arc4random_uniform(UInt32(qs.getRhymeLength(rhymeSetIndex!))))} //repeat until unasked question set is found
             while(checkAnswered(questionSetIndex!))
         
         askedQuestions.append((rhymeSetIndex!,questionSetIndex!))

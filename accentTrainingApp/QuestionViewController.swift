@@ -168,7 +168,7 @@ class QuestionViewController: CustomViewController {
                         }
                     }
                 }
-                time = 9
+                time = 6.2
             } else {
 				time = 1.3
 			}
