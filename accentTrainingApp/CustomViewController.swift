@@ -45,16 +45,14 @@ class CustomViewController: UIViewController{
     }
 	
 	func displayLabel(title:String, textColor: UIColor){
-		let posX = Int(self.view.frame.width * 0.1)
-		let posY = 70
         let myLabel = UILabel(frame: CGRect(
-			x: posX,
-			y: posY,
+			x: Int(self.view.frame.width * 0.1),
+			y: 70,
 			width: Int(self.view.frame.width * 0.8),
 			height: 60
 			))
         myLabel.text = title
-		myLabel.textAlignment = .Center;
+		myLabel.textAlignment = .Center
         myLabel.font = UIFont.systemFontOfSize(25)
         myLabel.textColor = UIColor.whiteColor()
         myLabel.tag = 1
@@ -62,8 +60,6 @@ class CustomViewController: UIViewController{
     }
 	
 	func delay(time:Double, closure:() -> Void) {
-		
-		// delays for double second and executes the code inside the closure
 		dispatch_after(dispatch_time(DISPATCH_TIME_NOW,Int64(time * Double(NSEC_PER_SEC))),dispatch_get_main_queue(), closure)
 	}
 	

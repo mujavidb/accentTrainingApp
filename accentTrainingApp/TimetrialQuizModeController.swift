@@ -15,6 +15,8 @@ class TimetrialQuizModeController: QuestionViewController {
 	
 	var answerSelected = false
 	var answerStartTime: NSDate? = nil
+	var selectionTimer: NSTimer? = NSTimer()
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,7 +76,6 @@ class TimetrialQuizModeController: QuestionViewController {
 		timerBackground.backgroundColor = appColors["timetrialLight"]
 		timerBackground.tag = 2
 		self.view.addSubview(timerBackground)
-		
 	}
 	
 	func generateTimer(){
@@ -112,11 +113,13 @@ class TimetrialQuizModeController: QuestionViewController {
 			})
 		}
 		
-		delay(5){
-			if self.answerSelected == false {
-				//TODO: disable buttons
-				self.questionButtonPressed(nil)
-			}
+		selectionTimer = NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: #selector(TimetrialQuizModeController.noOptionSelected), userInfo: nil, repeats: false)
+	}
+	
+	func noOptionSelected(){
+		if self.answerSelected == false {
+			//TODO: disable buttons
+			self.questionButtonPressed(nil)
 		}
 	}
 	
@@ -158,9 +161,12 @@ class TimetrialQuizModeController: QuestionViewController {
 		delay(1.5) {
 			
 			if(self.stopCount != 1){
+				
+				//Stop NSTimer to prevent spillover into next question
+				self.selectionTimer!.invalidate()
+				self.selectionTimer = nil
+				
 				if (self.questionNumber == self.quizLength){
-					
-					//TODO: Kill all delayed items
 					
 					// When all questions have been answered
 					self.audioPlayer!.stop()
