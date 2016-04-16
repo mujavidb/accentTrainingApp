@@ -7,27 +7,55 @@
 //
 
 import UIKit
+import AVFoundation
 
 class TimetrialQuizModeController: QuestionViewController {
 	
-	//TODO: Add timer on left side
-	//TODO: Specialise layout methods
+	//TODO: Add timer on top
 	//TODO: Remove feedback time
 	//TODO: Change scoring to account for time taken
 	//TODO: Close controller when segwaying to next controller
+	
+	var answerSelected = false
+	var answerStartTime: NSDate? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
+		
+		audioPlayer = AVAudioPlayer()
+		questionGenerator = QuestionGenerator(completQuizChoice: questionChoice!)
+		quizLength = questionChoice!.getQuizLengthInt()
 		testModeColor = appColors["timetrial"]!
 		quitQuizButton.setTitleColor(testModeColor, forState: .Normal)
 		restartQuizButton.setTitleColor(testModeColor, forState: .Normal)
+		
+		setUpReplayButton()
+		setupTimer()
+		
+		delay(0.5){
+			self.generateQuestion()
+		}
     }
+	
+	func generateQuestion(){
+		
+		removeViews(1)
+		questionGenerator?.generateQuestion()
+		let fileName = questionGenerator?.getQuestionFileName()
+		let percentage = Double(userScore) / Double(quizLength)
+		playSound(fileName!)
+		
+		self.displayButtons(self.questionGenerator!.getQuestionSet(), nextFunction: #selector(TimetrialQuizModeController.questionButtonPressed(_:)))
+		
+		answerSelected = false
+		generateTimer()
+	}
 	
 	func setUpReplayButton(){
 		let image = UIImage(named: "speaker")
 		replayButton.frame = CGRect(
 			x: self.view.frame.width * 0.2,
-			y: self.view.frame.height * 0.15,
+			y: self.view.frame.height * 0.16,
 			width: self.view.frame.width * 0.6,
 			height: (image?.size.height)!
 		)
@@ -38,55 +66,93 @@ class TimetrialQuizModeController: QuestionViewController {
 		self.view.addSubview(replayButton)
 	}
 	
-	func questionButtonPressed(sender: CustomButton){
-		var time: Double
-		sender.setTitleColor(appColors["white"], forState: .Normal)
+	func setupTimer(){
 		
-		// if correct answer selected
-		if sender.currentTitle! == questionGenerator?.getAnswer(){
-			playSound("feedback-correct")
-			sender.backgroundColor = appColors["correctGreen"]
-			userScore = userScore + 10
-			time = 1.3
-		} else {
-			// if wrong answer selected
+		let timerBackground = UIView(frame: CGRect(
+			x: viewWidth * 0.07,
+			y: viewHeight * 0.11,
+			width: viewWidth * 0.86,
+			height: 10
+			))
+		timerBackground.layer.cornerRadius = timerBackground.frame.height / 2
+		timerBackground.backgroundColor = appColors["timetrialLight"]
+		timerBackground.tag = 2
+		self.view.addSubview(timerBackground)
+		
+	}
+	
+	func generateTimer(){
+		
+		answerStartTime = NSDate()
+		
+		let timerSeeker = UIView(frame: CGRect(
+			x: viewWidth * 0.07,
+			y: viewHeight * 0.11,
+			width: viewWidth * 0.86,
+			height: 10
+			))
+		timerSeeker.layer.cornerRadius = 5
+		timerSeeker.backgroundColor = testModeColor
+		timerSeeker.tag = 3
+		
+		self.view.addSubview(timerSeeker)
+		
+		UIView.animateWithDuration(
+			5,
+			animations: { () -> Void in
+				timerSeeker.frame = CGRect(
+					x: self.viewWidth * 0.07,
+					y: self.viewHeight * 0.11,
+					width: 10,
+					height: 10
+				)
+			})
+		
+		delay(4){
+			UIView.animateWithDuration(
+				0.5,
+				animations: { () -> Void in
+					timerSeeker.alpha = 0
+			})
+		}
+		
+		delay(5){
+			if self.answerSelected == false {
+				//TODO: disable buttons
+				self.questionButtonPressed(nil)
+			}
+		}
+	}
+	
+	func questionButtonPressed(sender: CustomButton?){
+		
+		answerSelected = true
+		removeViews(3)
+		
+		if sender != nil {
 			
-			self.playSound("feedback-wrong")
-			sender.backgroundColor = appColors["incorrectRed"]
+			sender!.setTitleColor(appColors["white"], forState: .Normal)
 			
-			if self.questionChoice?.getQuizType() == "practice" {
+			if sender!.currentTitle! == questionGenerator?.getAnswer(){
 				
-				// feedback only for practice mode
-				delay(1){
-					let accent = self.questionChoice!.getQuizAccent()
-					let speakerName = self.questionChoice!.getQuizSpeaker()
-					let answer: String = sender.currentTitle!
-					let wrongFileName =  "\(accent)_\(speakerName)_\(answer)"
-					let correctFileName = self.questionGenerator?.getQuestionFileName()
-					
-					for view in self.view.subviews{
-						if let correctOption = view as? CustomButton {
-							if correctOption.currentTitle! == self.questionGenerator?.getAnswer(){
-								self.feedbackForWrong(sender, correctButton: correctOption, wrongFile: wrongFileName, correctFile: correctFileName!)
-								self.delay(2.4){
-									self.feedbackForWrong(sender, correctButton: correctOption, wrongFile: wrongFileName, correctFile: correctFileName!)
-								}
-							}
-						}
-					}
-				}
+				playSound("feedback-correct")
+				sender!.backgroundColor = appColors["correctGreen"]
 				
-				time = 9
+				userScore += Int(10 * scoreTimeFactor())
+				
 			} else {
-				time = 1.3
+				
+				self.playSound("feedback-wrong")
+				sender!.backgroundColor = appColors["incorrectRed"]
 			}
 		}
 		
-		delay(time) {
+		delay(0.5) {
+			
 			if(self.stopCount != 1){
 				if (self.questionNumber == self.quizLength){
 					
-					// session completed
+					// When all questions have been answered
 					self.audioPlayer!.stop()
 					if let resultController = self.storyboard!.instantiateViewControllerWithIdentifier("ResultsViewController") as? ResultsViewController {
 						resultController.result = self.userScore
@@ -102,6 +168,22 @@ class TimetrialQuizModeController: QuestionViewController {
 		}
 	}
 	
+	func scoreTimeFactor() -> Float {
+		let elapsedTime = NSDate().timeIntervalSinceDate(answerStartTime!)
+		
+		if elapsedTime < 1 {
+			return 2.0
+		} else if elapsedTime < 2 {
+			return 1.6
+		} else if elapsedTime < 5 {
+			return 1.2
+		} else if elapsedTime < 7 {
+			return 0.8
+		} else {
+			return 0.4
+		}
+	}
+	
 	func displayButtons(buttonLabelSet: [String], nextFunction: Selector){
 		
 		var counter = 0
@@ -109,10 +191,10 @@ class TimetrialQuizModeController: QuestionViewController {
 		//select (x, y, width, height) based on actual view dimensions
 		let viewHeight = Float(self.view.frame.height);
 		let viewWidth = Float(self.view.frame.width);
-		let gutterWidth: Float = 20;
+		let gutterWidth: Float = viewWidth / 16;
 		let buttonWidth: Float = (viewWidth - (3 * gutterWidth))/2
 		
-		//get 70% of height, remove gutter space and divide remaining area by 3
+		//get 75% of height, remove gutter space and divide remaining area by 3
 		let buttonHeight = (((viewHeight) * 0.75) - (4 * gutterWidth)) / 3
 		
 		for label in buttonLabelSet {
@@ -120,7 +202,7 @@ class TimetrialQuizModeController: QuestionViewController {
 			let customButton = CustomButton(
 				frame: CGRect(
 					x: Int(gutterWidth + (gutterWidth + buttonWidth) * Float(counter % 2)),
-					y: Int((gutterWidth + buttonHeight) * Float( counter / 2) + (viewHeight * 0.45)),
+					y: Int((gutterWidth + buttonHeight) * Float( counter / 2) + (viewHeight * 0.46)),
 					width: Int(buttonWidth),
 					height: Int(buttonHeight))
 			)

@@ -28,35 +28,11 @@ class QuestionViewController: CustomViewController {
 	
     override func viewDidLoad(){
         super.viewDidLoad()
-		audioPlayer = AVAudioPlayer()
-        questionGenerator = QuestionGenerator(completQuizChoice: questionChoice!)
-		quizLength = questionChoice!.getQuizLengthInt()
-		
-		setUpReplayButton()
-		
-		// delay after speaker selected and before audio plays to prepare user
-        delay(0.5){
-            self.generateQuestion()
-        }
     }
 	
 	func replaySound(sender: CustomButton){
 		playSound((questionGenerator?.getQuestionFileName())!)
 	}
-    
-    func generateQuestion(){
-        
-        removeViews(1)
-        questionGenerator?.generateQuestion()
-        let fileName = questionGenerator?.getQuestionFileName()
-        let percentage = Double(userScore) / Double(quizLength)
-		print("\(userScore/100), \(quizLength)")
-		print("\(percentage)")
-        playSound(fileName!)
-		
-		self.displayButtons(self.questionGenerator!.getQuestionSet(), nextFunction: #selector(QuestionViewController.questionButtonPressed(_:)))
-		
-    }
     
     //gets the audio file in the assets and plays
     func playSound(fileName:String){

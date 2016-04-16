@@ -22,6 +22,7 @@ class CustomViewController: UIViewController{
 		"lightGrey": UIColor(red: 225/255, green: 225/255, blue: 225/255, alpha: 1),
 		"incorrectRed": UIColor(red: 225/255, green: 75/255, blue: 95/255, alpha: 1),
 		"correctGreen": UIColor(red: 100/255, green: 225/255, blue: 140/255, alpha: 1),
+		"timetrialLight": UIColor(red: 215/255, green: 190/255, blue: 230/255, alpha: 1),
 		
 		"gold": UIColor(red: 255/255, green: 210/255, blue: 0/255, alpha: 1),
 		"silver": UIColor(red: 210/255, green: 210/255, blue: 200/255, alpha: 1),
