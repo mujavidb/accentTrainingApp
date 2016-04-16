@@ -11,9 +11,6 @@ import AVFoundation
 
 class TimetrialQuizModeController: QuestionViewController {
 	
-	//TODO: Add timer on top
-	//TODO: Remove feedback time
-	//TODO: Change scoring to account for time taken
 	//TODO: Close controller when segwaying to next controller
 	
 	var answerSelected = false
@@ -42,7 +39,6 @@ class TimetrialQuizModeController: QuestionViewController {
 		removeViews(1)
 		questionGenerator?.generateQuestion()
 		let fileName = questionGenerator?.getQuestionFileName()
-		let percentage = Double(userScore) / Double(quizLength)
 		playSound(fileName!)
 		
 		self.displayButtons(self.questionGenerator!.getQuestionSet(), nextFunction: #selector(TimetrialQuizModeController.questionButtonPressed(_:)))
@@ -145,12 +141,26 @@ class TimetrialQuizModeController: QuestionViewController {
 				self.playSound("feedback-wrong")
 				sender!.backgroundColor = appColors["incorrectRed"]
 			}
+		} else {
+			playSound("feedback-wrong")
+			delay(0.3){
+				for view in self.view.subviews{
+					if let correctOption = view as? CustomButton {
+						if correctOption.currentTitle! == self.questionGenerator?.getAnswer(){
+							correctOption.setTitleColor(self.appColors["white"], forState: .Normal)
+							correctOption.backgroundColor = self.appColors["correctGreen"]
+						}
+					}
+				}
+			}
 		}
 		
-		delay(0.5) {
+		delay(1.5) {
 			
 			if(self.stopCount != 1){
 				if (self.questionNumber == self.quizLength){
+					
+					//TODO: Kill all delayed items
 					
 					// When all questions have been answered
 					self.audioPlayer!.stop()
