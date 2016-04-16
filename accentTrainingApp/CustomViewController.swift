@@ -22,6 +22,7 @@ class CustomViewController: UIViewController{
 		"lightGrey": UIColor(red: 225/255, green: 225/255, blue: 225/255, alpha: 1),
 		"incorrectRed": UIColor(red: 225/255, green: 75/255, blue: 95/255, alpha: 1),
 		"correctGreen": UIColor(red: 100/255, green: 225/255, blue: 140/255, alpha: 1),
+		"timetrialLight": UIColor(red: 215/255, green: 190/255, blue: 230/255, alpha: 1),
 		
 		"gold": UIColor(red: 255/255, green: 210/255, blue: 0/255, alpha: 1),
 		"silver": UIColor(red: 210/255, green: 210/255, blue: 200/255, alpha: 1),
@@ -44,16 +45,14 @@ class CustomViewController: UIViewController{
     }
 	
 	func displayLabel(title:String, textColor: UIColor){
-		let posX = Int(self.view.frame.width * 0.1)
-		let posY = 70
         let myLabel = UILabel(frame: CGRect(
-			x: posX,
-			y: posY,
+			x: Int(self.view.frame.width * 0.1),
+			y: 70,
 			width: Int(self.view.frame.width * 0.8),
 			height: 60
 			))
         myLabel.text = title
-		myLabel.textAlignment = .Center;
+		myLabel.textAlignment = .Center
         myLabel.font = UIFont.systemFontOfSize(25)
         myLabel.textColor = UIColor.whiteColor()
         myLabel.tag = 1
@@ -61,8 +60,6 @@ class CustomViewController: UIViewController{
     }
 	
 	func delay(time:Double, closure:() -> Void) {
-		
-		// delays for double second and executes the code inside the closure
 		dispatch_after(dispatch_time(DISPATCH_TIME_NOW,Int64(time * Double(NSEC_PER_SEC))),dispatch_get_main_queue(), closure)
 	}
 	
