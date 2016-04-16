@@ -62,11 +62,20 @@ class QuestionViewController: CustomViewController {
     func generateQuestion(){
         
         removeViews(1)
-        questionGenerator?.generateQuestion()
+        repeat{questionGenerator?.generateQuestion() //makes sure audio file exists
+        }while (NSDataAsset(name: (questionGenerator?.getQuestionFileName())!) == nil)
         let fileName = questionGenerator?.getQuestionFileName()
-        let percentage = Double(userScore) / Double(quizLength)
-		print("\(userScore/100), \(quizLength)")
-		print("\(percentage)")
+
+        print("\(userScore/100), \(quizLength)")
+        let percentage = (Double(userScore) / Double(questionChoice!.getQuizLengthInt()))*100
+        print("\(percentage)%")
+        let totalProb = questionGenerator?.rhymeProb.reduce(0, combine: +)
+        for rhymeprob in (questionGenerator?.rhymeProb)!{//to check the prob of each rhyme
+            let tempProb = Double(rhymeprob)/Double(totalProb!)*100
+            print("probability of rhyme = \(tempProb)")
+            
+        }
+        
         playSound(fileName!)
 		
 		self.displayButtons(self.questionGenerator!.getQuestionSet(), nextFunction: #selector(QuestionViewController.questionButtonPressed(_:)))
@@ -77,15 +86,10 @@ class QuestionViewController: CustomViewController {
     func playSound(fileName:String){
         
         if let asset = NSDataAsset(name:fileName) {
-            do {
-                try audioPlayer = AVAudioPlayer(data:asset.data, fileTypeHint:"mp3")
-                audioPlayer!.play()
-            } catch let error as NSError {
-                print(error.localizedDescription)
-            }
+            try! audioPlayer = AVAudioPlayer(data:asset.data, fileTypeHint:"mp3")
+            audioPlayer!.play()
         }
     }
-
     @IBAction func quitPressed(sender: UIButton) {
         self.stopCount = 1
         self.audioPlayer!.stop()
@@ -123,6 +127,11 @@ class QuestionViewController: CustomViewController {
 		
 		// if correct answer selected
 		if sender.currentTitle! == questionGenerator?.getAnswer(){
+
+			// if correct answer selected
+            
+            questionGenerator?.changeRhymeProb((questionGenerator?.rhymeSetIndex!)!, value: 0.95) //reduce the probability of asking correct rhyme
+
             playSound("feedback-correct")
             sender.backgroundColor = appColors["correctGreen"]
             userScore = userScore + 10
@@ -132,6 +141,8 @@ class QuestionViewController: CustomViewController {
 			
             self.playSound("feedback-wrong")
             sender.backgroundColor = appColors["incorrectRed"]
+            
+            questionGenerator?.changeRhymeProb((questionGenerator?.rhymeSetIndex!)!, value: 1.1) // increase the probability of wrong rhyme
             
             if self.questionChoice?.getQuizType() == "practice" {
 				
@@ -154,14 +165,13 @@ class QuestionViewController: CustomViewController {
                         }
                     }
                 }
-				
-                time = 9
+                time = 6.2
             } else {
 				time = 1.3
 			}
         }
 		
-		delay(time) {
+		delay(time){
             if(self.stopCount != 1){
 				if (self.questionNumber == self.quizLength){
 					

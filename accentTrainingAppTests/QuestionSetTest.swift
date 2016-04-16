@@ -15,13 +15,15 @@ class QuestionSetTest: XCTestCase {
 	
 	func testGetSet(){
 		let index = 5
-		XCTAssertEqual(qs.getQuestionSet(index), qs.questionSet[index])
+        let rhymeIndex = 2
+		XCTAssertEqual(qs.getQuestionSet(index, rhymeSet: rhymeIndex), qs.r3[index])
 	}
 	
 	func testGetAnswer(){
 		let qIndex = 5
 		let aIndex = 2
-		XCTAssertEqual(qs.getAnswer(5,answerIndex: 2), qs.questionSet[qIndex][aIndex])
+        let rIndex = 2
+		XCTAssertEqual(qs.getAnswer(qIndex,answerIndex: aIndex,rhymeSet: rIndex), qs.r3[qIndex][aIndex])
 	}
     
 }

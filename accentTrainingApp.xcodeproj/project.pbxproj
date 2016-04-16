@@ -15,6 +15,7 @@
 		576CD6ED1CB6429400860AC9 /* CustomButtonTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576CD6EC1CB6429400860AC9 /* CustomButtonTest.swift */; };
 		576CD6EF1CB6436700860AC9 /* QuestionSetTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576CD6EE1CB6436700860AC9 /* QuestionSetTest.swift */; };
 		57C6B62F1CBC064F00038518 /* QuestionGeneratorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C6B62E1CBC064F00038518 /* QuestionGeneratorTest.swift */; };
+		64AFCE541CC10B54001F09D4 /* QuestionViewContollerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64AFCE531CC10B54001F09D4 /* QuestionViewContollerTest.swift */; };
 		64B33F231C9D4A6D006C3510 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B33F221C9D4A6D006C3510 /* AppDelegate.swift */; };
 		64B33F251C9D4A6D006C3510 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B33F241C9D4A6D006C3510 /* MainViewController.swift */; };
 		64B33F281C9D4A6D006C3510 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64B33F261C9D4A6D006C3510 /* Main.storyboard */; };
@@ -49,6 +50,7 @@
 		576CD6EC1CB6429400860AC9 /* CustomButtonTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButtonTest.swift; sourceTree = "<group>"; };
 		576CD6EE1CB6436700860AC9 /* QuestionSetTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionSetTest.swift; sourceTree = "<group>"; };
 		57C6B62E1CBC064F00038518 /* QuestionGeneratorTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionGeneratorTest.swift; sourceTree = "<group>"; };
+		64AFCE531CC10B54001F09D4 /* QuestionViewContollerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionViewContollerTest.swift; sourceTree = "<group>"; };
 		64B33F1F1C9D4A6D006C3510 /* accentTrainingApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = accentTrainingApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		64B33F221C9D4A6D006C3510 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		64B33F241C9D4A6D006C3510 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -166,6 +168,7 @@
 		64B33F361C9D4A6D006C3510 /* accentTrainingAppTests */ = {
 			isa = PBXGroup;
 			children = (
+				64AFCE531CC10B54001F09D4 /* QuestionViewContollerTest.swift */,
 				576CD6F01CB6457200860AC9 /* Unit Tests */,
 				64B33F371C9D4A6D006C3510 /* accentTrainingAppTests.swift */,
 				64B33F391C9D4A6D006C3510 /* Info.plist */,
@@ -301,6 +304,7 @@
 				576CD6EA1CB63CAB00860AC9 /* QuizChoiceTest.swift in Sources */,
 				576CD6ED1CB6429400860AC9 /* CustomButtonTest.swift in Sources */,
 				57C6B62F1CBC064F00038518 /* QuestionGeneratorTest.swift in Sources */,
+				64AFCE541CC10B54001F09D4 /* QuestionViewContollerTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
