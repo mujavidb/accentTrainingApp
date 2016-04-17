@@ -165,7 +165,7 @@ class ResultsViewController: CustomViewController {
 				label.textColor = UIColor.whiteColor()
 				label.tag = 1
 				fadeUpInToSubview(label, delay: 0.25 + (0.05 * Double(counter)), completionAction: nil)
-				
+								
 				let number = UILabel(frame: CGRect(
 					x: Int(viewWidth - 40 - (viewWidth * 0.2)),
 					y: Int(viewHeight * 0.325) + (counter * 30),

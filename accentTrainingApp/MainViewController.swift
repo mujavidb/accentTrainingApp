@@ -13,6 +13,16 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 		self.view.backgroundColor = UIColor.whiteColor()
+		
+//		let appIcon = UIImage(named: "homeScreen")
+//		let homeImage = UIImageView(image: appIcon)
+//		homeImage.frame = CGRect(
+//			self.view.frame.width - (homeImage.size.width / 2),
+//			5,
+//			homeImage.size.width,
+//			homeImage.size.height,
+//		)
+		
     }
 	
 	@IBAction func practiceButton(sender: CustomButton) {

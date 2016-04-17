@@ -126,22 +126,35 @@ class QuizOptionsController: CustomViewController{
 		
 		//get 75% of height, remove gutter space and divide remaining area by 3
 		let buttonHeight = (((viewHeight) * 0.75) - (4 * gutterWidth)) / 3
-		print("\(buttonWidth)_\(buttonHeight)")
+		
+		let spacing: CGFloat = 6.0
+		let edgeInsets = UIEdgeInsetsMake(0.0, -80.0, -(80.0 + spacing), 0.0);
+		
+		var labelString: NSString
+		var titleSize: CGSize
 		
 		for label in buttonLabelSet {
 			
 			posX = Int(gutterWidth + (gutterWidth + buttonWidth) * Float(counter % 2))
 			posY = Int((gutterWidth + buttonHeight) * Float( 1 + counter / 2))
 			
+			let image = UIImage(named: label)
+			
 			let customButton = CustomButton(
 				frame: CGRect(x: posX, y: posY, width: Int(buttonWidth), height: Int(buttonHeight))
 			)
-			customButton.setTitleColor(textColor, forState: .Normal)
+			customButton.setImage(image, forState: .Normal)
+			customButton.setTitleColor(appColors["white"], forState: .Normal)
 			customButton.setTitle(label, forState: .Normal)
-			customButton.titleLabel!.font = UIFont(name: "Arial", size: CGFloat(viewWidth / 14.4))
+//			customButton.titleLabel!.font = UIFont(name: "Arial", size: CGFloat(viewWidth / 14.4))
+			customButton.titleLabel!.font = UIFont.boldSystemFontOfSize(CGFloat(viewWidth / 14.4))
 			customButton.addTarget(self, action: nextFunction, forControlEvents: .TouchUpInside)
-			customButton.backgroundColor = appColors["white"]
 			customButton.tag = 1
+			
+			customButton.titleEdgeInsets = edgeInsets
+			labelString = NSString(string: customButton.titleLabel!.text!)
+			titleSize = labelString.sizeWithAttributes([NSFontAttributeName: customButton.titleLabel!.font])
+			customButton.imageEdgeInsets = UIEdgeInsetsMake(-(titleSize.height + spacing), 0.0, 0.0, -titleSize.width);
 			
 			fadeUpInToSubview(customButton, delay: 0.25 + (0.05 * Double(( counter == 0 || counter == 1 ? 0 : counter == 2 || counter == 3 ? 1 : 2))), completionAction: nil)
 			counter = counter + 1
