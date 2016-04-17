@@ -35,9 +35,6 @@ class PracticeQuizModeController: QuestionViewController {
 		removeViews(1)
 		questionGenerator?.generateQuestion()
 		let fileName = questionGenerator?.getQuestionFileName()
-		let percentage = Double(userScore) / Double(quizLength)
-		print("\(userScore/100), \(quizLength)")
-		print("\(percentage)")
 		playSound(fileName!)
 		
 		self.displayButtons(self.questionGenerator!.getQuestionSet(), nextFunction: #selector(PracticeQuizModeController.questionButtonPressed(_:)))
@@ -63,44 +60,36 @@ class PracticeQuizModeController: QuestionViewController {
 		var time: Double
 		sender.setTitleColor(appColors["white"], forState: .Normal)
 		
-		// if correct answer selected
 		if sender.currentTitle! == questionGenerator?.getAnswer(){
 			playSound("feedback-correct")
 			sender.backgroundColor = appColors["correctGreen"]
 			userScore = userScore + 10
 			time = 1.3
 		} else {
-			// if wrong answer selected
 			
 			self.playSound("feedback-wrong")
 			sender.backgroundColor = appColors["incorrectRed"]
 			
-			if self.questionChoice?.getQuizType() == "practice" {
+			delay(1){
+				let accent = self.questionChoice!.getQuizAccent()
+				let speakerName = self.questionChoice!.getQuizSpeaker()
+				let answer: String = sender.currentTitle!
+				let wrongFileName =  "\(accent)_\(speakerName)_\(answer)"
+				let correctFileName = self.questionGenerator?.getQuestionFileName()
 				
-				// feedback only for practice mode
-				delay(1){
-					let accent = self.questionChoice!.getQuizAccent()
-					let speakerName = self.questionChoice!.getQuizSpeaker()
-					let answer: String = sender.currentTitle!
-					let wrongFileName =  "\(accent)_\(speakerName)_\(answer)"
-					let correctFileName = self.questionGenerator?.getQuestionFileName()
-					
-					for view in self.view.subviews{
-						if let correctOption = view as? CustomButton {
-							if correctOption.currentTitle! == self.questionGenerator?.getAnswer(){
+				for view in self.view.subviews{
+					if let correctOption = view as? CustomButton {
+						if correctOption.currentTitle! == self.questionGenerator?.getAnswer(){
+							self.feedbackForWrong(sender, correctButton: correctOption, wrongFile: wrongFileName, correctFile: correctFileName!)
+							self.delay(2.4){
 								self.feedbackForWrong(sender, correctButton: correctOption, wrongFile: wrongFileName, correctFile: correctFileName!)
-								self.delay(2.4){
-									self.feedbackForWrong(sender, correctButton: correctOption, wrongFile: wrongFileName, correctFile: correctFileName!)
-								}
 							}
 						}
 					}
 				}
-				
-				time = 9
-			} else {
-				time = 1.3
 			}
+			
+			time = 9
 		}
 		
 		delay(time) {

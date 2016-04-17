@@ -22,7 +22,6 @@ class QuizOptionsController: CustomViewController{
         "NewZealand": ["Richard","Ruby","Jack"],
         "Australia": ["Shane","Marlee"],
         "Glasgow":["Steward","Laura","Robert","Anna"]
-        // "Sheffield":["02","03","04","05"]
     ]
 	
 	var testModeColor = UIColor.clearColor()
@@ -112,6 +111,8 @@ class QuizOptionsController: CustomViewController{
 	}
 	
 	func displayTwoColumnButtons(buttonLabelSet: [String], textColor: UIColor, nextFunction: Selector){
+		
+		//TODO: Add images to buttons
 		
 		var posX: Int
 		var posY: Int

@@ -11,16 +11,6 @@ import UIKit
 class ResultsViewController: CustomViewController {
 	
 	var result: Int = 0
-	let scores = [
-		"Mujavid",
-		"Freddie Merc.",
-		"Led",
-		"M",
-		"Efumi",
-		"Jess",
-		"Beccs",
-		"Muhammad"
-	]
 	var trophyImage = UIImage()
 	var trophyImageView = UIImageView()
 	var quizType = "practice"
@@ -45,8 +35,6 @@ class ResultsViewController: CustomViewController {
 		
 		delay(3){
 			
-			//TODO: check if highscore is a new highscore
-			
 			let getHighscoreName = UIAlertController(title: "Congratulations, you've made it into the highscores!", message: "Enter your name", preferredStyle: .Alert)
 			getHighscoreName.addTextFieldWithConfigurationHandler(nil)
 			getHighscoreName.textFields![0].placeholder = "Your name"
@@ -56,7 +44,7 @@ class ResultsViewController: CustomViewController {
 					highscoreName = "Anonymous"
 				}
 				
-				//TODO: persist name and score
+				Highscores.updateHighscores(self.quizType, name: highscoreName, score: self.result)
 				
 				self.setupHighscoresView()
 				
@@ -133,6 +121,8 @@ class ResultsViewController: CustomViewController {
 		removeViews(1)
 		
 		let trophyReductionFactor: CGFloat = 0.6
+		let allHighscores = Highscores.returnAllHighScores(quizType)
+		print(allHighscores.count)
 		
 		UIView.animateWithDuration(
 			0.25,
@@ -162,33 +152,34 @@ class ResultsViewController: CustomViewController {
 		
 		var counter = 0
 		
-		for name in scores {
-			
-			let label = UILabel(frame: CGRect(
-				x: 40,
-				y: Int(viewHeight * 0.325) + (counter * 30),
-				width: Int(viewWidth * 0.5),
-				height: 22
-				))
-			label.text = "\(name)"
-			label.font = UIFont.systemFontOfSize(CGFloat(viewWidth / 16))
-			label.textColor = UIColor.whiteColor()
-			label.tag = 1
-			fadeUpInToSubview(label, delay: 0.25 + (0.05 * Double(counter)), completionAction: nil)
-			
-			let number = UILabel(frame: CGRect(
-				x: Int(viewWidth - 40 - (viewWidth * 0.2)),
-				y: Int(viewHeight * 0.325) + (counter * 30),
-				width: Int(viewWidth * 0.2),
-				height: 22
-				))
-			number.text = "\(500 - counter * 50)"
-			number.font = UIFont.systemFontOfSize(CGFloat(viewWidth / 16))
-			number.textColor = UIColor.whiteColor()
-			number.textAlignment = .Right
-			number.tag = 1
-			fadeUpInToSubview(number, delay: 0.25 + (0.05 * Double(counter)), completionAction: nil)
-			counter += 1
+		for person in allHighscores {
+			for (name, score) in person {
+				let label = UILabel(frame: CGRect(
+					x: 40,
+					y: Int(viewHeight * 0.325) + (counter * 30),
+					width: Int(viewWidth * 0.5),
+					height: 22
+					))
+				label.text = "\(name)"
+				label.font = UIFont.systemFontOfSize(CGFloat(viewWidth / 16))
+				label.textColor = UIColor.whiteColor()
+				label.tag = 1
+				fadeUpInToSubview(label, delay: 0.25 + (0.05 * Double(counter)), completionAction: nil)
+				
+				let number = UILabel(frame: CGRect(
+					x: Int(viewWidth - 40 - (viewWidth * 0.2)),
+					y: Int(viewHeight * 0.325) + (counter * 30),
+					width: Int(viewWidth * 0.2),
+					height: 22
+					))
+				number.text = "\(score)"
+				number.font = UIFont.systemFontOfSize(CGFloat(viewWidth / 16))
+				number.textColor = UIColor.whiteColor()
+				number.textAlignment = .Right
+				number.tag = 1
+				fadeUpInToSubview(number, delay: 0.25 + (0.05 * Double(counter)), completionAction: nil)
+				counter += 1
+			}
 		}
 		
 	}

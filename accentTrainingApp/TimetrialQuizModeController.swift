@@ -198,12 +198,10 @@ class TimetrialQuizModeController: QuestionViewController {
 			return 2.0
 		} else if elapsedTime < 2 {
 			return 1.6
-		} else if elapsedTime < 5 {
+		} else if elapsedTime < 3 {
 			return 1.2
-		} else if elapsedTime < 7 {
-			return 0.8
 		} else {
-			return 0.4
+			return 0.8
 		}
 	}
 	

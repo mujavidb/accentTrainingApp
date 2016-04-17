@@ -14,6 +14,7 @@
 		576CD6EA1CB63CAB00860AC9 /* QuizChoiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576CD6E91CB63CAB00860AC9 /* QuizChoiceTest.swift */; };
 		576CD6ED1CB6429400860AC9 /* CustomButtonTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576CD6EC1CB6429400860AC9 /* CustomButtonTest.swift */; };
 		576CD6EF1CB6436700860AC9 /* QuestionSetTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576CD6EE1CB6436700860AC9 /* QuestionSetTest.swift */; };
+		57C11ECE1CC3AFDD00777FF9 /* Highscores.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C11ECD1CC3AFDD00777FF9 /* Highscores.swift */; };
 		57C6B62F1CBC064F00038518 /* QuestionGeneratorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C6B62E1CBC064F00038518 /* QuestionGeneratorTest.swift */; };
 		64AFCE541CC10B54001F09D4 /* QuestionViewContollerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64AFCE531CC10B54001F09D4 /* QuestionViewContollerTest.swift */; };
 		64B33F231C9D4A6D006C3510 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B33F221C9D4A6D006C3510 /* AppDelegate.swift */; };
@@ -49,6 +50,7 @@
 		576CD6E91CB63CAB00860AC9 /* QuizChoiceTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizChoiceTest.swift; sourceTree = "<group>"; };
 		576CD6EC1CB6429400860AC9 /* CustomButtonTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButtonTest.swift; sourceTree = "<group>"; };
 		576CD6EE1CB6436700860AC9 /* QuestionSetTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionSetTest.swift; sourceTree = "<group>"; };
+		57C11ECD1CC3AFDD00777FF9 /* Highscores.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Highscores.swift; sourceTree = "<group>"; };
 		57C6B62E1CBC064F00038518 /* QuestionGeneratorTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionGeneratorTest.swift; sourceTree = "<group>"; };
 		64AFCE531CC10B54001F09D4 /* QuestionViewContollerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionViewContollerTest.swift; sourceTree = "<group>"; };
 		64B33F1F1C9D4A6D006C3510 /* accentTrainingApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = accentTrainingApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -129,6 +131,7 @@
 				64B33F461C9D4BB8006C3510 /* QuestionGenerator.swift */,
 				64B33F4E1C9D4E38006C3510 /* QuestionSet.swift */,
 				64B33F4A1C9D4BFC006C3510 /* QuizChoice.swift */,
+				57C11ECD1CC3AFDD00777FF9 /* Highscores.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -283,6 +286,7 @@
 				64B33F4B1C9D4BFC006C3510 /* QuizChoice.swift in Sources */,
 				5725BC8E1CBEDF5E007988BC /* TimetrialQuizModeController.swift in Sources */,
 				64B33F251C9D4A6D006C3510 /* MainViewController.swift in Sources */,
+				57C11ECE1CC3AFDD00777FF9 /* Highscores.swift in Sources */,
 				64B33F471C9D4BB8006C3510 /* QuestionGenerator.swift in Sources */,
 				64B33F491C9D4BDF006C3510 /* QuestionViewController.swift in Sources */,
 				573465C31CA70E2300B2A3CB /* HighscoresController.swift in Sources */,
