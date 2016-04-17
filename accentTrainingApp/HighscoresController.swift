@@ -91,6 +91,8 @@ class HighscoresController: CustomViewController {
 		
 		var counter = 0
 		
+		//TODO: Add zero state screen
+		
 		for person in allHighscores {
 			for (name, score) in person {
 				
