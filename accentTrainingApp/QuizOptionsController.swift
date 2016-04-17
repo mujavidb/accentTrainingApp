@@ -126,6 +126,7 @@ class QuizOptionsController: CustomViewController{
 		
 		//get 75% of height, remove gutter space and divide remaining area by 3
 		let buttonHeight = (((viewHeight) * 0.75) - (4 * gutterWidth)) / 3
+		print("\(buttonWidth)_\(buttonHeight)")
 		
 		for label in buttonLabelSet {
 			
@@ -142,7 +143,6 @@ class QuizOptionsController: CustomViewController{
 			customButton.backgroundColor = appColors["white"]
 			customButton.tag = 1
 			
-//			fadeUpInToSubview(customButton, delay: 0.25 + (0.1 * Double(counter % 2)), completionAction: nil)
 			fadeUpInToSubview(customButton, delay: 0.25 + (0.05 * Double(( counter == 0 || counter == 1 ? 0 : counter == 2 || counter == 3 ? 1 : 2))), completionAction: nil)
 			counter = counter + 1
 		}
