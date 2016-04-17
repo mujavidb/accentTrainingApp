@@ -12,16 +12,7 @@ class HighscoresController: CustomViewController {
 	
 	let practiceOption = UIButton()
 	let timetrialOption = UIButton()
-	let scores = [
-		"Mujavid",
-		"Freddie Merc.",
-		"Led",
-		"M",
-		"Efumi",
-		"Jess",
-		"Beccs",
-		"Muhammad"
-	]
+	var allHighscores: [[String: Int]] = []
 	var current = "practice" {
 		//observer design pattern
 		didSet {
@@ -39,8 +30,9 @@ class HighscoresController: CustomViewController {
 			
 			//TODO: Some code to update the model with other scores
 			//TODO: Then update scores
+			allHighscores = Highscores.returnAllHighScores(current)
 			removeViews(1)
-			displayScores(scores)
+			displayScores()
 		}
 	}
 
@@ -48,8 +40,9 @@ class HighscoresController: CustomViewController {
         super.viewDidLoad()
 		// Do any additional setup after loading the view.
 		self.view.backgroundColor = appColors["highscores"]
+		allHighscores = Highscores.returnAllHighScores(current)
 		displayScoreListSelector()
-		displayScores(scores)
+		displayScores()
 		
     }
 	
@@ -88,47 +81,49 @@ class HighscoresController: CustomViewController {
 	
 	func changeCurrentHighScores(){
 		if current == "practice" {
-			current = "Time Trial"
+			current = "timetrial"
 		} else {
 			current = "practice"
 		}
 	}
 	
-	func displayScores(scores: Array<String>){
+	func displayScores(){
 		
 		var counter = 0
 		
-		for name in scores {
-			
-			if counter < 3 {
-				labelBackground(counter)
+		for person in allHighscores {
+			for (name, score) in person {
+				
+				if counter < 3 {
+					labelBackground(counter)
+				}
+				
+				let label = UILabel(frame: CGRect(
+					x: 40,
+					y: Int(viewHeight * 0.25) + (counter * 50),
+					width: Int(viewWidth * 0.5),
+					height: 40
+					))
+				label.text = "\(name)"
+				label.font = UIFont.systemFontOfSize(CGFloat(viewWidth / 16))
+				label.textColor = UIColor.whiteColor()
+				label.tag = 1
+				fadeUpInToSubview(label, delay: 0.25 + (0.05 * Double(counter)), completionAction: nil)
+				
+				let number = UILabel(frame: CGRect(
+					x: Int(viewWidth - 40 - (viewWidth * 0.2)),
+					y: Int(viewHeight * 0.25) + (counter * 50),
+					width: Int(viewWidth * 0.2),
+					height: 40
+					))
+				number.text = "\(score)"
+				number.font = UIFont.systemFontOfSize(CGFloat(viewWidth / 16))
+				number.textColor = UIColor.whiteColor()
+				number.textAlignment = .Right
+				number.tag = 1
+				fadeUpInToSubview(number, delay: 0.25 + (0.05 * Double(counter)), completionAction: nil)
+				counter += 1
 			}
-			
-			let label = UILabel(frame: CGRect(
-				x: 40,
-				y: Int(viewHeight * 0.25) + (counter * 50),
-				width: Int(viewWidth * 0.5),
-				height: 40
-				))
-			label.text = "\(name)"
-			label.font = UIFont.systemFontOfSize(CGFloat(viewWidth / 16))
-			label.textColor = UIColor.whiteColor()
-			label.tag = 1
-			fadeUpInToSubview(label, delay: 0.25 + (0.05 * Double(counter)), completionAction: nil)
-			
-			let number = UILabel(frame: CGRect(
-				x: Int(viewWidth - 40 - (viewWidth * 0.2)),
-				y: Int(viewHeight * 0.25) + (counter * 50),
-				width: Int(viewWidth * 0.2),
-				height: 40
-				))
-			number.text = "\(500 - counter * 50)"
-			number.font = UIFont.systemFontOfSize(CGFloat(viewWidth / 16))
-			number.textColor = UIColor.whiteColor()
-			number.textAlignment = .Right
-			number.tag = 1
-			fadeUpInToSubview(number, delay: 0.25 + (0.05 * Double(counter)), completionAction: nil)
-			counter += 1
 		}
 	}
 	
