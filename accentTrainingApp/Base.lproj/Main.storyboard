@@ -22,7 +22,7 @@
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="timetrialButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="BiK-3N-Q6j"/>
+                                    <action selector="goToTimetrial:" destination="BYZ-38-t0r" eventType="touchUpInside" id="nLk-5c-x09"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="dg9-Gk-XF0" customClass="CustomButton" customModule="accentTrainingApp" customModuleProvider="target">
@@ -35,19 +35,6 @@
                                 </state>
                                 <connections>
                                     <segue destination="mdE-fc-jLo" kind="modal" id="oVt-iF-q9V"/>
-                                </connections>
-                            </button>
-                            <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="aIW-oT-0ew" customClass="CustomButton" customModule="accentTrainingApp" customModuleProvider="target">
-                                <rect key="frame" x="44" y="289" width="232" height="69"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
-                                <color key="backgroundColor" red="0.35294117650000001" green="0.66666666669999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
-                                <color key="tintColor" red="0.29019607843137257" green="0.59215686274509804" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Practice">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="practiceButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="PHb-lE-sj4"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="bQo-vm-oic">
@@ -64,11 +51,31 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
                             </imageView>
+                            <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="aIW-oT-0ew" customClass="CustomButton" customModule="accentTrainingApp" customModuleProvider="target">
+                                <rect key="frame" x="44" y="289" width="232" height="69"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
+                                <color key="backgroundColor" red="0.35294117650000001" green="0.66666666669999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                <color key="tintColor" red="0.29019607843137257" green="0.59215686274509804" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Practice">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="goToPractice:" destination="BYZ-38-t0r" eventType="touchUpInside" id="nWt-Xc-f39"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="Dk4-wD-sJR"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
+                    <connections>
+                        <outlet property="aboutButton" destination="bQo-vm-oic" id="BWh-rA-s8y"/>
+                        <outlet property="highscoresButton" destination="dg9-Gk-XF0" id="k7j-fl-Fqq"/>
+                        <outlet property="mainLogo" destination="QDu-Bx-LHx" id="sBo-jK-8Xf"/>
+                        <outlet property="practiceButton" destination="aIW-oT-0ew" id="jqN-X2-Qs0"/>
+                        <outlet property="timetrialButton" destination="EgB-ca-OD3" id="WhJ-Cj-q8P"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

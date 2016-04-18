@@ -11,6 +11,8 @@ import UIKit
 import AVFoundation
 
 class QuestionViewController: CustomViewController {
+	
+	//TODO: Change feedback audio files
     
     var questionChoice: QuizChoice?
     var audioPlayer: AVAudioPlayer?
@@ -29,6 +31,23 @@ class QuestionViewController: CustomViewController {
     override func viewDidLoad(){
         super.viewDidLoad()
     }
+	
+	func setUpReplayButton(){
+		let image = UIImage(named: "speaker")
+		
+		replayButton.frame = CGRect(
+			x: self.view.frame.width * 0.2,
+			y: self.view.frame.height * (questionChoice!.getQuizType() == "practice" ? 0.16 : 0.15),
+			width: self.view.frame.width * 0.6,
+			height: CGFloat(viewWidth * 0.4)
+		)
+		
+		replayButton.setImage(image, forState: .Normal)
+		replayButton.titleLabel?.hidden = true
+		replayButton.imageView?.contentMode = .ScaleAspectFit
+		replayButton.addTarget(self, action: #selector(QuestionViewController.replaySound(_:)), forControlEvents: .TouchUpInside)
+		self.view.addSubview(replayButton)
+	}
 	
 	func replaySound(sender: CustomButton){
 		playSound((questionGenerator?.getQuestionFileName())!)

@@ -56,21 +56,6 @@ class TimetrialQuizModeController: QuestionViewController {
 		generateTimer()
 	}
 	
-	func setUpReplayButton(){
-		let image = UIImage(named: "speaker")
-		replayButton.frame = CGRect(
-			x: self.view.frame.width * 0.2,
-			y: self.view.frame.height * 0.16,
-			width: self.view.frame.width * 0.6,
-			height: (image?.size.height)!
-		)
-		replayButton.setImage(image, forState: .Normal)
-		replayButton.titleLabel?.hidden = true
-		replayButton.imageView?.contentMode = .Center
-		replayButton.addTarget(self, action: #selector(QuestionViewController.replaySound(_:)), forControlEvents: .TouchUpInside)
-		self.view.addSubview(replayButton)
-	}
-	
 	func setupTimer(){
 		
 		let timerBackground = UIView(frame: CGRect(

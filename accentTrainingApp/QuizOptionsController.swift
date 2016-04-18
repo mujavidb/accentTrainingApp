@@ -119,24 +119,25 @@ class QuizOptionsController: CustomViewController{
 		//select (x, y, width, height) based on actual view dimensions
 		let viewHeight = Float(self.viewHeight)
 		let viewWidth = Float(self.viewWidth)
+//		let gutterWidth = viewHeight > 568 ? viewWidth / 18.75 : viewWidth / 30
 		let gutterWidth = viewWidth / 18.75
 		let buttonWidth = (viewWidth - (3 * gutterWidth)) / 2
 		
 		//get 75% of height, remove gutter space and divide remaining area by 3
 		let buttonHeight = (((viewHeight) * 0.75) - (4 * gutterWidth)) / 3
 		
-		let spacing: CGFloat = 6.0
+		let spacing: CGFloat = viewHeight >= 568 ? 6 : 4
 		let edgeInsets = UIEdgeInsetsMake(0.0, -80.0, -(80.0 + spacing), 0.0);
 		
 		var labelString: NSString
 		var titleSize: CGSize
 		
-		let total = buttonLabelSet.count
+		let screenAdjustmentFactor: CGFloat = viewHeight > 568 ? 6 : (viewHeight == 568 ? -2 : -9.5)
 		
 		for label in buttonLabelSet {
 			
 			posX = Int(gutterWidth + (gutterWidth + buttonWidth) * Float(counter % 2))
-			posY = Int((gutterWidth + buttonHeight) * Float( 1 + counter / 2))
+			posY = Int((gutterWidth + buttonHeight + (viewHeight > 568 ? 0 : 10)) * Float( 1 + counter / 2))
 			
 			let image = UIImage(named: label)
 			
@@ -156,19 +157,17 @@ class QuizOptionsController: CustomViewController{
 			titleSize = labelString.sizeWithAttributes([NSFontAttributeName: customButton.titleLabel!.font])
 			customButton.imageEdgeInsets = UIEdgeInsetsMake(-(titleSize.height + spacing), 0.0, 0.0, -titleSize.width);
 			
-			if counter < total {
-				let buttonImageBorder = UIView(frame: CGRect(
-					x: customButton.frame.origin.x + ((customButton.frame.width - 80) / 2) - 5,
-					y: customButton.frame.origin.y - 2,
-					width: 90,
-					height: 90
-					))
-				buttonImageBorder.layer.cornerRadius = 45
-				buttonImageBorder.backgroundColor = appColors["white"]
-				buttonImageBorder.tag = 1
+			let buttonImageBorder = UIView(frame: CGRect(
+				x: customButton.frame.origin.x + ((customButton.frame.width - 80) / 2) - (viewHeight >= 568 ? 5 : 2.5),
+				y: customButton.frame.origin.y + screenAdjustmentFactor,
+				width: 80 + (viewHeight >= 568 ? 10 : 5),
+				height: 80 + (viewHeight >= 568 ? 10 : 5)
+				))
+			buttonImageBorder.layer.cornerRadius = (80 + (viewHeight >= 568 ? 10 : 5)) / 2
+			buttonImageBorder.backgroundColor = appColors["white"]
+			buttonImageBorder.tag = 1
 				
-				fadeUpInToSubview(buttonImageBorder, delay: 0.25 + (0.05 * Double(( counter == 0 || counter == 1 ? 0 : counter == 2 || counter == 3 ? 1 : 2))), completionAction: nil)
-			}
+			fadeUpInToSubview(buttonImageBorder, delay: 0.25 + (0.05 * Double(( counter == 0 || counter == 1 ? 0 : counter == 2 || counter == 3 ? 1 : 2))), completionAction: nil)
 			
 			fadeUpInToSubview(customButton, delay: 0.25 + (0.05 * Double(( counter == 0 || counter == 1 ? 0 : counter == 2 || counter == 3 ? 1 : 2))), completionAction: nil)
 			counter = counter + 1

@@ -41,21 +41,6 @@ class PracticeQuizModeController: QuestionViewController {
 		
 	}
 	
-	func setUpReplayButton(){
-		let image = UIImage(named: "speaker")
-		replayButton.frame = CGRect(
-			x: self.view.frame.width * 0.2,
-			y: self.view.frame.height * 0.15,
-			width: self.view.frame.width * 0.6,
-			height: (image?.size.height)!
-		)
-		replayButton.setImage(image, forState: .Normal)
-		replayButton.titleLabel?.hidden = true
-		replayButton.imageView?.contentMode = .Center
-		replayButton.addTarget(self, action: #selector(QuestionViewController.replaySound(_:)), forControlEvents: .TouchUpInside)
-		self.view.addSubview(replayButton)
-	}
-	
 	func questionButtonPressed(sender: CustomButton){
 		var time: Double
 		sender.setTitleColor(appColors["white"], forState: .Normal)
