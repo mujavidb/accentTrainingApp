@@ -12,10 +12,7 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-		self.view.backgroundColor = UIColor.whiteColor()
-		
-		//TODO: Add home icon
-		
+		self.view.backgroundColor = UIColor.whiteColor()		
     }
 	
 	@IBAction func practiceButton(sender: CustomButton) {
