@@ -112,8 +112,6 @@ class QuizOptionsController: CustomViewController{
 	
 	func displayTwoColumnButtons(buttonLabelSet: [String], textColor: UIColor, nextFunction: Selector){
 		
-		//TODO: Add images to buttons
-		
 		var posX: Int
 		var posY: Int
 		var counter = 0
@@ -132,6 +130,8 @@ class QuizOptionsController: CustomViewController{
 		
 		var labelString: NSString
 		var titleSize: CGSize
+		
+		let total = buttonLabelSet.count
 		
 		for label in buttonLabelSet {
 			
@@ -155,6 +155,20 @@ class QuizOptionsController: CustomViewController{
 			labelString = NSString(string: customButton.titleLabel!.text!)
 			titleSize = labelString.sizeWithAttributes([NSFontAttributeName: customButton.titleLabel!.font])
 			customButton.imageEdgeInsets = UIEdgeInsetsMake(-(titleSize.height + spacing), 0.0, 0.0, -titleSize.width);
+			
+			if counter < total {
+				let buttonImageBorder = UIView(frame: CGRect(
+					x: customButton.frame.origin.x + ((customButton.frame.width - 80) / 2) - 5,
+					y: customButton.frame.origin.y - 2,
+					width: 90,
+					height: 90
+					))
+				buttonImageBorder.layer.cornerRadius = 45
+				buttonImageBorder.backgroundColor = appColors["white"]
+				buttonImageBorder.tag = 1
+				
+				fadeUpInToSubview(buttonImageBorder, delay: 0.25 + (0.05 * Double(( counter == 0 || counter == 1 ? 0 : counter == 2 || counter == 3 ? 1 : 2))), completionAction: nil)
+			}
 			
 			fadeUpInToSubview(customButton, delay: 0.25 + (0.05 * Double(( counter == 0 || counter == 1 ? 0 : counter == 2 || counter == 3 ? 1 : 2))), completionAction: nil)
 			counter = counter + 1

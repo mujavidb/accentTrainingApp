@@ -31,6 +31,8 @@ class CustomViewController: UIViewController{
 		"transparent_white": UIColor(red: 1, green: 1, blue: 1, alpha: 0.1)
 		]
 	
+	//TODO: Load default font for app
+	
 	var viewWidth: Double = 500
 	var viewHeight: Double = 500
 	
