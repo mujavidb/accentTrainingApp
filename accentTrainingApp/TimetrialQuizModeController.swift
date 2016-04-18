@@ -46,14 +46,29 @@ class TimetrialQuizModeController: QuestionViewController {
 	func generateQuestion(){
 		
 		removeViews(1)
-		questionGenerator?.generateQuestion()
+        repeat{questionGenerator?.generateQuestion() //makes sure audio file exists
+        }while (NSDataAsset(name: (questionGenerator?.getQuestionFileName())!) == nil)
 		let fileName = questionGenerator?.getQuestionFileName()
 		playSound(fileName!)
 		
-		self.displayButtons(self.questionGenerator!.getQuestionSet(), nextFunction: #selector(TimetrialQuizModeController.questionButtonPressed(_:)))
+        delay(1.0){ //display the buttons after the audio has been played
+            self.displayButtons(self.questionGenerator!.getQuestionSet(), nextFunction: #selector(TimetrialQuizModeController.questionButtonPressed(_:)))
+            self.answerSelected = false
+            self.generateTimer()
+        }
 		
-		answerSelected = false
-		generateTimer()
+		
+        
+        //just to show the percentage for testing, to be removed later on
+        print("\(userScore/100), \(quizLength)")
+        let percentage = (Double(userScore) / Double(questionChoice!.getQuizLengthInt()))*100
+        print("\(percentage)%")
+        let totalProb = questionGenerator?.rhymeProb.reduce(0, combine: +)
+        for rhymeprob in (questionGenerator?.rhymeProb)!{//to check the prob of each rhyme
+            let tempProb = Double(rhymeprob)/Double(totalProb!)*100
+            print("probability of rhyme = \(tempProb)")
+            
+        }
 	}
 	
 	func setupTimer(){
@@ -135,6 +150,8 @@ class TimetrialQuizModeController: QuestionViewController {
 				
 				self.playSound("feedback-wrong")
 				sender!.backgroundColor = appColors["incorrectRed"]
+                
+                questionGenerator?.changeRhymeProb((questionGenerator?.rhymeSetIndex!)!, value: 1.2) // increase the probability of wrong rhyme
 			}
 		} else {
 			playSound("feedback-wrong")
