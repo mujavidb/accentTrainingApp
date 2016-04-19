@@ -33,8 +33,12 @@ class PracticeQuizModeController: QuestionViewController {
 	func generateQuestion(){
 		
 		removeViews(1)
-        repeat{questionGenerator?.generateQuestion() //makes sure audio file exists
-        }while (NSDataAsset(name: (questionGenerator?.getQuestionFileName())!) == nil)
+        
+        repeat{
+            questionGenerator?.generateQuestion() //makes sure audio file exists
+        }while (//NSDataAsset(name: (questionGenerator?.getQuestionFileName())!) == nil //for ios 9 onwards
+           fileExists((questionGenerator?.getQuestionFileName())!) == false )
+        
 		let fileName = questionGenerator?.getQuestionFileName()
 		playSound(fileName!)
 		

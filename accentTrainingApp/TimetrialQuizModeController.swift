@@ -46,9 +46,12 @@ class TimetrialQuizModeController: QuestionViewController {
 	func generateQuestion(){
 		
 		removeViews(1)
-        repeat{questionGenerator?.generateQuestion() //makes sure audio file exists
-        }while (NSDataAsset(name: (questionGenerator?.getQuestionFileName())!) == nil)
-		let fileName = questionGenerator?.getQuestionFileName()
+        repeat{
+            questionGenerator?.generateQuestion() //makes sure audio file exists
+        }while (//NSDataAsset(name: (questionGenerator?.getQuestionFileName())!) == nil //for ios 9 onwards
+            fileExists((questionGenerator?.getQuestionFileName())!) == false )
+		
+        let fileName = questionGenerator?.getQuestionFileName()
 		playSound(fileName!)
 		
         delay(1.0){ //display the buttons after the audio has been played
