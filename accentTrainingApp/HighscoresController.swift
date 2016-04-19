@@ -6,6 +6,9 @@
 //  Copyright © 2016 k. All rights reserved.
 //
 
+
+//highscores for time trial not displaying scores in order - ho 172 > dksd 248 when tested ??? 
+
 import UIKit
 
 class HighscoresController: CustomViewController {
