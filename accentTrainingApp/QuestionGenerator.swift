@@ -76,7 +76,7 @@ class QuestionGenerator {
         return (probabilities.count - 1)
     }
     
-    func changeRhymeProb(rhymeIndex: Int, value: Double){
+    func changeVowelProbability(rhymeIndex: Int, value: Double){
         rhymeProb[rhymeIndex] = (rhymeProb[rhymeIndex]*value)
     }
     

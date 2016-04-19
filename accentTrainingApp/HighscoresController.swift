@@ -17,7 +17,6 @@ class HighscoresController: CustomViewController {
 	let timetrialOption = UIButton()
 	var allHighscores: [[String: Int]] = []
 	var current = "practice" {
-		//observer design pattern
 		didSet {
 			if current == "practice" {
 				practiceOption.backgroundColor = appColors["white"]
@@ -31,8 +30,6 @@ class HighscoresController: CustomViewController {
 				timetrialOption.setTitleColor(appColors["highscores"], forState: .Normal)
 			}
 			
-			//TODO: Some code to update the model with other scores
-			//TODO: Then update scores
 			allHighscores = Highscores.returnAllHighScores(current)
 			removeViews(1)
 			displayScores()

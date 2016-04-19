@@ -48,19 +48,19 @@ class TimetrialQuizModeController: QuestionViewController {
 		removeViews(1)
         repeat{
             questionGenerator?.generateQuestion() //makes sure audio file exists
-        }while (//NSDataAsset(name: (questionGenerator?.getQuestionFileName())!) == nil //for ios 9 onwards
-            fileExists((questionGenerator?.getQuestionFileName())!) == false )
+			
+			//NSDataAsset(name: (questionGenerator?.getQuestionFileName())!) == nil //for ios 9 onwards
+        } while(fileExists((questionGenerator?.getQuestionFileName())!) == false )
 		
         let fileName = questionGenerator?.getQuestionFileName()
 		playSound(fileName!)
 		
-        delay(1.0){ //display the buttons after the audio has been played
+        delay(1.0){
+			//display the buttons after the audio has been played
             self.displayButtons(self.questionGenerator!.getQuestionSet(), nextFunction: #selector(TimetrialQuizModeController.questionButtonPressed(_:)))
             self.answerSelected = false
             self.generateTimer()
         }
-		
-		
         
         //just to show the percentage for testing, to be removed later on
         print("\(userScore/100), \(quizLength)")
@@ -154,7 +154,8 @@ class TimetrialQuizModeController: QuestionViewController {
 				self.playSound("feedback-wrong")
 				sender!.backgroundColor = appColors["incorrectRed"]
                 
-                questionGenerator?.changeRhymeProb((questionGenerator?.rhymeSetIndex!)!, value: 1.2) // increase the probability of wrong rhyme
+				// increase the probability of incorrectly selected vowel sound
+				questionGenerator?.changeVowelProbability((questionGenerator?.rhymeSetIndex!)!, value: 1.2)
 			}
 		} else {
 			playSound("feedback-wrong")
@@ -198,7 +199,6 @@ class TimetrialQuizModeController: QuestionViewController {
 	
 	func scoreTimeFactor() -> Float {
 		let elapsedTime = NSDate().timeIntervalSinceDate(answerStartTime!)
-		
 		if elapsedTime < 1 {
 			return 2.0
 		} else if elapsedTime < 2 {
@@ -210,6 +210,8 @@ class TimetrialQuizModeController: QuestionViewController {
 		}
 	}
 	
+	//Complex function that creates several view items
+	//The majority of the complexity is fine tuning values for differant screen sizes
 	func displayButtons(buttonLabelSet: [String], nextFunction: Selector){
 		
 		var counter = 0
@@ -264,8 +266,6 @@ class TimetrialQuizModeController: QuestionViewController {
 		
 		self.view.addSubview(quizTotalLabelBackground)
 		self.view.addSubview(quizTotalLabel)
-		
-		//		self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-(20)-[headerView]-(5)-[title(200)][]|", options: .None, metrics: <#T##[String : AnyObject]?#>, views: <#T##[String : AnyObject]#>))
 		
 	}
 
