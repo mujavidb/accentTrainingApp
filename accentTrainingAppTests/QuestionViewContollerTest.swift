@@ -25,6 +25,11 @@ class QuestionViewContollerTest: XCTestCase {
         "Glasgow":["Steward","Laura","Robert","Anna"]
     ]
     
+    func audioreturn(){
+        let url = NSURL.fileURLWithPath(NSBundle.mainBundle().pathForResource("", ofType: "mp3")!)
+        print(url)
+    }
+    
     func testAudioExists(){
         for accent in accentOptions{
             for speaker in speakerOptions[accent]!{

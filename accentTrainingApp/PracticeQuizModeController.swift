@@ -33,11 +33,18 @@ class PracticeQuizModeController: QuestionViewController {
 	func generateQuestion(){
 		
 		removeViews(1)
-		questionGenerator?.generateQuestion()
+        
+        repeat{
+            questionGenerator?.generateQuestion() //makes sure audio file exists
+        }while (//NSDataAsset(name: (questionGenerator?.getQuestionFileName())!) == nil //for ios 9 onwards
+           fileExists((questionGenerator?.getQuestionFileName())!) == false )
+        
 		let fileName = questionGenerator?.getQuestionFileName()
 		playSound(fileName!)
 		
-		self.displayButtons(self.questionGenerator!.getQuestionSet(), nextFunction: #selector(PracticeQuizModeController.questionButtonPressed(_:)))
+        delay(1.2){ //display the buttons after the audio has been played
+            self.displayButtons(self.questionGenerator!.getQuestionSet(), nextFunction: #selector(PracticeQuizModeController.questionButtonPressed(_:)))
+        }
 		
 	}
 	
@@ -55,6 +62,8 @@ class PracticeQuizModeController: QuestionViewController {
 			self.playSound("feedback-wrong")
 			sender.backgroundColor = appColors["incorrectRed"]
 			
+            questionGenerator?.changeRhymeProb((questionGenerator?.rhymeSetIndex!)!, value: 1.2) // increase the probability of wrong rhyme
+            
 			delay(1){
 				let accent = self.questionChoice!.getQuizAccent()
 				let speakerName = self.questionChoice!.getQuizSpeaker()
@@ -74,7 +83,7 @@ class PracticeQuizModeController: QuestionViewController {
 				}
 			}
 			
-			time = 9
+			time = 6
 		}
 		
 		delay(time) {

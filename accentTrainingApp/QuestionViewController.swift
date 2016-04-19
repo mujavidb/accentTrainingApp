@@ -56,10 +56,25 @@ class QuestionViewController: CustomViewController {
     //gets the audio file in the assets and plays
     func playSound(fileName:String){
         
+        let url = NSURL.fileURLWithPath(
+            NSBundle.mainBundle().pathForResource(fileName,
+                ofType: "mp3")!)
+        
+        audioPlayer = try! AVAudioPlayer(contentsOfURL: url)
+        audioPlayer!.play()
+      /*
         if let asset = NSDataAsset(name:fileName) {
             try! audioPlayer = AVAudioPlayer(data:asset.data, fileTypeHint:"mp3")
             audioPlayer!.play()
+        }*/
+    }
+    
+    func fileExists(fileName: String)-> Bool{
+        let url: NSURL? = NSURL.fileURLWithPath(NSBundle.mainBundle().pathForResource(questionGenerator?.getQuestionFileName(), ofType: "mp3")!)
+        if let _ = url{ // if file exists
+            return true
         }
+        return false
     }
 	
     @IBAction func quitPressed(sender: UIButton) {
