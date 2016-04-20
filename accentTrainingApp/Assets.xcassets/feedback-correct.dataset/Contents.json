@@ -6,7 +6,8 @@
   "data" : [
     {
       "idiom" : "universal",
-      "filename" : "feedback-correct.mp3"
+      "filename" : "feedback-correct.mp3",
+      "universal-type-identifier" : "public.mp3"
     }
   ]
 }
