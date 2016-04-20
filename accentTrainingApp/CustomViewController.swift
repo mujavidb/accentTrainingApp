@@ -55,7 +55,7 @@ class CustomViewController: UIViewController{
 			))
         myLabel.text = title
 		myLabel.textAlignment = .Center
-        myLabel.font = UIFont.systemFontOfSize(25)
+        myLabel.font = UIFont.mainFontOfSize(25)
         myLabel.textColor = UIColor.whiteColor()
         myLabel.tag = 1
         self.view.addSubview(myLabel)

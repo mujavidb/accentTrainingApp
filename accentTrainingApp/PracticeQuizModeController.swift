@@ -43,7 +43,7 @@ class PracticeQuizModeController: QuestionViewController {
 		let fileName = questionGenerator?.getQuestionFileName()
 		playSound(fileName!)
 		
-        delay(1.2){
+        delay(0.8){
 			//display the buttons after the audio has been played
             self.displayButtons(self.questionGenerator!.getQuestionSet(), nextFunction: #selector(PracticeQuizModeController.questionButtonPressed(_:)))
         }
@@ -133,7 +133,7 @@ class PracticeQuizModeController: QuestionViewController {
 			)
 			customButton.setTitleColor(appColors["darkGrey"], forState: .Normal)
 			customButton.setTitle(label, forState: .Normal)
-			customButton.titleLabel?.font = UIFont(name: "Arial", size: 24)
+			customButton.titleLabel?.font = UIFont.mainFontOfSize(24)
 			customButton.addTarget(self, action: nextFunction, forControlEvents: .TouchUpInside)
 			customButton.backgroundColor = appColors["lightGrey"]
 			fadeCentreInToSubview(customButton, delay: 0.25, completionAction: nil)
@@ -155,7 +155,7 @@ class PracticeQuizModeController: QuestionViewController {
 			))
 		quizTotalLabel.textColor = appColors["white"]
 		quizTotalLabel.text = "\(questionNumber) of \(quizLength)"
-		quizTotalLabel.font = UIFont(name: "Arial", size: 20)
+		quizTotalLabel.font = UIFont.mainFontOfSize(20)
 		quizTotalLabel.textAlignment = .Center
 		
 		quizTotalLabelBackground.layer.cornerRadius = 10

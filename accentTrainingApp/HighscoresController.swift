@@ -69,7 +69,7 @@ class HighscoresController: CustomViewController {
 		timetrialOption.setTitleColor(appColors["white"], forState: .Normal)
 		
 		for b in [practiceOption, timetrialOption] {
-			b.titleLabel?.font = UIFont.boldSystemFontOfSize(CGFloat(self.view.frame.width / 14))
+			b.titleLabel?.font = UIFont.boldMainFontOfSize(CGFloat(self.view.frame.width / 14))
 			b.titleLabel?.textAlignment = .Center
 			b.layer.cornerRadius = 6
 			b.addTarget(self, action: #selector(HighscoresController.changeCurrentHighScores), forControlEvents: .TouchUpInside)
@@ -107,7 +107,7 @@ class HighscoresController: CustomViewController {
 					height: 40
 					))
 				label.text = "\(name)"
-				label.font = UIFont.systemFontOfSize(CGFloat(viewWidth / 16))
+				label.font = UIFont.mainFontOfSize(CGFloat(viewWidth / 16))
 				label.textColor = UIColor.whiteColor()
 				label.tag = 1
 				fadeUpInToSubview(label, delay: 0.25 + (0.05 * Double(counter)), completionAction: nil)
@@ -119,7 +119,7 @@ class HighscoresController: CustomViewController {
 					height: 40
 					))
 				number.text = "\(score)"
-				number.font = UIFont.systemFontOfSize(CGFloat(viewWidth / 16))
+				number.font = UIFont.mainFontOfSize(CGFloat(viewWidth / 16))
 				number.textColor = UIColor.whiteColor()
 				number.textAlignment = .Right
 				number.tag = 1

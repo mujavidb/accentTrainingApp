@@ -11,8 +11,6 @@ import AVFoundation
 
 class TimetrialQuizModeController: QuestionViewController {
 	
-	//TODO: Close controller when segwaying to next controller
-	
 	var answerSelected = false
 	var answerStartTime: NSDate? = nil
 	var selectionTimer: NSTimer? = NSTimer()
@@ -31,9 +29,7 @@ class TimetrialQuizModeController: QuestionViewController {
 		setUpReplayButton()
 		setupTimer()
 		
-		delay(0.5){
-			self.generateQuestion()
-		}
+		self.generateQuestion()
     }
 	
 	@IBAction override func quitPressed(sender: UIButton) {
@@ -128,6 +124,7 @@ class TimetrialQuizModeController: QuestionViewController {
 	
 	func noOptionSelected(){
 		if self.answerSelected == false {
+			
 			//TODO: disable buttons
 			self.questionButtonPressed(nil)
 		}
@@ -236,7 +233,7 @@ class TimetrialQuizModeController: QuestionViewController {
 			)
 			customButton.setTitleColor(appColors["darkGrey"], forState: .Normal)
 			customButton.setTitle(label, forState: .Normal)
-			customButton.titleLabel?.font = UIFont(name: "Arial", size: 24)
+			customButton.titleLabel?.font = UIFont.mainFontOfSize(24)
 			customButton.addTarget(self, action: nextFunction, forControlEvents: .TouchUpInside)
 			customButton.backgroundColor = appColors["lightGrey"]
 			fadeCentreInToSubview(customButton, delay: 0.25, completionAction: nil)
@@ -258,7 +255,7 @@ class TimetrialQuizModeController: QuestionViewController {
 			))
 		quizTotalLabel.textColor = appColors["white"]
 		quizTotalLabel.text = "\(questionNumber) of \(quizLength)"
-		quizTotalLabel.font = UIFont(name: "Arial", size: 20)
+		quizTotalLabel.font = UIFont.mainFontOfSize(20)
 		quizTotalLabel.textAlignment = .Center
 		
 		quizTotalLabelBackground.layer.cornerRadius = 10
