@@ -13,7 +13,7 @@ class QuestionGenerator {
 	
     let quizChoice: QuizChoice?
     let qs = QuestionSet()
-    var askedQuestions = [(Int,Int)]() // (rhyme index, question set index)
+    var askedQuestions = [(Int,Int,String)]() // (rhyme index, question set index,answer)
     var answer: String?
     var questionSetIndex: Int? //which set ie. back, bark set = 0
     var answerIndex: Int? // index of answer ie. beck = 2
@@ -27,8 +27,8 @@ class QuestionGenerator {
     }
     
     func checkAnswered(index: Int) -> Bool{
-        for (rhymeNum,askedIndex) in askedQuestions {
-            if index == askedIndex &&  rhymeNum == rhymeSetIndex{
+        for (rhymeNum,askedIndex,askedAnswer) in askedQuestions {
+            if index == askedIndex &&  rhymeNum == rhymeSetIndex && askedAnswer == answer{
                 return true
             }
         }
@@ -41,10 +41,10 @@ class QuestionGenerator {
             rhymeSetIndex = randomNumber(probabilities: rhymeProb)
             questionSetIndex = Int(arc4random_uniform(UInt32(qs.getRhymeLength(rhymeSetIndex!))))} //repeat until unasked question set is found
             while(checkAnswered(questionSetIndex!))
-        
-        askedQuestions.append((rhymeSetIndex!,questionSetIndex!))
         answerIndex = Int(arc4random_uniform(UInt32(qs.getQuestionSet(questionSetIndex!,rhymeSet: rhymeSetIndex!).count)))
         answer = qs.getAnswer(questionSetIndex!, answerIndex: answerIndex!, rhymeSet: rhymeSetIndex!)
+        askedQuestions.append((rhymeSetIndex!,questionSetIndex!,answer!))
+        
     }
 
     func getQuestionFileName() -> String{
