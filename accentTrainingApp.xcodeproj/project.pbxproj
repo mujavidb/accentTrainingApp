@@ -11,6 +11,11 @@
 		5725BC8C1CBEDF3B007988BC /* PracticeQuizModeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5725BC8B1CBEDF3B007988BC /* PracticeQuizModeController.swift */; };
 		5725BC8E1CBEDF5E007988BC /* TimetrialQuizModeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5725BC8D1CBEDF5E007988BC /* TimetrialQuizModeController.swift */; };
 		573465C31CA70E2300B2A3CB /* HighscoresController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573465C21CA70E2300B2A3CB /* HighscoresController.swift */; };
+		57568BBB1CC78F4A00F44527 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57568BBA1CC78F4A00F44527 /* Extensions.swift */; };
+		57568BBF1CC790D700F44527 /* MuseoSans_500.otf in Resources */ = {isa = PBXBuildFile; fileRef = 57568BBD1CC790D700F44527 /* MuseoSans_500.otf */; };
+		57568BC01CC790D700F44527 /* MuseoSans_500.otf in Resources */ = {isa = PBXBuildFile; fileRef = 57568BBD1CC790D700F44527 /* MuseoSans_500.otf */; };
+		57568BC11CC790D700F44527 /* MuseoSans_700.otf in Resources */ = {isa = PBXBuildFile; fileRef = 57568BBE1CC790D700F44527 /* MuseoSans_700.otf */; };
+		57568BC21CC790D700F44527 /* MuseoSans_700.otf in Resources */ = {isa = PBXBuildFile; fileRef = 57568BBE1CC790D700F44527 /* MuseoSans_700.otf */; };
 		576CD6EA1CB63CAB00860AC9 /* QuizChoiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576CD6E91CB63CAB00860AC9 /* QuizChoiceTest.swift */; };
 		576CD6ED1CB6429400860AC9 /* CustomButtonTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576CD6EC1CB6429400860AC9 /* CustomButtonTest.swift */; };
 		576CD6EF1CB6436700860AC9 /* QuestionSetTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576CD6EE1CB6436700860AC9 /* QuestionSetTest.swift */; };
@@ -47,6 +52,9 @@
 		5725BC8B1CBEDF3B007988BC /* PracticeQuizModeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = PracticeQuizModeController.swift; sourceTree = "<group>"; };
 		5725BC8D1CBEDF5E007988BC /* TimetrialQuizModeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimetrialQuizModeController.swift; sourceTree = "<group>"; };
 		573465C21CA70E2300B2A3CB /* HighscoresController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighscoresController.swift; sourceTree = "<group>"; };
+		57568BBA1CC78F4A00F44527 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		57568BBD1CC790D700F44527 /* MuseoSans_500.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MuseoSans_500.otf; sourceTree = "<group>"; };
+		57568BBE1CC790D700F44527 /* MuseoSans_700.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MuseoSans_700.otf; sourceTree = "<group>"; };
 		576CD6E91CB63CAB00860AC9 /* QuizChoiceTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizChoiceTest.swift; sourceTree = "<group>"; };
 		576CD6EC1CB6429400860AC9 /* CustomButtonTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButtonTest.swift; sourceTree = "<group>"; };
 		576CD6EE1CB6436700860AC9 /* QuestionSetTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionSetTest.swift; sourceTree = "<group>"; };
@@ -90,6 +98,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		57568BBC1CC790B200F44527 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				57568BBD1CC790D700F44527 /* MuseoSans_500.otf */,
+				57568BBE1CC790D700F44527 /* MuseoSans_700.otf */,
+			);
+			name = Fonts;
+			sourceTree = "<group>";
+		};
 		576CD6E81CB63C8900860AC9 /* Model Tests */ = {
 			isa = PBXGroup;
 			children = (
@@ -157,6 +174,7 @@
 		64B33F211C9D4A6D006C3510 /* accentTrainingApp */ = {
 			isa = PBXGroup;
 			children = (
+				57568BBC1CC790B200F44527 /* Fonts */,
 				57764F9C1CAD713B0026411C /* Models */,
 				57764F9B1CAD711C0026411C /* ViewControllers */,
 				64B33F291C9D4A6D006C3510 /* Assets.xcassets */,
@@ -164,6 +182,7 @@
 				64B33F261C9D4A6D006C3510 /* Main.storyboard */,
 				64B33F2B1C9D4A6D006C3510 /* LaunchScreen.storyboard */,
 				64B33F2E1C9D4A6D006C3510 /* Info.plist */,
+				57568BBA1CC78F4A00F44527 /* Extensions.swift */,
 			);
 			path = accentTrainingApp;
 			sourceTree = "<group>";
@@ -263,7 +282,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				64B33F2D1C9D4A6D006C3510 /* LaunchScreen.storyboard in Resources */,
+				57568BC11CC790D700F44527 /* MuseoSans_700.otf in Resources */,
 				64B33F2A1C9D4A6D006C3510 /* Assets.xcassets in Resources */,
+				57568BBF1CC790D700F44527 /* MuseoSans_500.otf in Resources */,
 				64B33F281C9D4A6D006C3510 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -272,6 +293,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				57568BC21CC790D700F44527 /* MuseoSans_700.otf in Resources */,
+				57568BC01CC790D700F44527 /* MuseoSans_500.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -292,6 +315,7 @@
 				573465C31CA70E2300B2A3CB /* HighscoresController.swift in Sources */,
 				64B33F231C9D4A6D006C3510 /* AppDelegate.swift in Sources */,
 				64B33F431C9D4ABB006C3510 /* CustomButton.swift in Sources */,
+				57568BBB1CC78F4A00F44527 /* Extensions.swift in Sources */,
 				5725BC8C1CBEDF3B007988BC /* PracticeQuizModeController.swift in Sources */,
 				64B33F451C9D4AEB006C3510 /* CustomViewController.swift in Sources */,
 				64B33F4D1C9D4C19006C3510 /* QuizOptionsController.swift in Sources */,
@@ -429,11 +453,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = accentTrainingApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.accentTrainingApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ucl.accentTrainingApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -442,11 +469,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = accentTrainingApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.accentTrainingApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ucl.accentTrainingApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

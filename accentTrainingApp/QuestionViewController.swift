@@ -62,24 +62,30 @@ class QuestionViewController: CustomViewController {
         
         audioPlayer = try! AVAudioPlayer(contentsOfURL: url)
         audioPlayer!.play()
-      /*
-        if let asset = NSDataAsset(name:fileName) {
-            try! audioPlayer = AVAudioPlayer(data:asset.data, fileTypeHint:"mp3")
-            audioPlayer!.play()
-        }*/
-    }
-    
-    func fileExists(fileName: String)-> Bool{
-        let url: NSURL? = NSURL.fileURLWithPath(NSBundle.mainBundle().pathForResource(questionGenerator?.getQuestionFileName(), ofType: "mp3")!)
-        if let _ = url{ // if file exists
-            return true
-        }
-        return false
     }
 	
-    @IBAction func quitPressed(sender: UIButton) {
-        self.stopCount = 1
-        self.audioPlayer!.stop()
+	func changeButtonStates(){
+		var viewsToChangeState = [CustomButton]()
+		self.view.subviews.forEach({ if $0.tag == 1 { viewsToChangeState.append(($0 as? CustomButton)!)}})
+		for button in viewsToChangeState {
+			if button.enabled {
+				button.enabled = false
+			}
+		}
+	}
+    
+    func fileExists(fileName: String)-> Bool{
+        //let url: NSURL? = NSURL.fileURLWithPath(NSBundle.mainBundle().pathForResource(questionGenerator?.getQuestionFileName(), ofType: "mp3")!)
+		
+        let path = NSBundle.mainBundle().pathForResource(questionGenerator?.getQuestionFileName(), ofType: "mp3")
+        if path != nil{
+            return true
+        }
+		// if file exists
+		/*if let _ = url {
+            return true
+        }*/
+        return false
     }
     
     func returnToDefaultState(button: CustomButton){ //to put the button back to its original state
@@ -106,5 +112,6 @@ class QuestionViewController: CustomViewController {
 			}
 		}
 	}
-
+	
+	@IBAction func unwindToMVC(segue: UIStoryboardSegue){}
 }

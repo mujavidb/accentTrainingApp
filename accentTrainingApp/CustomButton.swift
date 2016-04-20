@@ -13,15 +13,11 @@ class CustomButton: UIButton{
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        setUp()
+        layer.cornerRadius = 10
     }
 	
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setUp()
-    }
-	
-    func setUp(){
-        self.layer.cornerRadius = 10
+        layer.cornerRadius = 10
     }
 }

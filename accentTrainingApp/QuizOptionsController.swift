@@ -72,7 +72,8 @@ class QuizOptionsController: CustomViewController{
 				presentViewController(resultController, animated: true, completion: nil)
 			}
 		} else {
-			if let resultController = storyboard!.instantiateViewControllerWithIdentifier("TimetrialQuizModeController") as? TimetrialQuizModeController {
+			if let resultController =
+				storyboard!.instantiateViewControllerWithIdentifier("TimetrialQuizModeController") as? TimetrialQuizModeController {
 				resultController.questionChoice = self.quizOptions
 				presentViewController(resultController, animated: true, completion: nil)
 			}
@@ -101,7 +102,7 @@ class QuizOptionsController: CustomViewController{
 			)
 			customButton.setTitleColor(textColor, forState: .Normal)
 			customButton.setTitle(label, forState: .Normal)
-			customButton.titleLabel!.font = UIFont(name: "Arial", size: CGFloat(viewWidth / 14.4))
+			customButton.titleLabel!.font = UIFont.boldMainFontOfSize(CGFloat(viewWidth / 14.4))
 			customButton.addTarget(self, action: nextFunction, forControlEvents: .TouchUpInside)
 			customButton.backgroundColor = appColors["white"]
 			self.view.addSubview(customButton)
@@ -119,7 +120,7 @@ class QuizOptionsController: CustomViewController{
 		//select (x, y, width, height) based on actual view dimensions
 		let viewHeight = Float(self.viewHeight)
 		let viewWidth = Float(self.viewWidth)
-//		let gutterWidth = viewHeight > 568 ? viewWidth / 18.75 : viewWidth / 30
+		
 		let gutterWidth = viewWidth / 18.75
 		let buttonWidth = (viewWidth - (3 * gutterWidth)) / 2
 		
@@ -147,8 +148,7 @@ class QuizOptionsController: CustomViewController{
 			customButton.setImage(image, forState: .Normal)
 			customButton.setTitleColor(appColors["white"], forState: .Normal)
 			customButton.setTitle(label, forState: .Normal)
-//			customButton.titleLabel!.font = UIFont(name: "Arial", size: CGFloat(viewWidth / 14.4))
-			customButton.titleLabel!.font = UIFont.boldSystemFontOfSize(CGFloat(viewWidth / 14.4))
+			customButton.titleLabel!.font = UIFont.boldMainFontOfSize(CGFloat(viewWidth / 14.4))
 			customButton.addTarget(self, action: nextFunction, forControlEvents: .TouchUpInside)
 			customButton.tag = 1
 			
