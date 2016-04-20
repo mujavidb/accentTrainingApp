@@ -41,7 +41,29 @@ class MainViewController: UIViewController {
 					)
 				counter = counter + 1
 			}
+		} else if self.view.frame.height > 568 {
+			mainLogo.frame = CGRect(
+				x: self.view.frame.width * 0.1,
+				y: self.view.frame.height * 0.04,
+				width: self.view.frame.width * 0.8,
+				height: self.view.frame.height * 0.4
+			)
+			
+			var counter: CGFloat = 0
+			let extraHeight: CGFloat = 10
+			
+			for button in [practiceButton, timetrialButton, highscoresButton]{
+				button.frame = CGRect(
+					x: button.frame.origin.x,
+					y: button.frame.origin.y + 50 + (counter * extraHeight),
+					width: button.frame.width,
+					height: button.frame.height + extraHeight
+				)
+				button.titleLabel!.font = UIFont.mainFontOfSize(30)
+				counter = counter + 1
+			}
 		}
+
     }
 	
 	@IBAction func goToPractice(sender: CustomButton) {
@@ -60,5 +82,9 @@ class MainViewController: UIViewController {
 	
 	//allows moving back to MainVC
 	@IBAction func unwindToMVC(segue: UIStoryboardSegue){}
+	
+	override func prefersStatusBarHidden() -> Bool {
+		return true
+	}
 }
 
