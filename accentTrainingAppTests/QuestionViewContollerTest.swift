@@ -25,11 +25,6 @@ class QuestionViewContollerTest: XCTestCase {
         "Glasgow":["Steward","Laura","Robert","Anna"]
     ]
     
-    func audioreturn(){
-        let url = NSURL.fileURLWithPath(NSBundle.mainBundle().pathForResource("", ofType: "mp3")!)
-        print(url)
-    }
-    
     func testAudioExists(){
         for accent in accentOptions{
             for speaker in speakerOptions[accent]!{
@@ -38,6 +33,7 @@ class QuestionViewContollerTest: XCTestCase {
                         for word in wordset{
                             let fileName = "\(accent)_\(speaker)_\(word)"
                             XCTAssertNotNil(NSDataAsset(name: fileName), "no audio: \(fileName)")
+                            //XCTAssertTrue(qv.fileExists(fileName))
                         }
                     }
                 }

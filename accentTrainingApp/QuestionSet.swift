@@ -19,7 +19,7 @@ class QuestionSet{
               ["met","mart","mat","mutt"],
               ["peck","park","pack","puck"],
               ["pet","part","pat","putt"]]
-    let r2 = [["feel","phil","file","fail"],
+    let r2 = [["feel","fill","file","fail"],
               ["field","filled","filed","failed"],
               ["feet","fit","fight","fate"],
               ["heat","hit","height","hate"],
