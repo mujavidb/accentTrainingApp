@@ -41,11 +41,7 @@ class MainViewController: UIViewController {
 					)
 				counter = counter + 1
 			}
-			
-			
-			
 		}
-		
     }
 	
 	@IBAction func goToPractice(sender: CustomButton) {

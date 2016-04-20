@@ -14,8 +14,7 @@ class TimetrialQuizModeController: QuestionViewController {
 	var answerSelected = false
 	var answerStartTime: NSDate? = nil
 	var selectionTimer: NSTimer? = NSTimer()
-
-
+	
     override func viewDidLoad() {
         super.viewDidLoad()
 		
@@ -29,19 +28,42 @@ class TimetrialQuizModeController: QuestionViewController {
 		setUpReplayButton()
 		setupTimer()
 		
-		self.generateQuestion()
+		generateQuestion()
     }
 	
-	@IBAction override func quitPressed(sender: UIButton) {
-		self.stopCount = 1
-		self.audioPlayer!.stop()
-		selectionTimer!.invalidate()
-		selectionTimer = nil
+	@IBAction func restartQuiz(sender: AnyObject) {
+		let restartPrompt = UIAlertController(title: "Are you sure you want to restart?", message: "", preferredStyle: .Alert)
+		restartPrompt.addAction(UIAlertAction(title: "No", style: .Default, handler: nil))
+		restartPrompt.addAction(UIAlertAction(title: "Yes", style: .Default, handler: { (UIAlertAction) in
+			self.stopCount = 1
+			self.audioPlayer!.stop()
+			self.selectionTimer!.invalidate()
+			self.selectionTimer = nil
+			if let resultController = self.storyboard!.instantiateViewControllerWithIdentifier("TimetrialQuizModeController") as? TimetrialQuizModeController {
+				resultController.questionChoice = self.questionChoice
+				self.presentViewController(resultController, animated: true, completion: nil)
+			}
+		}))
+		presentViewController(restartPrompt, animated: true, completion: nil)
+	}
+	
+	@IBAction func quitPressed(sender: UIButton) {
+		let quitPrompt = UIAlertController(title: "Are you sure you want to quit?", message: "", preferredStyle: .Alert)
+		quitPrompt.addAction(UIAlertAction(title: "No", style: .Default, handler: nil))
+		quitPrompt.addAction(UIAlertAction(title: "Yes", style: .Default, handler: { (UIAlertAction) in
+			self.stopCount = 1
+			self.audioPlayer!.stop()
+			self.selectionTimer!.invalidate()
+			self.selectionTimer = nil
+			self.dismissViewControllerAnimated(true, completion: nil)
+		}))
+		presentViewController(quitPrompt, animated: true, completion: nil)
 	}
 	
 	func generateQuestion(){
 		
 		removeViews(1)
+		removeViews(2)
         repeat{
             questionGenerator?.generateQuestion() //makes sure audio file exists
 			
@@ -57,17 +79,6 @@ class TimetrialQuizModeController: QuestionViewController {
             self.answerSelected = false
             self.generateTimer()
         }
-        
-        //just to show the percentage for testing, to be removed later on
-        print("\(userScore/100), \(quizLength)")
-        let percentage = (Double(userScore) / Double(questionChoice!.getQuizLengthInt()))*100
-        print("\(percentage)%")
-        let totalProb = questionGenerator?.rhymeProb.reduce(0, combine: +)
-        for rhymeprob in (questionGenerator?.rhymeProb)!{//to check the prob of each rhyme
-            let tempProb = Double(rhymeprob)/Double(totalProb!)*100
-            print("probability of rhyme = \(tempProb)")
-            
-        }
 	}
 	
 	func setupTimer(){
@@ -80,7 +91,7 @@ class TimetrialQuizModeController: QuestionViewController {
 			))
 		timerBackground.layer.cornerRadius = timerBackground.frame.height / 2
 		timerBackground.backgroundColor = appColors["timetrialLight"]
-		timerBackground.tag = 2
+		timerBackground.tag = 5
 		self.view.addSubview(timerBackground)
 	}
 	
@@ -125,13 +136,13 @@ class TimetrialQuizModeController: QuestionViewController {
 	func noOptionSelected(){
 		if self.answerSelected == false {
 			
-			//TODO: disable buttons
 			self.questionButtonPressed(nil)
 		}
 	}
 	
 	func questionButtonPressed(sender: CustomButton?){
 		
+		changeButtonStates()
 		answerSelected = true
 		removeViews(3)
 		
@@ -260,6 +271,9 @@ class TimetrialQuizModeController: QuestionViewController {
 		
 		quizTotalLabelBackground.layer.cornerRadius = 10
 		quizTotalLabelBackground.backgroundColor = testModeColor
+		
+		quizTotalLabel.tag = 2
+		quizTotalLabelBackground.tag = 2
 		
 		self.view.addSubview(quizTotalLabelBackground)
 		self.view.addSubview(quizTotalLabel)

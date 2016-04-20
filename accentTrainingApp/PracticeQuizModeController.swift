@@ -30,14 +30,40 @@ class PracticeQuizModeController: QuestionViewController {
 		restartQuizButton.setTitleColor(testModeColor, forState: .Normal)
 	}
 	
+	@IBAction func quitPressed(sender: AnyObject) {
+		let quitPrompt = UIAlertController(title: "Are you sure you want to quit?", message: "", preferredStyle: .Alert)
+		quitPrompt.addAction(UIAlertAction(title: "No", style: .Default, handler: nil))
+		quitPrompt.addAction(UIAlertAction(title: "Yes", style: .Default, handler: { (UIAlertAction) in
+			self.stopCount = 1
+			self.audioPlayer!.stop()
+			self.dismissViewControllerAnimated(true, completion: nil)
+		}))
+		presentViewController(quitPrompt, animated: true, completion: nil)
+	}
+	
+	@IBAction func restartQuiz(sender: AnyObject) {
+		let restartPrompt = UIAlertController(title: "Are you sure you want to restart?", message: "", preferredStyle: .Alert)
+		restartPrompt.addAction(UIAlertAction(title: "No", style: .Default, handler: nil))
+		restartPrompt.addAction(UIAlertAction(title: "Yes", style: .Default, handler: { (UIAlertAction) in
+			self.stopCount = 1
+			self.audioPlayer!.stop()
+			if let resultController = self.storyboard!.instantiateViewControllerWithIdentifier("PracticeQuizModeController") as? PracticeQuizModeController {
+				resultController.questionChoice = self.questionChoice
+				self.presentViewController(resultController, animated: true, completion: nil)
+			}
+		}))
+		presentViewController(restartPrompt, animated: true, completion: nil)
+	}
+	
 	func generateQuestion(){
 		
 		removeViews(1)
+		removeViews(2)
         
         repeat{
             questionGenerator?.generateQuestion() //makes sure audio file exists
 			
-			//NSDataAsset(name: (questionGenerator?.getQuestionFileName())!) == nil //for ios 9 onwards
+		//NSDataAsset(name: (questionGenerator?.getQuestionFileName())!) == nil //for ios 9 onwards
 		} while(fileExists((questionGenerator?.getQuestionFileName())!) == false )
         
 		let fileName = questionGenerator?.getQuestionFileName()
@@ -51,6 +77,9 @@ class PracticeQuizModeController: QuestionViewController {
 	}
 	
 	func questionButtonPressed(sender: CustomButton){
+		
+		changeButtonStates()
+		
 		var time: Double
 		sender.setTitleColor(appColors["white"], forState: .Normal)
 		
@@ -160,6 +189,9 @@ class PracticeQuizModeController: QuestionViewController {
 		
 		quizTotalLabelBackground.layer.cornerRadius = 10
 		quizTotalLabelBackground.backgroundColor = testModeColor
+		
+		quizTotalLabel.tag = 2
+		quizTotalLabelBackground.tag = 2
 		
 		self.view.addSubview(quizTotalLabelBackground)
 		self.view.addSubview(quizTotalLabel)
