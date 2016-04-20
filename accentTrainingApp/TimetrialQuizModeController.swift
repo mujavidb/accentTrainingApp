@@ -11,13 +11,10 @@ import AVFoundation
 
 class TimetrialQuizModeController: QuestionViewController {
 	
-	//TODO: Close controller when segwaying to next controller
-	
 	var answerSelected = false
 	var answerStartTime: NSDate? = nil
 	var selectionTimer: NSTimer? = NSTimer()
-
-
+	
     override func viewDidLoad() {
         super.viewDidLoad()
 		
@@ -31,46 +28,56 @@ class TimetrialQuizModeController: QuestionViewController {
 		setUpReplayButton()
 		setupTimer()
 		
-		delay(0.5){
-			self.generateQuestion()
-		}
+		generateQuestion()
     }
 	
-	@IBAction override func quitPressed(sender: UIButton) {
-		self.stopCount = 1
-		self.audioPlayer!.stop()
-		selectionTimer!.invalidate()
-		selectionTimer = nil
+	@IBAction func restartQuiz(sender: AnyObject) {
+		let restartPrompt = UIAlertController(title: "Are you sure you want to restart?", message: "", preferredStyle: .Alert)
+		restartPrompt.addAction(UIAlertAction(title: "No", style: .Default, handler: nil))
+		restartPrompt.addAction(UIAlertAction(title: "Yes", style: .Default, handler: { (UIAlertAction) in
+			self.stopCount = 1
+			self.audioPlayer!.stop()
+			self.selectionTimer!.invalidate()
+			self.selectionTimer = nil
+			if let resultController = self.storyboard!.instantiateViewControllerWithIdentifier("TimetrialQuizModeController") as? TimetrialQuizModeController {
+				resultController.questionChoice = self.questionChoice
+				self.presentViewController(resultController, animated: true, completion: nil)
+			}
+		}))
+		presentViewController(restartPrompt, animated: true, completion: nil)
+	}
+	
+	@IBAction func quitPressed(sender: UIButton) {
+		let quitPrompt = UIAlertController(title: "Are you sure you want to quit?", message: "", preferredStyle: .Alert)
+		quitPrompt.addAction(UIAlertAction(title: "No", style: .Default, handler: nil))
+		quitPrompt.addAction(UIAlertAction(title: "Yes", style: .Default, handler: { (UIAlertAction) in
+			self.stopCount = 1
+			self.audioPlayer!.stop()
+			self.selectionTimer!.invalidate()
+			self.selectionTimer = nil
+			self.dismissViewControllerAnimated(true, completion: nil)
+		}))
+		presentViewController(quitPrompt, animated: true, completion: nil)
 	}
 	
 	func generateQuestion(){
 		
 		removeViews(1)
+		removeViews(2)
         repeat{
             questionGenerator?.generateQuestion() //makes sure audio file exists
-        }while (//NSDataAsset(name: (questionGenerator?.getQuestionFileName())!) == nil //for ios 9 onwards
-            fileExists((questionGenerator?.getQuestionFileName())!) == false )
+			
+			//NSDataAsset(name: (questionGenerator?.getQuestionFileName())!) == nil //for ios 9 onwards
+        } while(fileExists((questionGenerator?.getQuestionFileName())!) == false )
 		
         let fileName = questionGenerator?.getQuestionFileName()
 		playSound(fileName!)
 		
-        delay(1.0){ //display the buttons after the audio has been played
+        delay(1.0){
+			//display the buttons after the audio has been played
             self.displayButtons(self.questionGenerator!.getQuestionSet(), nextFunction: #selector(TimetrialQuizModeController.questionButtonPressed(_:)))
             self.answerSelected = false
             self.generateTimer()
-        }
-		
-		
-        
-        //just to show the percentage for testing, to be removed later on
-        print("\(userScore/100), \(quizLength)")
-        let percentage = (Double(userScore) / Double(questionChoice!.getQuizLengthInt()))*100
-        print("\(percentage)%")
-        let totalProb = questionGenerator?.rhymeProb.reduce(0, combine: +)
-        for rhymeprob in (questionGenerator?.rhymeProb)!{//to check the prob of each rhyme
-            let tempProb = Double(rhymeprob)/Double(totalProb!)*100
-            print("probability of rhyme = \(tempProb)")
-            
         }
 	}
 	
@@ -84,7 +91,7 @@ class TimetrialQuizModeController: QuestionViewController {
 			))
 		timerBackground.layer.cornerRadius = timerBackground.frame.height / 2
 		timerBackground.backgroundColor = appColors["timetrialLight"]
-		timerBackground.tag = 2
+		timerBackground.tag = 5
 		self.view.addSubview(timerBackground)
 	}
 	
@@ -128,13 +135,14 @@ class TimetrialQuizModeController: QuestionViewController {
 	
 	func noOptionSelected(){
 		if self.answerSelected == false {
-			//TODO: disable buttons
+			
 			self.questionButtonPressed(nil)
 		}
 	}
 	
 	func questionButtonPressed(sender: CustomButton?){
 		
+		changeButtonStates()
 		answerSelected = true
 		removeViews(3)
 		
@@ -154,7 +162,8 @@ class TimetrialQuizModeController: QuestionViewController {
 				self.playSound("feedback-wrong")
 				sender!.backgroundColor = appColors["incorrectRed"]
                 
-                questionGenerator?.changeRhymeProb((questionGenerator?.rhymeSetIndex!)!, value: 1.2) // increase the probability of wrong rhyme
+				// increase the probability of incorrectly selected vowel sound
+				questionGenerator?.changeVowelProbability((questionGenerator?.rhymeSetIndex!)!, value: 1.2)
 			}
 		} else {
 			playSound("feedback-wrong")
@@ -198,7 +207,6 @@ class TimetrialQuizModeController: QuestionViewController {
 	
 	func scoreTimeFactor() -> Float {
 		let elapsedTime = NSDate().timeIntervalSinceDate(answerStartTime!)
-		
 		if elapsedTime < 1 {
 			return 2.0
 		} else if elapsedTime < 2 {
@@ -210,6 +218,8 @@ class TimetrialQuizModeController: QuestionViewController {
 		}
 	}
 	
+	//Complex function that creates several view items
+	//The majority of the complexity is fine tuning values for differant screen sizes
 	func displayButtons(buttonLabelSet: [String], nextFunction: Selector){
 		
 		var counter = 0
@@ -234,7 +244,7 @@ class TimetrialQuizModeController: QuestionViewController {
 			)
 			customButton.setTitleColor(appColors["darkGrey"], forState: .Normal)
 			customButton.setTitle(label, forState: .Normal)
-			customButton.titleLabel?.font = UIFont(name: "Arial", size: 24)
+			customButton.titleLabel?.font = UIFont.mainFontOfSize(24)
 			customButton.addTarget(self, action: nextFunction, forControlEvents: .TouchUpInside)
 			customButton.backgroundColor = appColors["lightGrey"]
 			fadeCentreInToSubview(customButton, delay: 0.25, completionAction: nil)
@@ -256,16 +266,17 @@ class TimetrialQuizModeController: QuestionViewController {
 			))
 		quizTotalLabel.textColor = appColors["white"]
 		quizTotalLabel.text = "\(questionNumber) of \(quizLength)"
-		quizTotalLabel.font = UIFont(name: "Arial", size: 20)
+		quizTotalLabel.font = UIFont.mainFontOfSize(20)
 		quizTotalLabel.textAlignment = .Center
 		
 		quizTotalLabelBackground.layer.cornerRadius = 10
 		quizTotalLabelBackground.backgroundColor = testModeColor
 		
+		quizTotalLabel.tag = 2
+		quizTotalLabelBackground.tag = 2
+		
 		self.view.addSubview(quizTotalLabelBackground)
 		self.view.addSubview(quizTotalLabel)
-		
-		//		self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-(20)-[headerView]-(5)-[title(200)][]|", options: .None, metrics: <#T##[String : AnyObject]?#>, views: <#T##[String : AnyObject]#>))
 		
 	}
 

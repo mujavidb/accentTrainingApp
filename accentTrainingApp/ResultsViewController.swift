@@ -96,7 +96,7 @@ class ResultsViewController: CustomViewController {
 		scoresLabel.text = "\(result)"
 		scoresLabel.textAlignment = .Center
 		scoresLabel.textColor = appColors["white"]
-		scoresLabel.font = UIFont(name: "Arial", size: CGFloat(viewWidth / 4.5))
+		scoresLabel.font = UIFont.mainFontOfSize(CGFloat(viewWidth / 4.5))
 		scoresLabel.tag = 1
 		fadeUpInToSubview(scoresLabel, delay: 0.25, completionAction: nil)
 		
@@ -111,7 +111,7 @@ class ResultsViewController: CustomViewController {
 		scoresInfoLabel.numberOfLines = 2
 		scoresInfoLabel.textAlignment = .Center
 		scoresInfoLabel.textColor = appColors["white"]
-		scoresInfoLabel.font = UIFont(name: "Arial", size: CGFloat(viewWidth / 10))
+		scoresInfoLabel.font = UIFont.mainFontOfSize(CGFloat(viewWidth / 10))
 		scoresInfoLabel.tag = 1
 		fadeUpInToSubview(scoresInfoLabel, delay: 0.25, completionAction: nil)
 		
@@ -147,7 +147,7 @@ class ResultsViewController: CustomViewController {
 		highscoresLabel.text = "Highscores"
 		highscoresLabel.textAlignment = .Center
 		highscoresLabel.textColor = appColors["white"]
-		highscoresLabel.font = UIFont(name: "Arial", size: CGFloat(viewWidth / 10))
+		highscoresLabel.font = UIFont.mainFontOfSize(CGFloat(viewWidth / 10))
 		fadeUpInToSubview(highscoresLabel, delay: 0.25, completionAction: nil)
 		
 		var counter = 0
@@ -161,7 +161,7 @@ class ResultsViewController: CustomViewController {
 					height: 22
 					))
 				label.text = "\(name)"
-				label.font = UIFont.systemFontOfSize(CGFloat(viewWidth / 16))
+				label.font = UIFont.mainFontOfSize(CGFloat(viewWidth / 16))
 				label.textColor = UIColor.whiteColor()
 				label.tag = 1
 				fadeUpInToSubview(label, delay: 0.25 + (0.05 * Double(counter)), completionAction: nil)
@@ -173,7 +173,7 @@ class ResultsViewController: CustomViewController {
 					height: 22
 					))
 				number.text = "\(score)"
-				number.font = UIFont.systemFontOfSize(CGFloat(viewWidth / 16))
+				number.font = UIFont.mainFontOfSize(CGFloat(viewWidth / 16))
 				number.textColor = UIColor.whiteColor()
 				number.textAlignment = .Right
 				number.tag = 1
