@@ -11,6 +11,8 @@ import AVFoundation
 
 class TimetrialQuizModeController: QuestionViewController {
 	
+	//TODO: Fix replay button so that other viewcontrollers are dismissed
+	
 	var answerSelected = false
 	var answerStartTime: NSDate? = nil
 	var selectionTimer: NSTimer? = NSTimer()
@@ -29,6 +31,18 @@ class TimetrialQuizModeController: QuestionViewController {
 		setupTimer()
 		
 		generateQuestion()
+		
+		let gutterWidth = viewWidth / 16;
+		let buttonHeight = (((viewHeight) * 0.75) - (4 * gutterWidth)) / 3
+		let quizTotalLabelBackground = UIView(frame: CGRect(
+			x: Int(gutterWidth),
+			y: Int((gutterWidth + buttonHeight) * 2 + (viewHeight * 0.45)),
+			width: Int(viewWidth - 2 * gutterWidth),
+			height: Int(viewHeight * 0.2)
+			))
+		quizTotalLabelBackground.layer.cornerRadius = 10
+		quizTotalLabelBackground.backgroundColor = testModeColor
+		self.view.addSubview(quizTotalLabelBackground)
     }
 	
 	@IBAction func restartQuiz(sender: AnyObject) {
@@ -55,9 +69,26 @@ class TimetrialQuizModeController: QuestionViewController {
 			self.audioPlayer!.stop()
 			self.selectionTimer!.invalidate()
 			self.selectionTimer = nil
-			self.dismissViewControllerAnimated(true, completion: nil)
+			self.view.window!.rootViewController?.dismissViewControllerAnimated(true, completion: nil)
 		}))
 		presentViewController(quitPrompt, animated: true, completion: nil)
+	}
+	
+	override func setUpReplayButton(){
+		let image = UIImage(named: "speaker")
+		
+		replayButton.frame = CGRect(
+			x: self.view.frame.width * 0.2,
+			y: self.view.frame.height * 0.18,
+			width: self.view.frame.width * 0.6,
+			height: CGFloat(viewWidth * 0.4)
+		)
+		
+		replayButton.setImage(image, forState: .Normal)
+		replayButton.titleLabel?.hidden = true
+		replayButton.imageView?.contentMode = .ScaleAspectFit
+		replayButton.addTarget(self, action: #selector(QuestionViewController.replaySound(_:)), forControlEvents: .TouchUpInside)
+		self.view.addSubview(replayButton)
 	}
 	
 	func generateQuestion(){
@@ -193,7 +224,7 @@ class TimetrialQuizModeController: QuestionViewController {
 					self.audioPlayer!.stop()
 					if let resultController = self.storyboard!.instantiateViewControllerWithIdentifier("ResultsViewController") as? ResultsViewController {
 						resultController.result = self.userScore
-						resultController.quizType = (self.questionChoice?.getQuizType())!
+						resultController.quizOptions = self.questionChoice
 						resultController.maxScore = self.quizLength * 10
 						self.presentViewController(resultController, animated: true, completion: nil)
 					}
@@ -252,30 +283,19 @@ class TimetrialQuizModeController: QuestionViewController {
 			counter = counter + 1
 		}
 		
+		removeViews(6)
 		let quizTotalLabel = UILabel(frame: CGRect(
 			x: Int(gutterWidth),
 			y: Int(viewHeight - viewHeight * 0.075),
 			width: Int(viewWidth - 2 * gutterWidth),
 			height: Int(viewHeight * 0.075)
 			))
-		let quizTotalLabelBackground = UIView(frame: CGRect(
-			x: Int(gutterWidth),
-			y: Int((gutterWidth + buttonHeight) * 2 + (viewHeight * 0.45)),
-			width: Int(viewWidth - 2 * gutterWidth),
-			height: Int(viewHeight * 0.2)
-			))
 		quizTotalLabel.textColor = appColors["white"]
 		quizTotalLabel.text = "\(questionNumber) of \(quizLength)"
 		quizTotalLabel.font = UIFont.mainFontOfSize(20)
 		quizTotalLabel.textAlignment = .Center
 		
-		quizTotalLabelBackground.layer.cornerRadius = 10
-		quizTotalLabelBackground.backgroundColor = testModeColor
-		
-		quizTotalLabel.tag = 2
-		quizTotalLabelBackground.tag = 2
-		
-		self.view.addSubview(quizTotalLabelBackground)
+		quizTotalLabel.tag = 6
 		self.view.addSubview(quizTotalLabel)
 		
 	}

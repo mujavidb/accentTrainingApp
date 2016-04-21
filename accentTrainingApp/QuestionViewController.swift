@@ -37,7 +37,7 @@ class QuestionViewController: CustomViewController {
 		
 		replayButton.frame = CGRect(
 			x: self.view.frame.width * 0.2,
-			y: self.view.frame.height * (questionChoice!.getQuizType() == "practice" ? 0.16 : 0.15),
+			y: self.view.frame.height * 0.16,
 			width: self.view.frame.width * 0.6,
 			height: CGFloat(viewWidth * 0.4)
 		)
