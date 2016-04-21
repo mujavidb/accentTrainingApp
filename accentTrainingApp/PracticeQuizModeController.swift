@@ -36,7 +36,7 @@ class PracticeQuizModeController: QuestionViewController {
 		quitPrompt.addAction(UIAlertAction(title: "Yes", style: .Default, handler: { (UIAlertAction) in
 			self.stopCount = 1
 			self.audioPlayer!.stop()
-			self.dismissViewControllerAnimated(true, completion: nil)
+			self.view.window!.rootViewController?.dismissViewControllerAnimated(true, completion: nil)
 		}))
 		presentViewController(quitPrompt, animated: true, completion: nil)
 	}

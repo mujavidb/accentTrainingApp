@@ -183,5 +183,7 @@ class ResultsViewController: CustomViewController {
 		}
 		
 	}
+	
+	@IBAction func unwindToMVC(segue: UIStoryboardSegue){}
 
 }

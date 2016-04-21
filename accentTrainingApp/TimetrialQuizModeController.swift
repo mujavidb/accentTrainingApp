@@ -11,6 +11,8 @@ import AVFoundation
 
 class TimetrialQuizModeController: QuestionViewController {
 	
+	//TODO: Fix replay button so that other viewcontrollers are dismissed
+	
 	var answerSelected = false
 	var answerStartTime: NSDate? = nil
 	var selectionTimer: NSTimer? = NSTimer()
@@ -55,9 +57,26 @@ class TimetrialQuizModeController: QuestionViewController {
 			self.audioPlayer!.stop()
 			self.selectionTimer!.invalidate()
 			self.selectionTimer = nil
-			self.dismissViewControllerAnimated(true, completion: nil)
+			self.view.window!.rootViewController?.dismissViewControllerAnimated(true, completion: nil)
 		}))
 		presentViewController(quitPrompt, animated: true, completion: nil)
+	}
+	
+	override func setUpReplayButton(){
+		let image = UIImage(named: "speaker")
+		
+		replayButton.frame = CGRect(
+			x: self.view.frame.width * 0.2,
+			y: self.view.frame.height * 0.18,
+			width: self.view.frame.width * 0.6,
+			height: CGFloat(viewWidth * 0.4)
+		)
+		
+		replayButton.setImage(image, forState: .Normal)
+		replayButton.titleLabel?.hidden = true
+		replayButton.imageView?.contentMode = .ScaleAspectFit
+		replayButton.addTarget(self, action: #selector(QuestionViewController.replaySound(_:)), forControlEvents: .TouchUpInside)
+		self.view.addSubview(replayButton)
 	}
 	
 	func generateQuestion(){
