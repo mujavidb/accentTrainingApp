@@ -313,7 +313,7 @@
                                     <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="RYM-o5-usT" kind="unwind" unwindAction="unwindToMVC:" id="kqY-qg-ISk"/>
+                                    <action selector="goHome:" destination="iq6-pJ-Hsx" eventType="touchUpInside" id="3Zp-U4-CVB"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -324,7 +324,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wYc-wy-o2Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="RYM-o5-usT" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1033" y="-381"/>
         </scene>

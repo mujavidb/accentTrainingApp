@@ -13,20 +13,29 @@ class ResultsViewController: CustomViewController {
 	var result: Int = 0
 	var trophyImage = UIImage()
 	var trophyImageView = UIImageView()
-	var quizType = "practice"
+	var quizOptions = QuizChoice?()
 	var maxScore = 150
 	
-	//to make button-label the correct color
+	//to make button-label-text the correct color
 	@IBOutlet weak var homeButton: CustomButton!
 	
 	@IBAction func replayButton(sender: AnyObject) {
-		
-		if let resultController = storyboard!.instantiateViewControllerWithIdentifier("QuizOptionsController") as? QuizOptionsController {
-			resultController.quizOptions.setType(quizType)
-			presentViewController(resultController, animated: true, completion: nil)
+		if quizOptions!.getQuizType() == "practice" {
+			if let resultController = self.storyboard!.instantiateViewControllerWithIdentifier("PracticeQuizModeController") as? PracticeQuizModeController {
+				resultController.questionChoice = quizOptions!
+				self.presentViewController(resultController, animated: true, completion: nil)
+			}
+		} else {
+			if let resultController = self.storyboard!.instantiateViewControllerWithIdentifier("TimetrialQuizModeController") as? TimetrialQuizModeController {
+				resultController.questionChoice = quizOptions!
+				self.presentViewController(resultController, animated: true, completion: nil)
+			}
 		}
 	}
 	
+	@IBAction func goHome(sender: AnyObject) {
+		self.view.window!.rootViewController?.dismissViewControllerAnimated(true, completion: nil)
+	}
 	
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,7 +53,7 @@ class ResultsViewController: CustomViewController {
 					highscoreName = "Anonymous"
 				}
 				
-				Highscores.updateHighscores(self.quizType, name: highscoreName, score: self.result)
+				Highscores.updateHighscores(self.quizOptions!.getQuizType(), name: highscoreName, score: self.result)
 				
 				self.setupHighscoresView()
 				
@@ -56,7 +65,7 @@ class ResultsViewController: CustomViewController {
 	
 	func setupInitialView(){
 		
-		if quizType == "practice" {
+		if quizOptions?.getQuizType() == "practice" {
 			self.view.backgroundColor = appColors["practice"]
 			homeButton.setTitleColor(appColors["practice"], forState: .Normal)
 		} else {
@@ -121,7 +130,7 @@ class ResultsViewController: CustomViewController {
 		removeViews(1)
 		
 		let trophyReductionFactor: CGFloat = 0.6
-		let allHighscores = Highscores.returnAllHighScores(quizType)
+		let allHighscores = Highscores.returnAllHighScores(quizOptions!.getQuizType())
 		print(allHighscores.count)
 		
 		UIView.animateWithDuration(
@@ -152,6 +161,7 @@ class ResultsViewController: CustomViewController {
 		
 		var counter = 0
 		
+		removeViews(6)
 		for person in allHighscores {
 			for (name, score) in person {
 				let label = UILabel(frame: CGRect(
@@ -176,7 +186,7 @@ class ResultsViewController: CustomViewController {
 				number.font = UIFont.mainFontOfSize(CGFloat(viewWidth / 16))
 				number.textColor = UIColor.whiteColor()
 				number.textAlignment = .Right
-				number.tag = 1
+				number.tag = 6
 				fadeUpInToSubview(number, delay: 0.25 + (0.05 * Double(counter)), completionAction: nil)
 				counter += 1
 			}

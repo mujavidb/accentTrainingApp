@@ -26,8 +26,18 @@ class PracticeQuizModeController: QuestionViewController {
 		}
 		
 		testModeColor = appColors["practice"]!
-		quitQuizButton.setTitleColor(testModeColor, forState: .Normal)
-		restartQuizButton.setTitleColor(testModeColor, forState: .Normal)
+		
+		let gutterWidth = viewWidth / 16
+		let buttonHeight = (((viewHeight) * 0.75) - (4 * gutterWidth)) / 3
+		let quizTotalLabelBackground = UIView(frame: CGRect(
+			x: Int(gutterWidth),
+			y: Int((gutterWidth + buttonHeight) * 2 + (viewHeight * 0.45)),
+			width: Int(viewWidth - 2 * gutterWidth),
+			height: Int(viewHeight * 0.2)
+			))
+		quizTotalLabelBackground.layer.cornerRadius = 10
+		quizTotalLabelBackground.backgroundColor = testModeColor
+		self.view.addSubview(quizTotalLabelBackground)
 	}
 	
 	@IBAction func quitPressed(sender: AnyObject) {
@@ -126,7 +136,7 @@ class PracticeQuizModeController: QuestionViewController {
 					self.audioPlayer!.stop()
 					if let resultController = self.storyboard!.instantiateViewControllerWithIdentifier("ResultsViewController") as? ResultsViewController {
 						resultController.result = self.userScore
-						resultController.quizType = (self.questionChoice?.getQuizType())!
+						resultController.quizOptions = self.questionChoice
 						resultController.maxScore = self.quizLength * 10
 						self.presentViewController(resultController, animated: true, completion: nil)
 					}
@@ -143,9 +153,9 @@ class PracticeQuizModeController: QuestionViewController {
 		var counter = 0
 		
 		//select (x, y, width, height) based on actual view dimensions
-		let viewHeight = Float(self.view.frame.height);
-		let viewWidth = Float(self.view.frame.width);
-		let gutterWidth: Float = 20;
+		let viewHeight = Float(self.view.frame.height)
+		let viewWidth = Float(self.view.frame.width)
+		let gutterWidth: Float = 20
 		let buttonWidth: Float = (viewWidth - (3 * gutterWidth))/2
 		
 		//get 70% of height, remove gutter space and divide remaining area by 3
@@ -170,30 +180,20 @@ class PracticeQuizModeController: QuestionViewController {
 			counter = counter + 1
 		}
 		
+		removeViews(6)
 		let quizTotalLabel = UILabel(frame: CGRect(
 			x: Int(gutterWidth),
 			y: Int(viewHeight - viewHeight * 0.075),
 			width: Int(viewWidth - 2 * gutterWidth),
 			height: Int(viewHeight * 0.075)
 			))
-		let quizTotalLabelBackground = UIView(frame: CGRect(
-			x: Int(gutterWidth),
-			y: Int((gutterWidth + buttonHeight) * 2 + (viewHeight * 0.45)),
-			width: Int(viewWidth - 2 * gutterWidth),
-			height: Int(viewHeight * 0.2)
-			))
 		quizTotalLabel.textColor = appColors["white"]
 		quizTotalLabel.text = "\(questionNumber) of \(quizLength)"
 		quizTotalLabel.font = UIFont.mainFontOfSize(20)
 		quizTotalLabel.textAlignment = .Center
 		
-		quizTotalLabelBackground.layer.cornerRadius = 10
-		quizTotalLabelBackground.backgroundColor = testModeColor
+		quizTotalLabel.tag = 6
 		
-		quizTotalLabel.tag = 2
-		quizTotalLabelBackground.tag = 2
-		
-		self.view.addSubview(quizTotalLabelBackground)
 		self.view.addSubview(quizTotalLabel)
 		
 		//		self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-(20)-[headerView]-(5)-[title(200)][]|", options: .None, metrics: <#T##[String : AnyObject]?#>, views: <#T##[String : AnyObject]#>))
