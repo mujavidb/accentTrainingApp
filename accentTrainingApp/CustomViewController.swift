@@ -58,7 +58,8 @@ class CustomViewController: UIViewController{
         myLabel.tag = 1
         self.view.addSubview(myLabel)
     }
-	
+    
+	//delay function - http://stackoverflow.com/questions/24034544/dispatch-after-gcd-in-swift
 	func delay(time:Double, closure:() -> Void) {
 		dispatch_after(dispatch_time(DISPATCH_TIME_NOW,Int64(time * Double(NSEC_PER_SEC))),dispatch_get_main_queue(), closure)
 	}

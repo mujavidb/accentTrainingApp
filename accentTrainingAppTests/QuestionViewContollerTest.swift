@@ -25,6 +25,10 @@ class QuestionViewContollerTest: XCTestCase {
         "Glasgow":["Steward","Laura","Robert","Anna"]
     ]
     
+    func testAudio(){
+        XCTAssertTrue(qv.fileExists(""))
+    }
+    
     func testAudioExists(){
         for accent in accentOptions{
             for speaker in speakerOptions[accent]!{

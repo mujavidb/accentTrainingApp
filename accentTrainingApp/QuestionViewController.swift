@@ -53,7 +53,7 @@ class QuestionViewController: CustomViewController {
 		playSound((questionGenerator?.getQuestionFileName())!)
 	}
 	
-    //gets the audio file in the assets and plays
+    //gets the audio file in the assets and plays - http://www.techotopia.com/index.php/Playing_Audio_on_iOS_8_using_AVAudioPlayer
     func playSound(fileName:String){
         
         let url = NSURL.fileURLWithPath(
@@ -77,7 +77,7 @@ class QuestionViewController: CustomViewController {
     
     func fileExists(fileName: String)-> Bool{
 		
-        let path = NSBundle.mainBundle().pathForResource(questionGenerator?.getQuestionFileName(), ofType: "mp3")
+        let path = NSBundle.mainBundle().pathForResource(fileName, ofType: "mp3")
         if path != nil{
             return true
         }
