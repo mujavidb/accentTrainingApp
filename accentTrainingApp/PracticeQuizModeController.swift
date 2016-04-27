@@ -27,6 +27,7 @@ class PracticeQuizModeController: QuestionViewController {
 		
 		testModeColor = appColors["practice"]!
 		
+		//Create the background label for the question number area
 		let gutterWidth = viewWidth / 16
 		let buttonHeight = (((viewHeight) * 0.75) - (4 * gutterWidth)) / 3
 		let quizTotalLabelBackground = UIView(frame: CGRect(
@@ -67,7 +68,7 @@ class PracticeQuizModeController: QuestionViewController {
 	
 	func generateQuestion(){
 		
-		removeViews(1)
+		removeViews(1) //remove buttons
 		removeViews(2)
         
         repeat{
@@ -117,6 +118,8 @@ class PracticeQuizModeController: QuestionViewController {
 					if let correctOption = view as? CustomButton {
 						if correctOption.currentTitle! == self.questionGenerator?.getAnswer(){
 							self.feedbackForWrong(sender, correctButton: correctOption, wrongFile: wrongFileName, correctFile: correctFileName!)
+							
+							//repeat feedback
 							self.delay(2.4){
 								self.feedbackForWrong(sender, correctButton: correctOption, wrongFile: wrongFileName, correctFile: correctFileName!)
 							}
@@ -130,9 +133,10 @@ class PracticeQuizModeController: QuestionViewController {
 		
 		delay(time) {
 			if(self.stopCount != 1){
+				
+				//if quiz reaches the end
 				if (self.questionNumber == self.quizLength){
 					
-					// session completed
 					self.audioPlayer!.stop()
 					if let resultController = self.storyboard!.instantiateViewControllerWithIdentifier("ResultsViewController") as? ResultsViewController {
 						resultController.result = self.userScore
@@ -180,6 +184,7 @@ class PracticeQuizModeController: QuestionViewController {
 			counter = counter + 1
 		}
 		
+		//removes previous question number
 		removeViews(6)
 		let quizTotalLabel = UILabel(frame: CGRect(
 			x: Int(gutterWidth),

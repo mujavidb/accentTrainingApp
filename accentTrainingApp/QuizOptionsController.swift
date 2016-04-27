@@ -30,6 +30,8 @@ class QuizOptionsController: CustomViewController{
 	
 	override func viewDidLoad() {
         super.viewDidLoad()
+		
+		//depending on quiztype default color is set
 		if quizOptions.getQuizType() == "practice" {
 			testModeColor = appColors["practice"]!
 		} else {
@@ -80,6 +82,7 @@ class QuizOptionsController: CustomViewController{
 		}
     }
 	
+	//used for quiz length selection
 	func displaySingleColumnButtons(buttonLabelSet: [String], textColor: UIColor, nextFunction: Selector){
 		var posX: Int
 		var posY: Int

@@ -46,9 +46,9 @@ class QuestionGenerator {
         askedQuestions.append((rhymeSetIndex!,questionSetIndex!,answer!))
         
     }
-
+	
+	// returns the name of the file in the format: accent_speakerName_answer
     func getQuestionFileName() -> String{
-        // returns the name of the file in the format: london_anna_back
         let accent = quizChoice!.getQuizAccent()
         let speakerName = quizChoice!.getQuizSpeaker()
         return "\(accent)_\(speakerName)_\(answer!)"
@@ -61,8 +61,9 @@ class QuestionGenerator {
     func getAnswer() -> String {
         return answer!
     }
-    
-    func randomNumber(probabilities probabilities: [Double]) -> Int { //generate index with a given distribution: http://stackoverflow.com/questions/30309556/generate-random-numbers-with-a-given-distribution 
+	
+	//generate index with a given distribution: http://stackoverflow.com/questions/30309556/generate-random-numbers-with-a-given-distribution
+    func randomNumber(probabilities probabilities: [Double]) -> Int {
         
         let sum = probabilities.reduce(0, combine: +)
         let rand = sum * Double(arc4random_uniform(UInt32.max)) / Double(UInt32.max)

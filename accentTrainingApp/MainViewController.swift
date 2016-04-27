@@ -21,6 +21,7 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
 		self.view.backgroundColor = UIColor.whiteColor()
 		
+		// Adapt for iPhone 4s
 		if self.view.frame.height < 568 {
 		
 			mainLogo.frame = CGRect(
@@ -42,6 +43,8 @@ class MainViewController: UIViewController {
 				counter = counter + 1
 			}
 		} else if self.view.frame.height > 568 {
+			
+			// Adapt for iPhone 6 and larger
 			mainLogo.frame = CGRect(
 				x: self.view.frame.width * 0.1,
 				y: self.view.frame.height * 0.04,

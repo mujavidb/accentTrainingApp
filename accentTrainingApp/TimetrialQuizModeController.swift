@@ -11,8 +11,6 @@ import AVFoundation
 
 class TimetrialQuizModeController: QuestionViewController {
 	
-	//TODO: Fix replay button so that other viewcontrollers are dismissed
-	
 	var answerSelected = false
 	var answerStartTime: NSDate? = nil
 	var selectionTimer: NSTimer? = NSTimer()
@@ -32,6 +30,7 @@ class TimetrialQuizModeController: QuestionViewController {
 		
 		generateQuestion()
 		
+		//Create the background label for the question number area
 		let gutterWidth = viewWidth / 16;
 		let buttonHeight = (((viewHeight) * 0.75) - (4 * gutterWidth)) / 3
 		let quizTotalLabelBackground = UIView(frame: CGRect(
@@ -112,6 +111,7 @@ class TimetrialQuizModeController: QuestionViewController {
         }
 	}
 	
+	//display background timer bar
 	func setupTimer(){
 		
 		let timerBackground = UIView(frame: CGRect(
@@ -126,6 +126,7 @@ class TimetrialQuizModeController: QuestionViewController {
 		self.view.addSubview(timerBackground)
 	}
 	
+	//display foreground (decreasing) timer bar
 	func generateTimer(){
 		
 		answerStartTime = NSDate()
@@ -166,14 +167,15 @@ class TimetrialQuizModeController: QuestionViewController {
 	
 	func noOptionSelected(){
 		if self.answerSelected == false {
-			
 			self.questionButtonPressed(nil)
 		}
 	}
 	
 	func questionButtonPressed(sender: CustomButton?){
 		
+		//disable all buttons
 		changeButtonStates()
+		
 		answerSelected = true
 		removeViews(3)
 		

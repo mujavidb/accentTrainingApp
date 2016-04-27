@@ -63,6 +63,7 @@ class CustomViewController: UIViewController{
 		dispatch_after(dispatch_time(DISPATCH_TIME_NOW,Int64(time * Double(NSEC_PER_SEC))),dispatch_get_main_queue(), closure)
 	}
 	
+	//fades views out
 	func removeViews(tag: Int){
 		var viewsToFade = [UIView]()
 		self.view.subviews.forEach({ if $0.tag == tag { viewsToFade.append($0) }})
@@ -80,6 +81,7 @@ class CustomViewController: UIViewController{
 		})
 	}
 	
+	//fade in from button
 	func fadeUpInToSubview(target: UIView, delay: Double, completionAction: ((Bool) -> Void)?){
 		target.alpha = 0
 		target.frame.origin.y += CGFloat(viewHeight * 0.1)
@@ -94,6 +96,7 @@ class CustomViewController: UIViewController{
 		)
 	}
 	
+	////fade in from centre
 	func fadeCentreInToSubview(target: UIView, delay: Double, completionAction: ((Bool) -> Void)?){
 		let currentFrame = target.frame
 		target.alpha = 0

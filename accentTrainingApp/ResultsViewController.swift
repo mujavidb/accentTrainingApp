@@ -63,6 +63,7 @@ class ResultsViewController: CustomViewController {
 		}
     }
 	
+	//shows single score on screen with trophy
 	func setupInitialView(){
 		
 		if quizOptions?.getQuizType() == "practice" {
@@ -126,6 +127,7 @@ class ResultsViewController: CustomViewController {
 		
 	}
 	
+	//shows leaderboard for quiz type
 	func setupHighscoresView() -> Void {
 		removeViews(1)
 		

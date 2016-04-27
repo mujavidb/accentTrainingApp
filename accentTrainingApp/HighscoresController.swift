@@ -17,6 +17,7 @@ class HighscoresController: CustomViewController {
 	let timetrialOption = UIButton()
 	var allHighscores: [[String: Int]] = []
 	var current = "practice" {
+		//observer, if value changes then UI is updated
 		didSet {
 			if current == "practice" {
 				practiceOption.backgroundColor = appColors["white"]
@@ -31,6 +32,8 @@ class HighscoresController: CustomViewController {
 			}
 			
 			allHighscores = Highscores.returnAllHighScores(current)
+			
+			//removes previous highscores
 			removeViews(1)
 			displayScores()
 		}
@@ -38,7 +41,6 @@ class HighscoresController: CustomViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-		// Do any additional setup after loading the view.
 		self.view.backgroundColor = appColors["highscores"]
 		allHighscores = Highscores.returnAllHighScores(current)
 		displayScoreListSelector()
@@ -46,6 +48,7 @@ class HighscoresController: CustomViewController {
 		
     }
 	
+	//display two buttons at top to select quizType for highscores
 	func displayScoreListSelector(){
 		let buttonWidth = (viewWidth * 0.5) - 20
 		practiceOption.frame = CGRect(
@@ -91,8 +94,6 @@ class HighscoresController: CustomViewController {
 		
 		var counter = 0
 		
-		//TODO: Add zero state screen
-		
 		for person in allHighscores {
 			for (name, score) in person {
 				
@@ -129,6 +130,7 @@ class HighscoresController: CustomViewController {
 		}
 	}
 	
+	//if highscore is 1st, 2nd or 3rd highest, use appropriate coloured trophy
 	func labelBackground(counter: Int){
 		
 		var trophyColor = appColors["highscores"]

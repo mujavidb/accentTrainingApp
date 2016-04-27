@@ -64,6 +64,7 @@ class QuestionViewController: CustomViewController {
         audioPlayer!.play()
     }
 	
+	//disable all buttons
 	func changeButtonStates(){
 		var viewsToChangeState = [CustomButton]()
 		self.view.subviews.forEach({ if $0.tag == 1 { viewsToChangeState.append(($0 as? CustomButton)!)}})
@@ -82,8 +83,9 @@ class QuestionViewController: CustomViewController {
         }
         return false
     }
-    
-    func returnToDefaultState(button: CustomButton){ //to put the button back to its original state
+	
+	//return a highlighted button back to greys
+    func returnToDefaultState(button: CustomButton){
         button.backgroundColor = appColors["lightGrey"]
         button.setTitleColor(appColors["darkGrey"], forState: .Normal)
     }
