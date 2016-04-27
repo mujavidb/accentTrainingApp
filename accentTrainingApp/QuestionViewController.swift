@@ -75,16 +75,11 @@ class QuestionViewController: CustomViewController {
 	}
     
     func fileExists(fileName: String)-> Bool{
-        //let url: NSURL? = NSURL.fileURLWithPath(NSBundle.mainBundle().pathForResource(questionGenerator?.getQuestionFileName(), ofType: "mp3")!)
 		
         let path = NSBundle.mainBundle().pathForResource(questionGenerator?.getQuestionFileName(), ofType: "mp3")
         if path != nil{
             return true
         }
-		// if file exists
-		/*if let _ = url {
-            return true
-        }*/
         return false
     }
     

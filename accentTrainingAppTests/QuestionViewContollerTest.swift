@@ -32,8 +32,8 @@ class QuestionViewContollerTest: XCTestCase {
                     for wordset in rhymes{
                         for word in wordset{
                             let fileName = "\(accent)_\(speaker)_\(word)"
-                            XCTAssertNotNil(NSDataAsset(name: fileName), "no audio: \(fileName)")
-                            //XCTAssertTrue(qv.fileExists(fileName))
+                            //XCTAssertNotNil(NSDataAsset(name: fileName), "no audio: \(fileName)") // test for ios 9
+                            XCTAssertNotNil(NSBundle.mainBundle().pathForResource(fileName, ofType: "mp3"), "no audio for \(fileName)") // test for ios 8 
                         }
                     }
                 }
