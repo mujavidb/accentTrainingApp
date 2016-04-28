@@ -277,7 +277,7 @@ class TimetrialQuizModeController: QuestionViewController {
 			)
 			customButton.setTitleColor(appColors["darkGrey"], forState: .Normal)
 			customButton.setTitle(label, forState: .Normal)
-			customButton.titleLabel?.font = UIFont.mainFontOfSize(24)
+			customButton.titleLabel?.font = UIFont.mainFontOfSize(viewHeight > 700 ? 30 : 24)
 			customButton.addTarget(self, action: nextFunction, forControlEvents: .TouchUpInside)
 			customButton.backgroundColor = appColors["lightGrey"]
 			fadeCentreInToSubview(customButton, delay: 0.25, completionAction: nil)
@@ -294,7 +294,7 @@ class TimetrialQuizModeController: QuestionViewController {
 			))
 		quizTotalLabel.textColor = appColors["white"]
 		quizTotalLabel.text = "\(questionNumber) of \(quizLength)"
-		quizTotalLabel.font = UIFont.mainFontOfSize(20)
+		quizTotalLabel.font = UIFont.mainFontOfSize(viewHeight > 700 ? 26 : 20)
 		quizTotalLabel.textAlignment = .Center
 		
 		quizTotalLabel.tag = 6

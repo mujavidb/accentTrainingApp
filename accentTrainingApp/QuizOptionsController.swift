@@ -136,7 +136,7 @@ class QuizOptionsController: CustomViewController{
 		var labelString: NSString
 		var titleSize: CGSize
 		
-		let screenAdjustmentFactor: CGFloat = viewHeight > 568 ? 6 : (viewHeight == 568 ? -2 : -9.5)
+		let screenAdjustmentFactor: CGFloat = viewHeight > 700 ? 11 : viewHeight > 568 ? 6 : (viewHeight == 568 ? -2 : -9.5)
 		
 		for label in buttonLabelSet {
 			

@@ -30,6 +30,22 @@ class QuestionViewController: CustomViewController {
 	
     override func viewDidLoad(){
         super.viewDidLoad()
+		if viewHeight > 700 {
+			quitQuizButton.titleLabel?.font = UIFont.mainFontOfSize(24)
+			quitQuizButton.frame = CGRect(
+				x: quitQuizButton.frame.origin.x,
+				y: quitQuizButton.frame.origin.y,
+				width: quitQuizButton.frame.width + 50,
+				height: quitQuizButton.frame.height
+			)
+			restartQuizButton.titleLabel?.font = UIFont.mainFontOfSize(24)
+			restartQuizButton.frame = CGRect(
+				x: restartQuizButton.frame.origin.x - 50,
+				y: restartQuizButton.frame.origin.y,
+				width: restartQuizButton.frame.width + 50,
+				height: restartQuizButton.frame.height
+			)
+		}
     }
 	
 	func setUpReplayButton(){

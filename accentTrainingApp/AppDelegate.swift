@@ -92,15 +92,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		// Override point for customization after application launch.
 		
 		// If a shortcut was launched, display its information and take the appropriate action
-		if #available(iOS 9.0, *) {
-			if let shortcutItem = launchOptions?[UIApplicationLaunchOptionsShortcutItemKey] as? UIApplicationShortcutItem {
-				
-				launchedShortcutItem = shortcutItem
-			}
-		} else {
-			// Fallback on earlier versions
+
+		if let shortcutItem = launchOptions?[UIApplicationLaunchOptionsShortcutItemKey] as? UIApplicationShortcutItem {
+			launchedShortcutItem = shortcutItem
 		}
-		
 		return true
 	}
 	

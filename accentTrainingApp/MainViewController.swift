@@ -22,7 +22,39 @@ class MainViewController: UIViewController {
 		self.view.backgroundColor = UIColor.whiteColor()
 		
 		// Adapt for iPhone 4s
-		if self.view.frame.height < 568 {
+		
+		if self.view.frame.height > 700 {
+			
+			mainLogo.frame = CGRect(
+				x: self.view.frame.width * 0.1,
+				y: self.view.frame.height * 0.05,
+				width: self.view.frame.width * 0.7,
+				height: self.view.frame.height * 0.4
+			)
+			
+			mainLogo.autoresizesSubviews = false
+			
+			aboutButton.titleLabel?.font = UIFont.mainFontOfSize(20)
+			aboutButton.frame = CGRect(
+				x: aboutButton.frame.origin.x,
+				y: aboutButton.frame.origin.y - 15,
+				width: aboutButton.frame.width,
+				height: aboutButton.frame.height
+			)
+			
+			var counter: CGFloat = 0
+			
+			for button in [practiceButton, timetrialButton, highscoresButton]{
+				button.titleLabel?.font = UIFont.mainFontOfSize(28)
+				button.frame = CGRect(
+					x: self.view.frame.width * 0.1,
+					y: self.view.frame.height * 0.5 + (counter * (self.view.frame.height * 0.12 + 10)),
+					width: self.view.frame.width * 0.8,
+					height: self.view.frame.height * 0.12
+				)
+				counter = counter + 1
+			}
+		} else if self.view.frame.height < 568 {
 		
 			mainLogo.frame = CGRect(
 				x: self.view.frame.width * 0.1,
@@ -42,14 +74,23 @@ class MainViewController: UIViewController {
 					)
 				counter = counter + 1
 			}
+			
 		} else if self.view.frame.height > 568 {
 			
 			// Adapt for iPhone 6 and larger
 			mainLogo.frame = CGRect(
 				x: self.view.frame.width * 0.1,
-				y: self.view.frame.height * 0.04,
+				y: self.view.frame.height * 0.08,
 				width: self.view.frame.width * 0.8,
 				height: self.view.frame.height * 0.4
+			)
+			
+			aboutButton.titleLabel?.font = UIFont.mainFontOfSize(18)
+			aboutButton.frame = CGRect(
+				x: aboutButton.frame.origin.x,
+				y: aboutButton.frame.origin.y - 10,
+				width: aboutButton.frame.width,
+				height: aboutButton.frame.height
 			)
 			
 			var counter: CGFloat = 0
