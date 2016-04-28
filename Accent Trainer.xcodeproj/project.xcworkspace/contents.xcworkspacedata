@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:accentTrainingApp.xcodeproj">
+      location = "self:/Users/Javu/myrepos/accentTrainingApp/Accent Trainer.xcodeproj">
    </FileRef>
 </Workspace>
