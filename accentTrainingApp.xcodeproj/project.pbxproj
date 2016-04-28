@@ -260,7 +260,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 64B33F1A1C9D4A6C006C3510 /* Build configuration list for PBXProject "Accent Trainer" */;
+			buildConfigurationList = 64B33F1A1C9D4A6C006C3510 /* Build configuration list for PBXProject "accentTrainingApp" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -512,7 +512,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		64B33F1A1C9D4A6C006C3510 /* Build configuration list for PBXProject "Accent Trainer" */ = {
+		64B33F1A1C9D4A6C006C3510 /* Build configuration list for PBXProject "accentTrainingApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				64B33F3A1C9D4A6D006C3510 /* Debug */,
