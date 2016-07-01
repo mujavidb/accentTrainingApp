@@ -1,5 +1,5 @@
-<h1 style="text-align:center;">UCL Accent Vowel Trainer App</h1>
-<h3 style="text-align:center;">A simple app for those learning English as a second language to recognise different spoken english accents</h3>
+#UCL Accent Vowel Trainer App
+###A simple app for those learning English as a second language to recognise different spoken english accents
 
 <img src="images/LogoLarge.png" alt="Logo for the game"/>
 
