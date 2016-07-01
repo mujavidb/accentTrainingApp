@@ -1,5 +1,5 @@
 #UCL Accent Vowel Trainer App
-###A simple app for those learning English as a second language to recognise different spoken english accents
+###Learn and recognise different English accents
 
 <img src="images/LogoLarge.png" alt="Logo for the game"/>
 
