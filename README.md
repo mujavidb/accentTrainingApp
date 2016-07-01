@@ -12,13 +12,16 @@ In collaboration with UCL Speech Sciences our duo built an iOS application that 
 
 <img src="images/Practice_0.jpg" alt="Quiz options"/>
 
+
 ####Practice mode to quiz yourself on specific vowel sounds, with feedback
 
 <img src="images/Test_0.jpg" alt="Practice mode"/>
 
+
 ####Timetrial mode to test your speed
 
 <img src="images/tt_Test_0.jpg" alt="Time trial mode"/>
+
 
 ####Highscores to see how far you've come
 
@@ -30,5 +33,5 @@ In collaboration with UCL Speech Sciences our duo built an iOS application that 
 
 
 ##Credits
-Design: Mujavid (check out the Sketch file to see the complete design set)
-Developement: Mujavid and Kazuma
+* Design: Mujavid (check out the Sketch file to see the complete design set)
+* Development: Mujavid and Kazuma
